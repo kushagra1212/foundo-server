@@ -8,6 +8,10 @@ router.post('/addfound', itemControllers.addFoundedItem);
 //DELETE Item By Item Id
 router.delete('/deleteitem', itemControllers.deleteItemByItemId);
 
+//Update Item by item Id
+router.patch('/update', itemControllers.updateItemById);
+
 //GET Item Id
+router.get('/all', itemControllers.getItemsbyUserId);
 router.get('/:id', itemControllers.getItemByItemId);
 module.exports = router;

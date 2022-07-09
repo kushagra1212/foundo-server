@@ -44,6 +44,54 @@ class Item {
     let sql = 'DELETE FROM items WHERE id=?';
     return promisePool.execute(sql, [itemId]);
   }
+  static updateItem({ description, itemId }) {
+    let sql = 'UPDATE items SET description=? WHERE id=?';
+    return promisePool.execute(sql, [description, itemId]);
+  }
+  static findItemsByUserId({
+    userId,
+    limit,
+    offset,
+    founded,
+    category,
+    brand,
+    color,
+  }) {
+    let sql = 'SELECT * FROM items';
+    let validFields = [];
+    let sqlQuery = [];
+    if (founded !== undefined) {
+      validFields.push(founded);
+      sqlQuery.push('isFounded = ?');
+    }
+    if (category) {
+      validFields.push(category);
+      sqlQuery.push('category = ?');
+    }
+    if (brand) {
+      validFields.push(brand);
+      sqlQuery.push('brand = ?');
+    }
+    if (color) {
+      validFields.push(color);
+      sqlQuery.push('color = ?');
+    }
+    if (userId !== undefined) {
+      validFields.push(userId);
+      sqlQuery.push('userId = ?');
+    }
+    validFields.push(limit);
+    validFields.push(offset);
+    for (let i = 0; i < sqlQuery.length; i++) {
+      if (i == 0) {
+        sql = sql + ' WHERE ' + sqlQuery[i];
+      } else {
+        sql = sql + ' AND ' + sqlQuery[i];
+      }
+    }
+    sql += ' LIMIT ? OFFSET ?';
+    return promisePool.execute(sql, validFields);
+  }
 }
 
 module.exports = Item;

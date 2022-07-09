@@ -22,7 +22,6 @@ const getItemPictures = async (req, res) => {
 
 const addPictures = async (req, res) => {
   const { itemId, pictures, isFounded } = req.body;
-  console.log(req.body);
   try {
     const [itemResult, __] = await Item.findItem({ itemId });
     if (!itemResult || !itemResult.length) {

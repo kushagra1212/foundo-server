@@ -17,7 +17,6 @@ class ItemPicture {
       picturesCount--;
       if (picturesCount) sql += ',';
     }
-    console.log(values);
     return promisePool.execute(sql, values);
   }
   static deletePictures({ itemId }) {

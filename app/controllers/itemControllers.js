@@ -163,9 +163,54 @@ const getItemByItemId = async (req, res) => {
     res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
+const updateItemById = async (req, res) => {
+  const { itemId, description } = req.body;
+  try {
+    const [itemResult, __] = await Item.findItem({ itemId });
+    if (!itemResult || !itemResult.length) {
+      res
+        .status(404)
+        .send({ error: 'not found', errorMessage: 'item not found' });
+      return;
+    }
+    await Item.updateItem({ itemId, description });
+    res
+      .status(200)
+      .send({ success: true, mesage: 'item updated Successfully' });
+  } catch (err) {
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
+  }
+};
+
+const getItemsbyUserId = async (req, res) => {
+  const { limit, offset } = req.query;
+  console.log(req.query);
+  if (offset === undefined || limit === undefined) {
+    res
+      .status(400)
+      .send({ success: false, errorMessage: 'offset and limit required' });
+    return;
+  }
+
+  try {
+    const [itemResult, _] = await Item.findItemsByUserId(req.query);
+    if (!itemResult || !itemResult.length) {
+      res
+        .status(404)
+        .send({ error: 'not found', errorMessage: 'item not found' });
+      return;
+    }
+    res.status(200).send({ items: itemResult });
+  } catch (err) {
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
+  }
+};
+
 module.exports = {
   addLostItem,
   addFoundedItem,
   deleteItemByItemId,
   getItemByItemId,
+  updateItemById,
+  getItemsbyUserId,
 };
