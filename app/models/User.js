@@ -21,6 +21,11 @@ class User {
     let sql = `SELECT * FROM users WHERE id=?`;
     return promisePool.execute(sql, [userId]);
   }
+
+  static findAllUsers({ limit, offset }) {
+    let sql = `SELECT * FROM users LIMIT ? OFFSET ?`;
+    return promisePool.execute(sql, [limit, offset]);
+  }
   static updateUser({ user, id }) {
     let sql = `UPDATE users SET address=?,phoneNo=?,profilePhoto=?, countryCode=? WHERE id=?`;
     return promisePool.execute(sql, [

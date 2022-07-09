@@ -1,32 +1,26 @@
 const User = require('../models/User');
 const UserSetting = require('../models/UserSetting');
-
+const promisePool = require('../db');
 //create user | POST
 const signupUser = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   const user = new User({ firstName, lastName, email, password });
+  let connection;
   try {
+    connection = await promisePool.getConnection();
+    connection.beginTransaction();
     const [result, _] = await user.save();
-    if (result.affectedRows) {
-      try {
-        const userSetting = new UserSetting({ userId: result.insertId });
-        await userSetting.save();
-      } catch (err) {
-        res
-          .status(400)
-          .send({ error: 'Bad Request', errorMessage: 'user not created' });
-        return;
-      }
-
-      res
-        .status(201)
-        .send({ user: { ...user, userId: result.insertId }, success: true });
-    } else
-      res
-        .status(400)
-        .send({ error: 'Bad Request', errorMessage: 'user not created' });
+    const userSetting = new UserSetting({ userId: result.insertId });
+    await userSetting.save();
+    connection.commit();
+    res
+      .status(201)
+      .send({ user: { ...user, userId: result.insertId }, success: true });
   } catch (err) {
+    if (connection) connection.rollback();
     res.status(400).send({ error: 'Bad Request', errorMessage: err.message });
+  } finally {
+    if (connection) connection.release();
   }
 };
 
@@ -82,7 +76,6 @@ const updateUserbyId = async (req, res) => {
         .send({ error: 'not found', errorMessage: 'user not found' });
     } else {
       let user = userResult[0];
-      console.log(user);
       if (phoneNo && user.phoneNo !== phoneNo) user.phoneNo = phoneNo;
       if (countryCode && user.countryCode !== countryCode)
         user.countryCode = countryCode;
@@ -111,4 +104,23 @@ const updateUserbyId = async (req, res) => {
     res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
-module.exports = { signupUser, deleteUserById, getUserById, updateUserbyId };
+const getAllUsers = async (req, res) => {
+  const { limit, offset } = req.query;
+  try {
+    const [allUsers, __] = await User.findAllUsers({ limit, offset });
+    if (!allUsers || !allUsers.length) {
+      res.status(404).send({ error: 'not found', errorMessage: 'no users' });
+    } else {
+      res.status(200).send({ allUsers: allUsers });
+    }
+  } catch (err) {
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
+  }
+};
+module.exports = {
+  signupUser,
+  deleteUserById,
+  getUserById,
+  updateUserbyId,
+  getAllUsers,
+};

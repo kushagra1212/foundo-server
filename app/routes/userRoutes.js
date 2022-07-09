@@ -4,7 +4,8 @@ const router = express.Router();
 
 // POST request SignUp user & Create cookie
 router.post('/signup', userControllers.signupUser);
-
+// GET ALL Users
+router.get('/all', userControllers.getAllUsers);
 // GET user By Id
 router.get('/:id', userControllers.getUserById);
 
