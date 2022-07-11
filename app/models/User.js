@@ -41,5 +41,10 @@ class User {
     let sql = `DELETE FROM users WHERE id=?`;
     return promisePool.execute(sql, [userId]);
   }
+  static findUserByEmail({ userEmail }) {
+    console.log(userEmail);
+    let sql = 'SELECT * FROM users WHERE email=?';
+    return promisePool.execute(sql, [userEmail]);
+  }
 }
 module.exports = User;

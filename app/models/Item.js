@@ -10,6 +10,7 @@ class Item {
     category,
     userId,
     isFounded,
+    college,
   }) {
     this.itemName = itemName;
     this.color = color;
@@ -20,10 +21,11 @@ class Item {
     this.category = category;
     this.userId = userId;
     this.isFounded = isFounded;
+    this.college = college;
   }
   save() {
-    let sql = `INSERT INTO items(itemName,color,dateTime,description,brand,city,category,userId,isFounded) VALUES(?,?,?,?,?,?,?,?,?)`;
-
+    let sql = `INSERT INTO items(itemName,color,dateTime,description,brand,city,category,userId,isFounded,college) VALUES(?,?,?,?,?,?,?,?,?,?)`;
+    if (this.college === undefined) this.college = null;
     return promisePool.execute(sql, [
       this.itemName,
       this.color,
@@ -34,6 +36,7 @@ class Item {
       this.category,
       this.userId,
       this.isFounded,
+      this.college,
     ]);
   }
   static findItem({ itemId }) {
@@ -56,6 +59,7 @@ class Item {
     category,
     brand,
     color,
+    college,
   }) {
     let sql = 'SELECT * FROM items';
     let validFields = [];
@@ -79,6 +83,10 @@ class Item {
     if (userId !== undefined) {
       validFields.push(userId);
       sqlQuery.push('userId = ?');
+    }
+    if (college) {
+      validFields.push(college);
+      sqlQuery.push('college = ?');
     }
     validFields.push(limit);
     validFields.push(offset);

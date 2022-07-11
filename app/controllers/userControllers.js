@@ -1,14 +1,34 @@
 const User = require('../models/User');
 const UserSetting = require('../models/UserSetting');
 const promisePool = require('../db');
+const salt = process.env.SALT;
+const bcrypt = require('bcrypt');
+const jwtSecret = process.env.JWT_SECRET;
+const jwt = require('jsonwebtoken');
+const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
+
+//create Token
+const createToken = (id) => {
+  return jwt.sign({ id }, toString(jwtSecret), {
+    expiresIn: maxAgeOfToken,
+  });
+};
+
 //create user | POST
 const signupUser = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
-  const user = new User({ firstName, lastName, email, password });
   let connection;
   try {
+    let hashedPassword = bcrypt.hash(password, parseInt(salt));
     connection = await promisePool.getConnection();
     connection.beginTransaction();
+
+    const user = new User({
+      firstName,
+      lastName,
+      email,
+      password: hashedPassword,
+    });
     const [result, _] = await user.save();
     const userSetting = new UserSetting({ userId: result.insertId });
     await userSetting.save();
@@ -21,6 +41,32 @@ const signupUser = async (req, res) => {
     res.status(400).send({ error: 'Bad Request', errorMessage: err.message });
   } finally {
     if (connection) connection.release();
+  }
+};
+
+//SignIn user
+const signinUser = async (req, res) => {
+  const { email, password } = req.body;
+  try {
+    const [user, _] = await User.findUserByEmail({ userEmail: email });
+    if (!user || !user.length) {
+      res.status(400).send({ error: true, message: 'user not found' });
+      return;
+    }
+    const isPasswordCorrect = bcrypt.compare(password, user[0].password);
+
+    if (!isPasswordCorrect) {
+      res.status(400).send({ error: true, message: 'password is incorrect' });
+      return;
+    }
+    const token = createToken(user[0].id);
+    res.status(200).send({
+      jwtToken: token,
+      message: 'successfully loggedin',
+      user: user[0],
+    });
+  } catch (err) {
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
 
@@ -123,4 +169,5 @@ module.exports = {
   getUserById,
   updateUserbyId,
   getAllUsers,
+  signinUser,
 };

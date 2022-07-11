@@ -2,10 +2,14 @@ const express = require('express');
 const userControllers = require('../controllers/userControllers');
 const router = express.Router();
 
-// POST request SignUp user & Create cookie
+// POST  SignUp user
 router.post('/signup', userControllers.signupUser);
+// POST signIn and get Token
+router.post('/signin', userControllers.signinUser);
+
 // GET ALL Users
 router.get('/all', userControllers.getAllUsers);
+
 // GET user By Id
 router.get('/:id', userControllers.getUserById);
 

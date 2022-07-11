@@ -67,6 +67,7 @@ const addFoundedItem = async (req, res) => {
     isFounded,
     pictures,
     location,
+    college,
   } = req.body;
   const item = new Item({
     itemName,
@@ -78,6 +79,7 @@ const addFoundedItem = async (req, res) => {
     category,
     userId,
     isFounded: true,
+    college,
   });
   let connection;
   try {
