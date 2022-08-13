@@ -11,7 +11,11 @@ router.delete('/deleteitem', itemControllers.deleteItemByItemId);
 //Update Item by item Id
 router.patch('/update', itemControllers.updateItemById);
 
+//GET All Items
+router.get('/all', itemControllers.getItems);
+
 //GET Item Id
-router.get('/all', itemControllers.getItemsbyUserId);
+router.get('/user/all', itemControllers.getItemsbyUserId);
 router.get('/:id', itemControllers.getItemByItemId);
+
 module.exports = router;

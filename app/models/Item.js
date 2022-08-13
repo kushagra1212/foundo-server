@@ -51,7 +51,7 @@ class Item {
     let sql = 'UPDATE items SET description=? WHERE id=?';
     return promisePool.execute(sql, [description, itemId]);
   }
-  static findItemsByUserId({
+  static findItemsByUserIdorAll({
     userId,
     limit,
     offset,
@@ -60,8 +60,9 @@ class Item {
     brand,
     color,
     college,
+    latest,
   }) {
-    let sql = 'SELECT * FROM items';
+    let sql = 'SELECT * FROM items I1';
     let validFields = [];
     let sqlQuery = [];
     if (founded !== undefined) {
@@ -90,6 +91,7 @@ class Item {
     }
     validFields.push(limit);
     validFields.push(offset);
+
     for (let i = 0; i < sqlQuery.length; i++) {
       if (i == 0) {
         sql = sql + ' WHERE ' + sqlQuery[i];
@@ -97,7 +99,11 @@ class Item {
         sql = sql + ' AND ' + sqlQuery[i];
       }
     }
+    if (latest) {
+      sql += ' ORDER BY createdAt DESC';
+    }
     sql += ' LIMIT ? OFFSET ?';
+
     return promisePool.execute(sql, validFields);
   }
 }

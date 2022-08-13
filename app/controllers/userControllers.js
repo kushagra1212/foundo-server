@@ -19,7 +19,7 @@ const signupUser = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   let connection;
   try {
-    let hashedPassword = bcrypt.hash(password, parseInt(salt));
+    let hashedPassword = await bcrypt.hash(password, parseInt(salt));
     connection = await promisePool.getConnection();
     connection.beginTransaction();
 

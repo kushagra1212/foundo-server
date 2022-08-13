@@ -42,7 +42,6 @@ class User {
     return promisePool.execute(sql, [userId]);
   }
   static findUserByEmail({ userEmail }) {
-    console.log(userEmail);
     let sql = 'SELECT * FROM users WHERE email=?';
     return promisePool.execute(sql, [userEmail]);
   }
