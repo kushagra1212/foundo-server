@@ -47,6 +47,7 @@ const addLostItem = async (req, res) => {
       foundItemId: null,
     });
     await itemLocation.save();
+    await Item.updateItem(foundedItem.insertId, 'thumbnail', pictures[0].image);
     await connection.commit();
     res.status(200).send({ itemId: lostItem.insertId, success: true });
   } catch (err) {
@@ -100,7 +101,9 @@ const addFoundedItem = async (req, res) => {
       lostItemId: null,
       foundItemId: foundedItem.insertId,
     });
+    await Item.updateItem(foundedItem.insertId, 'thumbnail', pictures[0].image);
     await itemLocation.save();
+
     await connection.commit();
     res.status(200).send({ itemId: foundedItem.insertId, success: true });
   } catch (err) {
@@ -183,7 +186,7 @@ const updateItemById = async (req, res) => {
         .send({ error: 'not found', errorMessage: 'item not found' });
       return;
     }
-    await Item.updateItem({ itemId, description });
+    await Item.updateItem(itemId, 'description', description);
     res
       .status(200)
       .send({ success: true, mesage: 'item updated Successfully' });

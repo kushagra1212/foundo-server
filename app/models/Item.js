@@ -47,9 +47,9 @@ class Item {
     let sql = 'DELETE FROM items WHERE id=?';
     return promisePool.execute(sql, [itemId]);
   }
-  static updateItem({ description, itemId }) {
-    let sql = 'UPDATE items SET description=? WHERE id=?';
-    return promisePool.execute(sql, [description, itemId]);
+  static updateItem(itemId, itemName, itemContent) {
+    let sql = `UPDATE items SET ${itemName}=? WHERE id=?`;
+    return promisePool.execute(sql, [itemContent, itemId]);
   }
   static findItemsByUserIdorAll({
     userId,
