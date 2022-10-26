@@ -33,9 +33,10 @@ const signupUser = async (req, res) => {
     const userSetting = new UserSetting({ userId: result.insertId });
     await userSetting.save();
     connection.commit();
-    res
-      .status(201)
-      .send({ user: { ...user, userId: result.insertId }, success: true });
+    res.status(201).send({
+      user: { ...user, userId: result.insertId, password: '' },
+      success: true,
+    });
   } catch (err) {
     if (connection) connection.rollback();
     res.status(400).send({ error: 'Bad Request', errorMessage: err.message });
@@ -53,7 +54,7 @@ const signinUser = async (req, res) => {
       res.status(400).send({ error: true, message: 'user not found' });
       return;
     }
-    const isPasswordCorrect = bcrypt.compare(password, user[0].password);
+    const isPasswordCorrect = await bcrypt.compare(password, user[0].password);
 
     if (!isPasswordCorrect) {
       res.status(400).send({ error: true, message: 'password is incorrect' });
@@ -63,7 +64,7 @@ const signinUser = async (req, res) => {
     res.status(200).send({
       jwtToken: token,
       message: 'successfully loggedin',
-      user: user[0],
+      user: { ...user[0], password: '' },
     });
   } catch (err) {
     res.status(500).send({ error: 'server error', errorMessage: err.message });

@@ -1,5 +1,6 @@
 const express = require('express');
 const userControllers = require('../controllers/userControllers');
+const { auth } = require('../middleware/auth');
 const router = express.Router();
 
 // POST  SignUp user
@@ -14,7 +15,7 @@ router.get('/all', userControllers.getAllUsers);
 router.get('/:id', userControllers.getUserById);
 
 //PATCH update user
-router.patch('/update', userControllers.updateUserbyId);
+router.patch('/update', auth, userControllers.updateUserbyId);
 
 // delete request Delete by Id
 router.delete('/', userControllers.deleteUserById);
