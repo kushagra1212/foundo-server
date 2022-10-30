@@ -35,11 +35,16 @@ const signupUser = async (req, res) => {
     connection.commit();
     res.status(201).send({
       user: { ...user, userId: result.insertId, password: '' },
-      success: true,
+      message: 'Account Created !',
     });
   } catch (err) {
     if (connection) connection.rollback();
-    res.status(400).send({ error: 'Bad Request', errorMessage: err.message });
+    console.log(err.errno);
+    let errorMessage = err.message;
+    if (err.errno === 1062) {
+      errorMessage = 'This Email is already in use !';
+    }
+    res.status(400).send({ error: 'Bad Request', errorMessage: errorMessage });
   } finally {
     if (connection) connection.release();
   }
@@ -51,13 +56,20 @@ const signinUser = async (req, res) => {
   try {
     const [user, _] = await User.findUserByEmail({ userEmail: email });
     if (!user || !user.length) {
-      res.status(400).send({ error: true, message: 'user not found' });
+      res
+        .status(400)
+        .send({
+          error: 'Bad Request',
+          errorMessage: 'Please check your email again !',
+        });
       return;
     }
     const isPasswordCorrect = await bcrypt.compare(password, user[0].password);
 
     if (!isPasswordCorrect) {
-      res.status(400).send({ error: true, message: 'password is incorrect' });
+      res
+        .status(400)
+        .send({ error: 'Bad Request', errorMessage: 'password is incorrect' });
       return;
     }
     const token = createToken(user[0].id);
