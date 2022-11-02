@@ -4,15 +4,8 @@ const promisePool = require('../db');
 const salt = process.env.SALT;
 const bcrypt = require('bcrypt');
 const jwtSecret = process.env.JWT_SECRET;
-const jwt = require('jsonwebtoken');
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
-
-//create Token
-const createToken = (id) => {
-  return jwt.sign({ id }, toString(jwtSecret), {
-    expiresIn: maxAgeOfToken,
-  });
-};
+const utils = require('../utils/index');
 
 //create user | POST
 const signupUser = async (req, res) => {
@@ -56,12 +49,10 @@ const signinUser = async (req, res) => {
   try {
     const [user, _] = await User.findUserByEmail({ userEmail: email });
     if (!user || !user.length) {
-      res
-        .status(400)
-        .send({
-          error: 'Bad Request',
-          errorMessage: 'Please check your email again !',
-        });
+      res.status(400).send({
+        error: 'Bad Request',
+        errorMessage: 'Please check your email again !',
+      });
       return;
     }
     const isPasswordCorrect = await bcrypt.compare(password, user[0].password);
@@ -72,7 +63,11 @@ const signinUser = async (req, res) => {
         .send({ error: 'Bad Request', errorMessage: 'password is incorrect' });
       return;
     }
-    const token = createToken(user[0].id);
+    const token = utils.createToken({
+      id: user[0].id,
+      jwtSecret,
+      maxAgeOfToken,
+    });
     res.status(200).send({
       jwtToken: token,
       message: 'successfully loggedin',

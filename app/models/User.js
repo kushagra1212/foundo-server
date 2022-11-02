@@ -36,7 +36,10 @@ class User {
       id,
     ]);
   }
-
+  static changePassword({ email, password }) {
+    let sql = 'UPDATE users SET password=? WHERE email=?';
+    return promisePool.execute(sql, [password, email]);
+  }
   static deleteUser({ userId }) {
     let sql = `DELETE FROM users WHERE id=?`;
     return promisePool.execute(sql, [userId]);
