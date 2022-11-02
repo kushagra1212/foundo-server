@@ -1,5 +1,7 @@
 const jwtSecret = process.env.JWT_SECRET;
 const jwt = require('jsonwebtoken');
+const User = require('../models/User');
+const utils = require('../utils/index');
 const auth = (req, res, next) => {
   const token = req.header('x-auth-token');
   if (!token)
@@ -15,4 +17,28 @@ const auth = (req, res, next) => {
     res.status(400).json({ message: 'Invalid token.' });
   }
 };
-module.exports = { auth };
+const verifyToken = async (req, res, next) => {
+  try {
+    const { email, token } = req.params;
+    const [user, _] = await User.findUserByEmail({ userEmail: email });
+    if (!user || !user.length) {
+      res.status(400).send({
+        error: 'Bad Request',
+        errorMessage: 'Please check your email again !',
+      });
+      return;
+    }
+    console.log(user[0]);
+    const decoded = utils.verifyToken({
+      jwtSecret: toString(user[0].password),
+      jwtToken: token,
+    });
+    req.user = user;
+    req.decoded = decoded;
+    next();
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
+  }
+};
+module.exports = { auth, verifyToken };
