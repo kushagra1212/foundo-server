@@ -13,8 +13,11 @@ const forgotPassword = async (req, res) => {
       });
       return;
     }
-    const maxAgeOfJWTToken = 24 * 60 * 60; // 15 minutes
-    const jwtSecret = toString(user[0].password); // Taking old password as a secret [dynamic]
+    const maxAgeOfJWTToken = 60 * 60; // Validity 1 Hour Only
+    /* Taking old password as a secret [dynamic]
+       Will be Validating while taking NewPassword       
+    */
+    const jwtSecret = toString(user[0].password);
     const token = utils.createToken({
       id: user[0].id,
       jwtSecret,
