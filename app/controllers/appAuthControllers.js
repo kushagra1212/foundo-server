@@ -2,6 +2,10 @@ const User = require('../models/User');
 const utils = require('../utils/index');
 const salt = process.env.SALT;
 const bcrypt = require('bcrypt');
+const Sib = require('sib-api-v3-sdk');
+const client = Sib.ApiClient.instance;
+const apiKey = client.authentications['api-key'];
+apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.params;
@@ -23,7 +27,28 @@ const forgotPassword = async (req, res) => {
       jwtSecret,
       maxAgeOfToken: maxAgeOfJWTToken,
     });
-    res.status(200).send({ email, token });
+    const tranEmailApi = new Sib.TransactionalEmailsApi();
+    const sender = {
+      email: 'rathorekushagra446@gmail.com',
+      name: 'Foundo App',
+    };
+    const receivers = [
+      {
+        email: email,
+      },
+    ];
+    await tranEmailApi.sendTransacEmail({
+      sender,
+      to: receivers,
+      subject: 'Foundo! Reset Your Password',
+      textContent: `Reset Password Link`,
+      htmlContent: `
+          <h1>Foundo Application</h1>
+          <h3>Here is your reset password Link</h3>
+          <a href="">Reset Password</a>`,
+    });
+
+    res.status(200).send({ message: 'Email sent successfully' });
   } catch (err) {
     console.log(err);
     res.status(500).send({ error: 'server error', errorMessage: err.message });
