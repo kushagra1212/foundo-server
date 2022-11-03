@@ -28,11 +28,11 @@ const verifyToken = async (req, res, next) => {
       });
       return;
     }
-    console.log(user[0]);
     const decoded = utils.verifyToken({
       jwtSecret: toString(user[0].password),
       jwtToken: token,
     });
+    console.log(user[0].password);
     req.user = user;
     req.decoded = decoded;
     next();
