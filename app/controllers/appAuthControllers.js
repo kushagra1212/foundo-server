@@ -37,6 +37,7 @@ const forgotPassword = async (req, res) => {
         email: email,
       },
     ];
+    const appURL = `exp://192.168.198.138:19000/--/app/auth/resetpassword?token=${token}`;
     await tranEmailApi.sendTransacEmail({
       sender,
       to: receivers,
@@ -45,7 +46,7 @@ const forgotPassword = async (req, res) => {
       htmlContent: `
           <h1>Foundo Application</h1>
           <h3>Here is your reset password Link</h3>
-          <a href="">Reset Password</a>`,
+          <a href="${appURL}">Reset Password</a>`,
     });
 
     res.status(200).send({ message: 'Email sent successfully' });
