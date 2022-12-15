@@ -17,7 +17,7 @@ const forgotPassword = async (req, res) => {
       });
       return;
     }
-    const maxAgeOfJWTToken = 60 * 60; // Validity 1 Hour Only
+    const maxAgeOfJWTToken = 60 * 60 * 24; // Validity 1 Hour Only
     /* Taking old password as a secret [dynamic]
        Will be Validating while taking NewPassword       
     */
@@ -37,7 +37,7 @@ const forgotPassword = async (req, res) => {
         email: email,
       },
     ];
-    const appURL = `exp://192.168.198.138:19000/--/app/auth/resetpassword/${email}/${token}`;
+    const appURL = `exp://192.168.156.216:19000/--/app/auth/resetpassword/${email}/${token}`;
     await tranEmailApi.sendTransacEmail({
       sender,
       to: receivers,
