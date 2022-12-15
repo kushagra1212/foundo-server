@@ -30,7 +30,7 @@ const verifyToken = async (req, res, next) => {
     }
     const decoded = utils.verifyToken({
       jwtSecret: toString(user[0].password),
-      jwtToken: token,
+      jwtToken: JSON.stringify(token),
     });
     console.log(user[0].password);
     req.user = user;
