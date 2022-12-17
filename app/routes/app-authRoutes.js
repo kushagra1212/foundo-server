@@ -6,15 +6,20 @@ const auth = require('../middleware/auth');
 // GET  Forgot Password
 router.get('/forgot-password/:email', authControllers.forgotPassword);
 router.get(
-  '/verify-token/:email/:token',
+  '/verify-reset-password-token/:email/:token',
+  auth.verifyResetToken,
+  authControllers.checkValidityofResetPasswordToken
+);
+
+router.get(
+  '/verify-token/:token',
   auth.verifyToken,
   authControllers.checkValidityofToken
 );
-
 // POST Reset Password
 router.post(
   '/reset-password/:email/:token',
-  auth.verifyToken,
+  auth.verifyResetToken,
   authControllers.resetPassword
 );
 

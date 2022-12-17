@@ -55,12 +55,26 @@ const forgotPassword = async (req, res) => {
     res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
-const checkValidityofToken = async (req, res) => {
+const checkValidityofResetPasswordToken = async (req, res) => {
   try {
-    res.status(200).send(req.decoded);
+    res.status(200).send({ ...req.decoded, user: req.user[0] });
   } catch (err) {
     console.log(err);
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    res.status(500).send({
+      error: 'server error',
+      errorMessage: err.message,
+    });
+  }
+};
+const checkValidityofToken = async (req, res) => {
+  try {
+    res.status(200).send({ ...req.decoded, user: req.user[0] });
+  } catch (err) {
+    console.log(err);
+    res.status(500).send({
+      error: 'server error',
+      errorMessage: err.message,
+    });
   }
 };
 const resetPassword = async (req, res) => {
@@ -71,9 +85,15 @@ const resetPassword = async (req, res) => {
       email: req?.user[0]?.email,
       password: hashedPassword,
     });
-    res.send(user);
+    res.send({ user, message: 'Password Changed Successfully !' });
   } catch (err) {
     res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
-module.exports = { forgotPassword, checkValidityofToken, resetPassword };
+module.exports = {
+  forgotPassword,
+  checkValidityofToken,
+  resetPassword,
+  checkValidityofToken,
+  checkValidityofResetPasswordToken,
+};
