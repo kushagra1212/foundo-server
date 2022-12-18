@@ -62,6 +62,9 @@ class Item {
     college,
     latest,
   }) {
+
+   
+
     let sql = 'SELECT * FROM items I1';
     let validFields = [];
     let sqlQuery = [];
@@ -103,7 +106,7 @@ class Item {
       sql += ' ORDER BY createdAt DESC';
     }
     sql += ' LIMIT ? OFFSET ?';
-
+    sql=`SELECT * from users as u1 INNER JOIN (${sql}) as i1 on u1.id=i1.userId;`;
     return promisePool.execute(sql, validFields);
   }
 }
