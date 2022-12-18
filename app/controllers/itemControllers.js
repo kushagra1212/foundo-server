@@ -47,7 +47,7 @@ const addLostItem = async (req, res) => {
       foundItemId: null,
     });
     await itemLocation.save();
-    await Item.updateItem(foundedItem.insertId, 'thumbnail', pictures[0].image);
+    await Item.updateItem(lostItem.insertId, 'thumbnail', pictures[0].image);
     await connection.commit();
     res.status(200).send({ itemId: lostItem.insertId, success: true });
   } catch (err) {
@@ -220,6 +220,7 @@ const getItemsbyUserId = async (req, res) => {
 
 const getItems = async (req, res) => {
   const { limit, offset } = req.query;
+  console.log(req.query)
   if (offset === undefined || limit === undefined) {
     res
       .status(400)
