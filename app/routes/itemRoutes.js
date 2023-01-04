@@ -14,7 +14,8 @@ router.patch('/update', auth, itemControllers.updateItemById);
 
 //GET All Items
 router.get('/all', auth, itemControllers.getItems);
-
+//GET ALL BY SEACH
+router.get('/all-by-search', auth, itemControllers.getItemsBySearchString);
 //GET Item Id
 router.get('/user/all', auth, itemControllers.getItemsbyUserId);
 router.get('/:id', auth, itemControllers.getItemByItemId);

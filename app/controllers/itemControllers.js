@@ -220,7 +220,7 @@ const getItemsbyUserId = async (req, res) => {
 
 const getItems = async (req, res) => {
   const { limit, offset } = req.query;
-  console.log(req.query)
+  console.log(req.query);
   if (offset === undefined || limit === undefined) {
     res
       .status(400)
@@ -241,7 +241,37 @@ const getItems = async (req, res) => {
     res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
-
+const getItemsBySearchString = async (req, res) => {
+  const { limit, offset, searchstring } = req.query;
+  console.log(req.query);
+  if (
+    offset === undefined ||
+    limit === undefined ||
+    searchstring === undefined
+  ) {
+    res.status(400).send({
+      success: false,
+      errorMessage: 'offset, limit and search string are required',
+    });
+    return;
+  }
+  try {
+    const [[finalResult], [count]] = await Item.findItemBySearchStringRegExp({
+      searchString: searchstring,
+      offset,
+      limit,
+    });
+    if (!finalResult || !finalResult.length) {
+      res
+        .status(404)
+        .send({ error: 'not found', errorMessage: 'items not found' });
+      return;
+    }
+    res.status(200).send({ total: count[0].total, items: finalResult });
+  } catch (err) {
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
+  }
+};
 module.exports = {
   addLostItem,
   addFoundedItem,
@@ -250,4 +280,5 @@ module.exports = {
   updateItemById,
   getItemsbyUserId,
   getItems,
+  getItemsBySearchString,
 };
