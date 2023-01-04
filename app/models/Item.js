@@ -61,6 +61,10 @@ class Item {
     color,
     college,
     latest,
+    itemName,
+    description,
+    city,
+    and = true,
   }) {
     let sql = 'SELECT * FROM items I1';
     let validFields = [];
@@ -72,6 +76,18 @@ class Item {
     if (category) {
       validFields.push(category);
       sqlQuery.push('category = ?');
+    }
+    if (itemName) {
+      validFields.push(itemName);
+      sqlQuery.push('itemName = ?');
+    }
+    if (description) {
+      validFields.push(description);
+      sqlQuery.push('description = ?');
+    }
+    if (city) {
+      validFields.push(city);
+      sqlQuery.push('city = ?');
     }
     if (brand) {
       validFields.push(brand);
@@ -95,8 +111,10 @@ class Item {
     for (let i = 0; i < sqlQuery.length; i++) {
       if (i == 0) {
         sql = sql + ' WHERE ' + sqlQuery[i];
-      } else {
+      } else if (and) {
         sql = sql + ' AND ' + sqlQuery[i];
+      } else {
+        sql = sql + ' OR ' + sqlQuery[i];
       }
     }
     if (latest === '1') {
@@ -105,6 +123,43 @@ class Item {
     sql += ' LIMIT ? OFFSET ?';
     sql = `SELECT * from users as u1 INNER JOIN (${sql}) as i1 on u1.id=i1.userId;`;
     return promisePool.execute(sql, validFields);
+  }
+  static findItemBySearchStringRegExp({
+    limit,
+    offset,
+    searchString,
+    userId,
+    latest,
+  }) {
+    let sql = `SELECT * FROM items I1 WHERE CONCAT(category,itemName,description,city,brand,color) LIKE '%${searchString}%'`;
+    let validFields = [];
+    let sqlQuery = [];
+    if (userId !== undefined) {
+      validFields.push(userId);
+      sqlQuery.push('userId = ?');
+    }
+    validFields.push(limit);
+    validFields.push(offset);
+
+    for (let i = 0; i < sqlQuery.length; i++) {
+      if (i == 0) {
+        sql = sql + ' WHERE ' + sqlQuery[i];
+      } else if (and) {
+        sql = sql + ' AND ' + sqlQuery[i];
+      } else {
+        sql = sql + ' OR ' + sqlQuery[i];
+      }
+    }
+    if (latest === '1') {
+      sql += ' ORDER BY createdAt DESC';
+    }
+    let CountSql = `SELECT count(*) as total from users as u1 INNER JOIN (${sql}) as i1 on u1.id=i1.userId;`;
+    sql += ' LIMIT ? OFFSET ?';
+    sql = `SELECT * from users as u1 INNER JOIN (${sql}) as i1 on u1.id=i1.userId;`;
+    return Promise.all([
+      promisePool.execute(sql, validFields),
+      promisePool.execute(CountSql, validFields),
+    ]);
   }
 }
 
