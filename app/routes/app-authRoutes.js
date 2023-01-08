@@ -14,7 +14,7 @@ router.get(
 router.get(
   '/verify-token/:token',
   auth.verifyToken,
-  authControllers.checkValidityofToken
+  authControllers.checkValidityofResetPasswordToken
 );
 // POST Reset Password
 router.post(
