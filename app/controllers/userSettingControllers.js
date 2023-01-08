@@ -18,16 +18,22 @@ const updateUserSettingbyUserId = async (req, res) => {
         .send({ error: 'not found', errorMessage: 'user Setting not found' });
     } else {
       let userSetting = userSettingResult[0];
-      if (displayPhoneNo && userSetting.displayPhoneNo !== displayPhoneNo)
+      if (
+        displayPhoneNo !== undefined &&
+        userSetting.displayPhoneNo !== displayPhoneNo
+      )
         userSetting.displayPhoneNo = displayPhoneNo;
-      if (language && userSetting.language !== language)
+      if (language !== undefined && userSetting.language !== language)
         userSetting.language = language;
       if (
-        displayProfilePhoto &&
+        displayProfilePhoto !== undefined &&
         userSetting.displayProfilePhoto !== displayProfilePhoto
       )
         userSetting.displayProfilePhoto = displayProfilePhoto;
-      if (displayAddress && userSetting.displayAddress !== displayAddress)
+      if (
+        displayAddress !== undefined &&
+        userSetting.displayAddress !== displayAddress
+      )
         userSetting.displayAddress = displayAddress;
       try {
         await UserSetting.updateUserSetting({
