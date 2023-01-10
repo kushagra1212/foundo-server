@@ -16,7 +16,9 @@ router.get('/:id', userControllers.getUserById);
 
 //PATCH update user
 router.patch('/update', auth, userControllers.updateUserbyId);
-
+router.get('/send-otp/:id', auth, userControllers.sendOtp);
+router.get('/verify-otp/:id/:otp', auth, userControllers.verifyOtp);
+router.get('/reset-otp/:id', auth, userControllers.resetOtp);
 // delete request Delete by Id
 router.delete('/', userControllers.deleteUserById);
 module.exports = router;

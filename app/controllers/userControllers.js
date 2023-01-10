@@ -7,7 +7,10 @@ const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
 const utils = require('../utils/index');
 const { imageUpload, S3Image } = require('../s3/S3image');
-
+const Sib = require('sib-api-v3-sdk');
+const client = Sib.ApiClient.instance;
+const apiKey = client.authentications['api-key'];
+apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
 //create user | POST
 const signupUser = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
@@ -149,6 +152,7 @@ const updateUserbyId = async (req, res) => {
       try {
         await User.updateUser({
           user: {
+            ...user,
             phoneNo: user.phoneNo,
             countryCode: user.countryCode,
             profilePhoto: user.profilePhoto,
@@ -181,6 +185,118 @@ const getAllUsers = async (req, res) => {
     res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
+const sendOtp = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [userResult, __] = await User.findUser({ userId: id });
+    if (!userResult || !userResult.length) {
+      res
+        .status(404)
+        .send({ error: 'not found', errorMessage: 'user not found' });
+    } else {
+      const otp = Math.floor(1000 + Math.random() * 9000);
+      const [result, _] = await User.updateUser({
+        user: {
+          ...userResult[0],
+          otp,
+        },
+        id,
+      });
+      if (result?.affectedRows) {
+        const message = `Your OTP for Email Verification is ${otp}`;
+
+        const tranEmailApi = new Sib.TransactionalEmailsApi();
+        const sender = {
+          email: 'rathorekushagra446@gmail.com',
+          name: 'Foundo App',
+        };
+        const receivers = [
+          {
+            email: userResult[0].email,
+          },
+        ];
+        await tranEmailApi.sendTransacEmail({
+          sender,
+          to: receivers,
+          subject: 'Verification OTP',
+          textContent: `Verify your email by entering this OTP ${otp}`,
+          htmlContent: `
+          <h1>Foundo Application</h1>
+          <h3>${message}</h3>`,
+        });
+        res.status(200).send({ success: true });
+      } else {
+        res
+          .status(400)
+          .send({ error: 'Bad Request', errorMessage: 'user is not updated' });
+      }
+    }
+  } catch (err) {
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
+  }
+};
+const verifyOtp = async (req, res) => {
+  const { id, otp } = req.params;
+  try {
+    const [userResult, __] = await User.findUser({ userId: id });
+    if (!userResult || !userResult.length) {
+      return res
+        .status(404)
+        .send({ error: 'not found', errorMessage: 'user not found' });
+    }
+    if (userResult[0].otp === Number(otp) && Number(otp) !== 0) {
+      const [result, _] = await User.updateUser({
+        user: {
+          ...userResult[0],
+          otp: 0,
+          is_verified: 1,
+        },
+        id,
+      });
+      if (result?.affectedRows) {
+        return res.status(200).send({
+          user: { ...userResult[0], otp: 0, is_verified: 1 },
+          success: true,
+          message: 'Your Email has been Verified Successfully !',
+        });
+      }
+    }
+    return res.status(400).send({
+      error: 'Bad Request',
+      errorMessage: `OTP Didn't Match`,
+    });
+  } catch (err) {
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
+  }
+};
+
+const resetOtp = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const [userResult, __] = await User.findUser({ userId: id });
+    if (!userResult || !userResult.length) {
+      return res
+        .status(404)
+        .send({ error: 'not found', errorMessage: 'user not found' });
+    }
+    const [result, _] = await User.updateUser({
+      user: {
+        ...userResult[0],
+        otp: 0,
+      },
+      id,
+    });
+    if (result?.affectedRows) {
+      return res.status(200).send({ success: true });
+    }
+    return res.status(400).send({
+      error: 'Bad Request',
+      errorMessage: `Something went wrong`,
+    });
+  } catch (err) {
+    res.status(500).send({ error: 'server error', errorMessage: err.message });
+  }
+};
 module.exports = {
   signupUser,
   deleteUserById,
@@ -188,4 +304,7 @@ module.exports = {
   updateUserbyId,
   getAllUsers,
   signinUser,
+  sendOtp,
+  verifyOtp,
+  resetOtp,
 };
