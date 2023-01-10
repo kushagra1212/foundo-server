@@ -1,7 +1,8 @@
 const config = {
-  host: process.env.DB_HOST,
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
+  host: process.env.AWS_DB_HOST,
+  user: process.env.AWS_DB_USER,
+  password: process.env.AWS_DB_PASSWORD,
+  port: process.env.AWS_DB_PORT,
   database: process.env.DATABASE,
 };
 
