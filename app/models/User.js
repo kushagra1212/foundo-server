@@ -27,12 +27,15 @@ class User {
   }
 
   static updateUser({ user, id }) {
-    let sql = `UPDATE users SET address=?,phoneNo=?,profilePhoto=?, countryCode=? WHERE id=?`;
+    let sql = `UPDATE users SET address=?,phoneNo=?,profilePhoto=?, countryCode=?, otp=?, is_verified=? WHERE id=?`;
+
     return promisePool.execute(sql, [
       user.address,
       user.phoneNo,
       user.profilePhoto,
       user.countryCode,
+      user.otp,
+      user.is_verified,
       id,
     ]);
   }
