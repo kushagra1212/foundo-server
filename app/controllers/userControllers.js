@@ -6,6 +6,7 @@ const bcrypt = require('bcrypt');
 const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
 const utils = require('../utils/index');
+const { imageUpload, S3Image } = require('../s3/S3image');
 
 //create user | POST
 const signupUser = async (req, res) => {
@@ -133,8 +134,17 @@ const updateUserbyId = async (req, res) => {
       if (phoneNo && user.phoneNo !== phoneNo) user.phoneNo = phoneNo;
       if (countryCode && user.countryCode !== countryCode)
         user.countryCode = countryCode;
-      if (profilePhoto && user.profilePhoto !== profilePhoto)
-        user.profilePhoto = profilePhoto;
+      if (profilePhoto && user.profilePhoto !== profilePhoto) {
+        const s3ImageObj = new S3Image();
+        await s3ImageObj.delete(user.profilePhoto);
+        const location = await s3ImageObj.upload({
+          userId,
+          base64: profilePhoto,
+        });
+        console.log(location);
+        user.profilePhoto = location;
+      }
+
       if (address && user.address !== address) user.address = address;
       try {
         await User.updateUser({
