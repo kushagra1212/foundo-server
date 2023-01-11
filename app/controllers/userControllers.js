@@ -16,6 +16,13 @@ const signupUser = async (req, res) => {
   const { firstName, lastName, email, password } = req.body;
   let connection;
   try {
+    if (!firstName || !lastName || !email || !password) {
+      res.status(400).send({
+        error: 'Bad Request',
+        errorMessage: 'firstName, lastName, email and password are required',
+      });
+      return;
+    }
     let hashedPassword = await bcrypt.hash(password, parseInt(salt));
     connection = await promisePool.getConnection();
     connection.beginTransaction();
@@ -51,6 +58,13 @@ const signupUser = async (req, res) => {
 const signinUser = async (req, res) => {
   const { email, password } = req.body;
   try {
+    if (!email || !password) {
+      res.status(400).send({
+        error: 'Bad Request',
+        errorMessage: 'email and password are required',
+      });
+      return;
+    }
     const [user, _] = await User.findUserByEmail({ userEmail: email });
     if (!user || !user.length) {
       res.status(400).send({
@@ -86,6 +100,12 @@ const signinUser = async (req, res) => {
 
 const deleteUserById = async (req, res) => {
   const { userId } = req.body;
+  if (!userId) {
+    res
+      .status(400)
+      .send({ error: 'Bad Request', errorMessage: 'userId is required' });
+    return;
+  }
   try {
     const [userResult, __] = await User.findUser({ userId });
     if (!userResult || !userResult.length) {
@@ -109,14 +129,33 @@ const deleteUserById = async (req, res) => {
 // get user by user id | GET
 const getUserById = async (req, res) => {
   const { id } = req.params;
+  const userIdWhoMadeReq = req.jwt.id;
+  if (!id) {
+    res
+      .status(400)
+      .send({ error: 'Bad Request', errorMessage: 'userId is required' });
+    return;
+  }
   try {
     const [userResult, __] = await User.findUser({ userId: id });
+    const [userSettingResult, ___] = await UserSetting.findUserSetting({
+      userId: id,
+    });
+    const userSetting = userSettingResult[0];
+
     if (!userResult || !userResult.length) {
       res
         .status(404)
         .send({ error: 'not found', errorMessage: 'user not found' });
     } else {
-      res.status(200).send({ user: userResult[0] });
+      let user = userResult[0];
+      if (Number(userIdWhoMadeReq) !== user.id) {
+        if (!userSetting.displayPhoneNo) user = { ...user, phoneNo: null };
+        if (!userSetting.displayAddress) user = { ...user, address: null };
+        if (!userSetting.displayProfilePhoto)
+          user = { ...user, profilePhoto: null };
+      }
+      res.status(200).send({ user });
     }
   } catch (err) {
     res.status(500).send({ error: 'server error', errorMessage: err.message });
@@ -126,7 +165,9 @@ const getUserById = async (req, res) => {
 // Update User by Id
 const updateUserbyId = async (req, res) => {
   const { userId, phoneNo, countryCode, profilePhoto, address } = req.body;
+
   try {
+    if (!userId) throw new Error('userId is required');
     const [userResult, __] = await User.findUser({ userId });
     if (!userResult || !userResult.length) {
       res
@@ -175,6 +216,9 @@ const updateUserbyId = async (req, res) => {
 const getAllUsers = async (req, res) => {
   const { limit, offset } = req.query;
   try {
+    if (!limit || !offset) {
+      throw new Error('limit and offset are required');
+    }
     const [allUsers, __] = await User.findAllUsers({ limit, offset });
     if (!allUsers || !allUsers.length) {
       res.status(404).send({ error: 'not found', errorMessage: 'no users' });
@@ -188,6 +232,12 @@ const getAllUsers = async (req, res) => {
 const sendOtp = async (req, res) => {
   const { id } = req.params;
   try {
+    if (!id) {
+      res
+        .status(400)
+        .send({ error: 'Bad Request', errorMessage: 'user id is required' });
+      return;
+    }
     const [userResult, __] = await User.findUser({ userId: id });
     if (!userResult || !userResult.length) {
       res

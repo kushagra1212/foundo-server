@@ -9,6 +9,12 @@ const updateUserSettingbyUserId = async (req, res) => {
     displayAddress,
   } = req.body;
   try {
+    if (!userId) {
+      res
+        .status(400)
+        .send({ error: 'bad request', errorMessage: 'userId is required' });
+      return;
+    }
     const [userSettingResult, __] = await UserSetting.findUserSetting({
       userId,
     });
@@ -54,6 +60,12 @@ const updateUserSettingbyUserId = async (req, res) => {
 };
 const getUserSettingByUserId = async (req, res) => {
   const { userId } = req.params;
+  if (!userId) {
+    res
+      .status(400)
+      .send({ error: 'bad request', errorMessage: 'userId is required' });
+    return;
+  }
   try {
     const [userSettingResult, __] = await UserSetting.findUserSetting({
       userId,

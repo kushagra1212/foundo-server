@@ -9,6 +9,13 @@ apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
 const forgotPassword = async (req, res) => {
   try {
     const { email } = req.params;
+    if (!email) {
+      res.status(400).send({
+        error: 'Bad Request',
+        errorMessage: 'Please provide email !',
+      });
+      return;
+    }
     const [user, _] = await User.findUserByEmail({ userEmail: email });
     if (!user || !user.length) {
       res.status(400).send({
@@ -80,6 +87,15 @@ const checkValidityofToken = async (req, res) => {
 const resetPassword = async (req, res) => {
   try {
     const { password } = req.body;
+    if (!password) {
+      res
+        .status(400)
+        .send({
+          error: 'Bad Request',
+          errorMessage: 'Please provide password !',
+        });
+      return;
+    }
     let hashedPassword = await bcrypt.hash(password, parseInt(salt));
     const [user, _] = await User.changePassword({
       email: req?.user[0]?.email,
