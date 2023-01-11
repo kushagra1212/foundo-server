@@ -142,6 +142,11 @@ const deleteItemByItemId = async (req, res) => {
 };
 const getItemByItemId = async (req, res) => {
   const { id } = req.params;
+  if (!id) {
+    return res
+      .status(400)
+      .send({ error: 'error', errorMessage: 'id is not provided' });
+  }
   try {
     const [itemResult, __] = await Item.findItem({ itemId: id });
     if (!itemResult || !itemResult.length) {
@@ -173,6 +178,11 @@ const getItemByItemId = async (req, res) => {
 
 const updateItemById = async (req, res) => {
   const { itemId, description } = req.body;
+  if (!itemId) {
+    return res
+      .status(400)
+      .send({ error: 'error', errorMessage: 'itemId is not provided' });
+  }
   if (description === undefined) {
     return res
       .status(400)

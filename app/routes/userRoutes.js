@@ -12,7 +12,7 @@ router.post('/signin', userControllers.signinUser);
 router.get('/all', userControllers.getAllUsers);
 
 // GET user By Id
-router.get('/:id', userControllers.getUserById);
+router.get('/:id', auth, userControllers.getUserById);
 
 //PATCH update user
 router.patch('/update', auth, userControllers.updateUserbyId);

@@ -3,6 +3,13 @@ const ItemPicture = require('../models/ItemPicture');
 
 const getItemPictures = async (req, res) => {
   const { limit, offset, itemId } = req.query;
+  if (!limit || !offset || !itemId) {
+    res.status(400).send({
+      error: 'bad request',
+      errorMessage: 'limit, offset and itemId are required',
+    });
+    return;
+  }
   try {
     const [picturesResult, _] = await ItemPicture.getPictures({
       limit,
@@ -22,6 +29,12 @@ const getItemPictures = async (req, res) => {
 
 const addPictures = async (req, res) => {
   const { itemId, pictures, isFounded } = req.body;
+  if (!itemId) {
+    res
+      .status(400)
+      .send({ error: 'bad request', errorMessage: 'itemId is required' });
+    return;
+  }
   try {
     const [itemResult, __] = await Item.findItem({ itemId });
     if (!itemResult || !itemResult.length) {
