@@ -8,6 +8,8 @@ const userSettingRoutes = require('./app/routes/userSettingRoutes');
 const itemRoutes = require('./app/routes/itemRoutes');
 const itemPictureRoutes = require('./app/routes/itemPictureRoutes');
 const authRoutes = require('./app/routes/app-authRoutes');
+const messageRoutes = require('./app/routes/messageRoutes');
+
 const PORT = process.env.PORT;
 
 // cross origin policy
@@ -46,3 +48,6 @@ app.use('/v1/user-setting', userSettingRoutes);
 //Items Routes
 app.use('/v1/item', itemRoutes);
 app.use('/v1/item-picture', itemPictureRoutes);
+
+// Messages Routes
+app.use('/v1/message', messageRoutes);
