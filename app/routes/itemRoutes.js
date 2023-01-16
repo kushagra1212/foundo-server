@@ -3,8 +3,8 @@ const router = express.Router();
 const itemControllers = require('../controllers/itemControllers');
 const { auth } = require('../middleware/auth');
 //POST ADD Lost Item
-router.post('/addlost', auth, itemControllers.addLostItem);
-router.post('/addfound', auth, itemControllers.addFoundedItem);
+router.post('/add-lost', auth, itemControllers.addLostItem);
+router.post('/add-found', auth, itemControllers.addFoundedItem);
 
 //DELETE Item By Item Id
 router.delete('/deleteitem', auth, itemControllers.deleteItemByItemId);
