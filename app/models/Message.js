@@ -33,7 +33,7 @@ class Message {
     return promisePool.execute(sql, [userId, limit, offset]);
   }
   static getMessages({ senderId, receiverId, limit, offset }) {
-    let sql = `SELECT * FROM messages WHERE (senderId=? AND receiverId=?) OR (senderId=? AND receiverId=?) ORDER BY createdAt DESC LIMIT ? OFFSET ?`;
+    let sql = `SELECT * FROM (SELECT * FROM messages WHERE (senderId=? AND receiverId=?) OR (senderId=? AND receiverId=?)) AS u1  LEFT JOIN (SELECT latitude,longitude,messageId FROM itemslocations) AS i1 ON u1.id=i1.messageId ORDER BY createdAt DESC LIMIT ? OFFSET ?`;
     return promisePool.execute(sql, [
       senderId,
       receiverId,
