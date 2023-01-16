@@ -13,11 +13,11 @@ router.delete('/deleteitem', auth, itemControllers.deleteItemByItemId);
 router.patch('/update', auth, itemControllers.updateItemById);
 
 //GET All Items
-router.get('/all', auth, itemControllers.getItems);
+router.get('/all', itemControllers.getItems);
 //GET ALL BY SEACH
-router.get('/all-by-search', auth, itemControllers.getItemsBySearchString);
+router.get('/all-by-search', itemControllers.getItemsBySearchString);
 //GET Item Id
 router.get('/user/all', auth, itemControllers.getItemsbyUserId);
-router.get('/:id', auth, itemControllers.getItemByItemId);
+router.get('/:id', itemControllers.getItemByItemId);
 
 module.exports = router;
