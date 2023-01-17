@@ -44,7 +44,7 @@ const forgotPassword = async (req, res) => {
         email: email,
       },
     ];
-    const appURL = `exp://192.168.156.216:19000/--/app/auth/resetpassword/${email}/${token}`;
+    const appURL = `exp://192.168.57.116:19000/--/app/auth/resetpassword/${email}/${token}`;
     await tranEmailApi.sendTransacEmail({
       sender,
       to: receivers,
@@ -88,12 +88,10 @@ const resetPassword = async (req, res) => {
   try {
     const { password } = req.body;
     if (!password) {
-      res
-        .status(400)
-        .send({
-          error: 'Bad Request',
-          errorMessage: 'Please provide password !',
-        });
+      res.status(400).send({
+        error: 'Bad Request',
+        errorMessage: 'Please provide password !',
+      });
       return;
     }
     let hashedPassword = await bcrypt.hash(password, parseInt(salt));
