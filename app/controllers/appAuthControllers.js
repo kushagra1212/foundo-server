@@ -36,7 +36,7 @@ const forgotPassword = async (req, res) => {
     });
     const tranEmailApi = new Sib.TransactionalEmailsApi();
     const sender = {
-      email: 'rathorekushagra446@gmail.com',
+      email: 'foundoapplication@gmail.com',
       name: 'Foundo App',
     };
     const receivers = [
