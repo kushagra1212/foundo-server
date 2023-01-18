@@ -23,13 +23,18 @@ const PORT = process.env.PORT || 8890;
 // );
 
 // Allow all for now
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: '*',
+  })
+);
 
 // For parsing the cookies
 app.use(cookieParser());
 // application/json
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, origin: '*', limit: '50mb' }));
 // starting the app
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
