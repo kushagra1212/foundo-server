@@ -3,12 +3,14 @@ const jwt = require('jsonwebtoken');
 const createToken = ({ id, jwtSecret, maxAgeOfToken }) => {
   return jwt.sign({ id }, toString(jwtSecret), {
     expiresIn: maxAgeOfToken,
-    algorithm: 'HS256',
+    algorithm: process.env.JWT_ALGORITHM,
   });
 };
 // Verify Token
 const verifyToken = ({ jwtToken, jwtSecret }) => {
-  return jwt.verify(jwtToken, jwtSecret, { algorithm: 'HS256' });
+  return jwt.verify(jwtToken, jwtSecret, {
+    algorithm: process.env.JWT_ALGORITHM,
+  });
 };
 const makeid = (length) => {
   var result = '';
