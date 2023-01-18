@@ -13,13 +13,24 @@ const messageRoutes = require('./app/routes/messageRoutes');
 const PORT = process.env.PORT || 8890;
 
 // cross origin policy
+
+// app.use(
+//   cors({
+//     credentials: true,
+//     cors: true,
+//     origin: process.env.ORG,
+//   })
+// );
+
+// Allow all for now
 app.use(
   cors({
     credentials: true,
     cors: true,
-    origin: process.env.ORG,
+    origin: '*',
   })
 );
+
 // For parsing the cookies
 app.use(cookieParser());
 // application/json
