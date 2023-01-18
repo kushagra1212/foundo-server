@@ -23,12 +23,7 @@ const PORT = process.env.PORT || 8890;
 // );
 
 // Allow all for now
-app.use(
-  cors({
-    credentials: true,
-    origin: '*',
-  })
-);
+app.use(cors());
 
 // For parsing the cookies
 app.use(cookieParser());
