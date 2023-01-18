@@ -2,10 +2,10 @@ const { makeid } = require('../utils');
 
 const AWS = require('aws-sdk');
 const {
-  AWS_ACCESS_KEY_ID,
-  AWS_SECRET_ACCESS_KEY,
-  AWS_DEFAULT_REGION,
-  AWS_S3_BUCKET,
+  FAWS_ACCESS_KEY_ID,
+  FAWS_SECRET_ACCESS_KEY,
+  FAWS_DEFAULT_REGION,
+  FAWS_S3_BUCKET,
 } = process.env;
 class S3Image {
   s3;
@@ -13,10 +13,10 @@ class S3Image {
     // Configure AWS to use promise
     AWS.config.setPromisesDependency(require('bluebird'));
     AWS.config.update({
-      accessKeyId: AWS_ACCESS_KEY_ID,
-      secretAccessKey: AWS_SECRET_ACCESS_KEY,
-      region: AWS_DEFAULT_REGION,
-      bucket: AWS_S3_BUCKET,
+      accessKeyId: FAWS_ACCESS_KEY_ID,
+      secretAccessKey: FAWS_SECRET_ACCESS_KEY,
+      region: FAWS_DEFAULT_REGION,
+      bucket: FAWS_S3_BUCKET,
     });
   }
   async upload({ base64, userId }) {
@@ -38,7 +38,7 @@ class S3Image {
     // To prevent this, use a different Key each time.
     // This won't be needed if they're uploading their avatar, hence the filename, userAvatar.js.
     const params = {
-      Bucket: AWS_S3_BUCKET,
+      Bucket: FAWS_S3_BUCKET,
       Key: `image/${makeid(4)}-user-id-${userId}.${type}`, // type is not required
       Body: base64Data,
       ACL: 'public-read',
@@ -68,11 +68,11 @@ class S3Image {
     }
     const s3 = new AWS.S3();
     // see: https://gist.github.com/SylarRuby/b60eea29c1682519e422476cc5357b60
-    const splitOn = `https://${AWS_S3_BUCKET.toLowerCase()}.s3.${AWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com/`;
+    const splitOn = `https://${FAWS_S3_BUCKET.toLowerCase()}.s3.${FAWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com/`;
     const Key = urlToDelete.split(splitOn)[1]; // The `image/${makeid(4)}-user-id-${userId}.${type}`
     console.log(Key, 'Key to delete');
     const params = {
-      Bucket: AWS_S3_BUCKET,
+      Bucket: FAWS_S3_BUCKET,
       Key, // required
     };
 

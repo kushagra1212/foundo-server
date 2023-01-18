@@ -10,7 +10,7 @@ const itemPictureRoutes = require('./app/routes/itemPictureRoutes');
 const authRoutes = require('./app/routes/app-authRoutes');
 const messageRoutes = require('./app/routes/messageRoutes');
 
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 8890;
 
 // cross origin policy
 app.use(
