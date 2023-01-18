@@ -29,9 +29,7 @@ app.use(cors());
 app.use(cookieParser());
 // application/json
 app.use(express.json({ limit: '50mb' }));
-app.use(
-  express.urlencoded({ extended: true, origin: process.env.ORG, limit: '50mb' })
-);
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // starting the app
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
