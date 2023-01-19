@@ -189,7 +189,7 @@ const updateUserbyId = async (req, res) => {
           userId,
           base64: profilePhoto,
         });
-        console.log(location);
+        console.log(location, 'location');
         user.profilePhoto = location;
       }
 
