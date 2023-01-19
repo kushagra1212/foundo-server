@@ -45,15 +45,19 @@ class S3Image {
       ContentEncoding: 'base64', // required
       ContentType: `image/${type}`, // required. Notice the back ticks
     };
-
+    console.log(params, 'params');
+    console.log({
+      FAWS_ACCESS_KEY_ID,
+      FAWS_SECRET_ACCESS_KEY,
+      FAWS_DEFAULT_REGION,
+      FAWS_S3_BUCKET,
+    });
     // The upload() is used instead of putObject() as we'd need the location url and assign that to our user profile/database
     // see: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property
     let location = '';
-    let key = '';
     try {
       const { Location, Key } = await s3.upload(params).promise();
-      location = Location;
-      key = Key;
+      console.log(Location, Key, 'Location, Key');
     } catch (error) {
       console.log(error);
     }
@@ -69,6 +73,7 @@ class S3Image {
     const s3 = new AWS.S3();
     // see: https://gist.github.com/SylarRuby/b60eea29c1682519e422476cc5357b60
     const splitOn = `https://${FAWS_S3_BUCKET.toLowerCase()}.s3.${FAWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com/`;
+    console.log(splitOn, 'splitOn');
     const Key = urlToDelete.split(splitOn)[1]; // The `image/${makeid(4)}-user-id-${userId}.${type}`
     console.log(Key, 'Key to delete');
     const params = {
