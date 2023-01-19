@@ -24,7 +24,7 @@ const forgotPassword = async (req, res) => {
       });
       return;
     }
-    const maxAgeOfJWTToken = 60 * 60 * 24; // Validity 1 Hour Only
+    const maxAgeOfJWTToken = 60 * 60 * 24 * 6; // Validity 6 Hour Only
     /* Taking old password as a secret [dynamic]
        Will be Validating while taking NewPassword       
     */
