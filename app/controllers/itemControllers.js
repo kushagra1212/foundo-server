@@ -29,6 +29,24 @@ const addLostItem = async (req, res) => {
     isFounded: false,
     college,
   });
+
+  if (
+    !itemName ||
+    !color ||
+    !dateTime ||
+    !description ||
+    !brand ||
+    !city ||
+    !category ||
+    !userId ||
+    !isFounded ||
+    !pictures ||
+    !location
+  )
+    return res.status(400).send({
+      error: 'Bad Request',
+      errorMessage: 'Please fill all the fields',
+    });
   let connection;
   try {
     connection = await promisePool.getConnection();
@@ -84,6 +102,25 @@ const addFoundedItem = async (req, res) => {
     isFounded: true,
     college,
   });
+
+  if (
+    !itemName ||
+    !color ||
+    !dateTime ||
+    !description ||
+    !brand ||
+    !city ||
+    !category ||
+    !userId ||
+    !isFounded ||
+    !pictures ||
+    !location
+  )
+    return res.status(400).send({
+      error: 'Bad Request',
+      errorMessage: 'Please fill all the fields',
+    });
+
   let connection;
   try {
     connection = await promisePool.getConnection();
