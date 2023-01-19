@@ -180,7 +180,11 @@ const updateUserbyId = async (req, res) => {
         user.countryCode = countryCode;
       if (profilePhoto && user.profilePhoto !== profilePhoto) {
         const s3ImageObj = new S3Image();
-        await s3ImageObj.delete(user.profilePhoto);
+        try {
+          await s3ImageObj.delete(user.profilePhoto);
+        } catch (err) {
+          console.log(err);
+        }
         const location = await s3ImageObj.upload({
           userId,
           base64: profilePhoto,
