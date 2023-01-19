@@ -63,10 +63,20 @@ class S3Image {
     // To delete, see: https://gist.github.com/SylarRuby/b3b1430ca633bc5ffec29bbcdac2bd52
   }
   async delete(urlToDelete) {
-    if (!urlToDelete) {
+    if (
+      !urlToDelete ||
+      urlToDelete === '' ||
+      urlToDelete === null ||
+      urlToDelete === undefined ||
+      urlToDelete === 'undefined' ||
+      urlToDelete === 'null' ||
+      urlToDelete === ' ' ||
+      urlToDelete === '  ' ||
+      urlToDelete === '   ' ||
+      urlToDelete?.length < 1
+    ) {
       return console.log('No url found to delete 😢');
     }
-    console.log(urlToDelete, 'urlToDelete');
     const s3 = new AWS.S3();
     // see: https://gist.github.com/SylarRuby/b60eea29c1682519e422476cc5357b60
     const splitOn = `https://${FAWS_S3_BUCKET.toLowerCase()}.s3.${FAWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com/`;
