@@ -44,7 +44,7 @@ const forgotPassword = async (req, res) => {
         email: email,
       },
     ];
-    const appURL = `@kushagra711/foundo-app/app/auth/resetpassword/${email}/${token}`;
+    const appURL = `foundo://app/auth/resetpassword/${email}/${token}`;
     await tranEmailApi.sendTransacEmail({
       sender,
       to: receivers,
