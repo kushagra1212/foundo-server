@@ -165,7 +165,7 @@ const getUserById = async (req, res) => {
 // Update User by Id
 const updateUserbyId = async (req, res) => {
   const { userId, phoneNo, countryCode, profilePhoto, address } = req.body;
-  console.log(userId, phoneNo, countryCode, address);
+
   try {
     if (!userId) throw new Error('userId is required');
     const [userResult, __] = await User.findUser({ userId });
@@ -175,17 +175,15 @@ const updateUserbyId = async (req, res) => {
         .send({ error: 'not found', errorMessage: 'user not found' });
     } else {
       let user = userResult[0];
-      console.log(user);
+
       if (phoneNo && user.phoneNo !== phoneNo) user.phoneNo = phoneNo;
       if (countryCode && user.countryCode !== countryCode)
         user.countryCode = countryCode;
       if (profilePhoto && user.profilePhoto !== profilePhoto) {
         const s3ImageObj = new S3Image();
-        try {
-          await s3ImageObj.delete(user.profilePhoto);
-        } catch (err) {
-          console.log(err, 'err');
-        }
+
+        await s3ImageObj.delete(user.profilePhoto);
+
         const location = await s3ImageObj.upload({
           userId,
           base64: profilePhoto,
@@ -195,6 +193,7 @@ const updateUserbyId = async (req, res) => {
 
       if (address && user.address !== address) user.address = address;
       try {
+        console.log(user);
         await User.updateUser({
           user: {
             ...user,
