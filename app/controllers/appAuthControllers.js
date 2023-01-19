@@ -52,7 +52,7 @@ const forgotPassword = async (req, res) => {
       htmlContent: `
           <h1>Foundo Application</h1>
           <h3>Here is your reset password Link</h3>
-          <a href="${RESET_PASS_APP_URL}/${email}/${token}">Reset Password</a>`,
+          <a href="${process.env.RESET_PASS_APP_URL}/${email}/${token}">Reset Password</a>`,
     });
 
     res.status(200).send({ message: 'Email sent successfully' });
