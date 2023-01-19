@@ -165,7 +165,7 @@ const getUserById = async (req, res) => {
 // Update User by Id
 const updateUserbyId = async (req, res) => {
   const { userId, phoneNo, countryCode, profilePhoto, address } = req.body;
-
+  console.log(req.body);
   try {
     if (!userId) throw new Error('userId is required');
     const [userResult, __] = await User.findUser({ userId });
@@ -175,6 +175,7 @@ const updateUserbyId = async (req, res) => {
         .send({ error: 'not found', errorMessage: 'user not found' });
     } else {
       let user = userResult[0];
+      console.log(user);
       if (phoneNo && user.phoneNo !== phoneNo) user.phoneNo = phoneNo;
       if (countryCode && user.countryCode !== countryCode)
         user.countryCode = countryCode;
@@ -189,8 +190,7 @@ const updateUserbyId = async (req, res) => {
           userId,
           base64: profilePhoto,
         });
-        console.log(location, 'location');
-        user.profilePhoto = location.toString();
+        user.profilePhoto = location;
       }
 
       if (address && user.address !== address) user.address = address;
@@ -208,7 +208,7 @@ const updateUserbyId = async (req, res) => {
 
         res.status(200).send({ user });
       } catch (err) {
-        res
+        return res
           .status(400)
           .send({ error: 'Bad Request', errorMessage: 'user update failed ' });
       }
