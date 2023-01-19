@@ -165,7 +165,7 @@ const getUserById = async (req, res) => {
 // Update User by Id
 const updateUserbyId = async (req, res) => {
   const { userId, phoneNo, countryCode, profilePhoto, address } = req.body;
-  console.log(req.body);
+  console.log(userId, phoneNo, countryCode, address);
   try {
     if (!userId) throw new Error('userId is required');
     const [userResult, __] = await User.findUser({ userId });
