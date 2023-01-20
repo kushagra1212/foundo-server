@@ -39,7 +39,6 @@ const addLostItem = async (req, res) => {
     !city ||
     !category ||
     !userId ||
-    !isFounded ||
     !pictures ||
     !location
   )
@@ -112,7 +111,6 @@ const addFoundedItem = async (req, res) => {
     !city ||
     !category ||
     !userId ||
-    !isFounded ||
     !pictures ||
     !location
   )
