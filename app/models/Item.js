@@ -90,8 +90,8 @@ class Item {
       sqlQuery.push('city = ?');
     }
     if (brand) {
-      validFields.push(brand);
-      sqlQuery.push(`brand LIKE '%?%`);
+      //validFields.push(brand);
+      sqlQuery.push(`brand LIKE '%${brand}%`);
     }
     if (color) {
       validFields.push(color);
