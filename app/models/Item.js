@@ -91,7 +91,7 @@ class Item {
     }
     if (brand) {
       //validFields.push(brand);
-      sqlQuery.push(`brand LIKE '%${brand}%`);
+      sqlQuery.push(`brand LIKE '%${brand}%'`);
     }
     if (color) {
       validFields.push(color);
