@@ -8,7 +8,7 @@ const apiKey = client.authentications['api-key'];
 apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
 const forgotPassword = async (req, res) => {
   try {
-    const { email } = req.params;
+    const { email, web } = req.params;
     if (!email) {
       res.status(400).send({
         error: 'Bad Request',
@@ -44,6 +44,10 @@ const forgotPassword = async (req, res) => {
         email: email,
       },
     ];
+    let resetPasswordLink = '';
+    if (web === 'web')
+      resetPasswordLink = `${process.env.RESET_PASS_APP_URL_WEB}`;
+    else resetPasswordLink = `${process.env.RESET_PASS_APP_URL}`;
     await tranEmailApi.sendTransacEmail({
       sender,
       to: receivers,
@@ -52,7 +56,7 @@ const forgotPassword = async (req, res) => {
       htmlContent: `
           <h1>Foundo Application</h1>
           <h3>Here is your reset password Link</h3>
-          <a href="${process.env.RESET_PASS_APP_URL}/${email}/${token}">Reset Password</a>`,
+          <a href="${resetPasswordLink}/${email}/${token}">Reset Password</a>`,
     });
 
     res.status(200).send({ message: 'Email sent successfully' });
@@ -100,7 +104,9 @@ const resetPassword = async (req, res) => {
     });
     res.send({ user, message: 'Password Changed Successfully !' });
   } catch (err) {
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    res
+      .status(500)
+      .send({ error: 'server error', errorMessage: 'Token Expired ' });
   }
 };
 module.exports = {

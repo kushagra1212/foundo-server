@@ -185,8 +185,9 @@ const updateUserbyId = async (req, res) => {
         await s3ImageObj.delete(user.profilePhoto);
 
         const location = await s3ImageObj.upload({
-          userId,
+          id: userId,
           base64: profilePhoto,
+          folderName: 'profilePhoto',
         });
         user.profilePhoto = location;
       }
