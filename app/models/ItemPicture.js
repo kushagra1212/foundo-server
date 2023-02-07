@@ -28,5 +28,13 @@ class ItemPicture {
       'SELECT * FROM itemspictures WHERE lostItemId = ? OR foundItemId = ? LIMIT ? OFFSET ?';
     return promisePool.execute(sql, [itemId, itemId, limit, offset]);
   }
+  static getAllPictures() {
+    let sql = 'SELECT * FROM itemspictures';
+    return promisePool.execute(sql);
+  }
+  static updateURL({ url, id }) {
+    let sql = 'UPDATE itemspictures SET url=? WHERE id=?';
+    return promisePool.execute(sql, [url, id]);
+  }
 }
 module.exports = ItemPicture;
