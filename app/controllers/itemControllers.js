@@ -2,6 +2,7 @@ const Item = require('../models/Item');
 const ItemLocation = require('../models/ItemLocation');
 const ItemPicture = require('../models/ItemPicture');
 const promisePool = require('../db');
+const { S3Image } = require('../s3/S3image');
 const addLostItem = async (req, res) => {
   const {
     itemName,
@@ -51,8 +52,18 @@ const addLostItem = async (req, res) => {
     connection = await promisePool.getConnection();
     await connection.beginTransaction();
     const [lostItem, _] = await item.save();
+    const s3ImageObj = new S3Image();
+    let picturesArray = [];
+    for (let i = 0; i < pictures.length; i++) {
+      const pic = await s3ImageObj.upload({
+        id: lostItem.insertId,
+        base64: pictures[i].image,
+        folderName: 'lostItems',
+      });
+      picturesArray.push({ image: pic });
+    }
     const itemPicture = new ItemPicture({
-      pictures,
+      pictures: picturesArray,
       lostItemId: lostItem.insertId,
       foundItemId: null,
     });
@@ -64,7 +75,11 @@ const addLostItem = async (req, res) => {
       foundItemId: null,
     });
     await itemLocation.save();
-    await Item.updateItem(lostItem.insertId, 'thumbnail', pictures[0].image);
+    await Item.updateItem(
+      lostItem.insertId,
+      'thumbnail',
+      picturesArray[0].image
+    );
     await connection.commit();
     res.status(200).send({ itemId: lostItem.insertId, success: true });
   } catch (err) {
@@ -124,8 +139,19 @@ const addFoundedItem = async (req, res) => {
     connection = await promisePool.getConnection();
     await connection.beginTransaction();
     const [foundedItem, _] = await item.save();
+    const s3ImageObj = new S3Image();
+    let picturesArray = [];
+    for (let i = 0; i < pictures.length; i++) {
+      const pic = await s3ImageObj.upload({
+        id: lostItem.insertId,
+        base64: pictures[i].image,
+        folderName: 'foundItems',
+      });
+      picturesArray.push({ image: pic });
+    }
+
     const itemPicture = new ItemPicture({
-      pictures,
+      pictures: picturesArray,
       lostItemId: null,
       foundItemId: foundedItem.insertId,
     });
@@ -136,7 +162,11 @@ const addFoundedItem = async (req, res) => {
       lostItemId: null,
       foundItemId: foundedItem.insertId,
     });
-    await Item.updateItem(foundedItem.insertId, 'thumbnail', pictures[0].image);
+    await Item.updateItem(
+      foundedItem.insertId,
+      'thumbnail',
+      picturesArray[0].image
+    );
     await itemLocation.save();
 
     await connection.commit();

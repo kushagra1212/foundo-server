@@ -19,7 +19,7 @@ class S3Image {
       bucket: FAWS_S3_BUCKET,
     });
   }
-  async upload({ base64, userId }) {
+  async upload({ base64, id, folderName }) {
     // Ensure that you POST a base64 data to your server.
     // Let's assume the variable "base64" is one.
     const base64Data = new Buffer.from(
@@ -31,15 +31,16 @@ class S3Image {
     // Getting the file type, ie: jpeg, png or gif
     const type = base64.split(';')[0].split('/')[1];
 
-    // Generally we'd have an userId associated with the image
+    // Generally we'd have an id associated with the image
     // For this example, we'll simulate one
 
     // With this setup, each time your user uploads an image, will be overwritten.
     // To prevent this, use a different Key each time.
     // This won't be needed if they're uploading their avatar, hence the filename, userAvatar.js.
+
     const params = {
       Bucket: FAWS_S3_BUCKET,
-      Key: `image/${makeid(4)}-user-id-${userId}.${type}`, // type is not required
+      Key: `image/${folderName}/${makeid(4)}-id-${id}.${type}`, // type is not required
       Body: base64Data,
       ACL: 'public-read',
       ContentEncoding: 'base64', // required

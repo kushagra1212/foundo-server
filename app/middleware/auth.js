@@ -11,6 +11,7 @@ const auth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, toString(jwtSecret));
+    console.log(token);
     req.jwt = decoded;
     next();
   } catch (ex) {
@@ -20,6 +21,7 @@ const auth = (req, res, next) => {
 const verifyResetToken = async (req, res, next) => {
   try {
     const { email, token } = req.params;
+    console.log(req.params);
     const [user, _] = await User.findUserByEmail({ userEmail: email });
     if (!user || !user.length) {
       res.status(400).send({
@@ -38,7 +40,11 @@ const verifyResetToken = async (req, res, next) => {
     next();
   } catch (err) {
     console.log(err);
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    res.status(500).send({
+      error: 'server error',
+      errorMessage:
+        'Reset password link is invalid or has expired. Please try again !',
+    });
   }
 };
 const verifyToken = async (req, res, next) => {
@@ -56,7 +62,6 @@ const verifyToken = async (req, res, next) => {
       });
       return;
     }
-    console.log(user);
     req.user = user;
     req.decoded = decoded;
     next();

@@ -4,7 +4,7 @@ const authControllers = require('../controllers/appAuthControllers');
 const auth = require('../middleware/auth');
 
 // GET  Forgot Password
-router.get('/forgot-password/:email', authControllers.forgotPassword);
+router.get('/forgot-password/:email/:web', authControllers.forgotPassword);
 router.get(
   '/verify-reset-password-token/:email/:token',
   auth.verifyResetToken,
