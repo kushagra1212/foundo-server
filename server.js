@@ -9,24 +9,8 @@ const itemRoutes = require('./app/routes/itemRoutes');
 const itemPictureRoutes = require('./app/routes/itemPictureRoutes');
 const authRoutes = require('./app/routes/app-authRoutes');
 const messageRoutes = require('./app/routes/messageRoutes');
-const rateLimit = require('express-rate-limit');
-const PORT = process.env.PORT || 8890;
-//limiter object with  options
-const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 15 minutes
-  max: 10, // max 100 requests per windowMs
-});
 
-// Error handling middleware for rate limit exceeded
-app.use((err, req, res, next) => {
-  if (err instanceof rateLimit.RateLimitExceeded) {
-    res
-      .status(429)
-      .json({ error: 'Rate limit Exceeded', errorMessage: err.message });
-  } else {
-    next(err);
-  }
-});
+const PORT = process.env.PORT || 8890;
 
 // cross origin policy
 
@@ -58,20 +42,20 @@ app.listen(PORT, () => {
 
 // Handling Routes
 // base Route
-app.get('/', limiter, (req, res) => {
+app.get('/', (req, res) => {
   res.send({ message: 'You hit the base route', success: true });
 });
 
 // Auth Routes
-app.use('/v1/app-auth', limiter, authRoutes);
+app.use('/v1/app-auth', authRoutes);
 
 //user Routes
-app.use('/v1/user', limiter, userRoutes);
+app.use('/v1/user', userRoutes);
 app.use('/v1/user-setting', userSettingRoutes);
 
 //Items Routes
-app.use('/v1/item', limiter, itemRoutes);
+app.use('/v1/item', itemRoutes);
 app.use('/v1/item-picture', itemPictureRoutes);
 
 // Messages Routes
-app.use('/v1/message', limiter, messageRoutes);
+app.use('/v1/message', messageRoutes);
