@@ -75,7 +75,6 @@ const updateItemPictureUrl = async (req, res) => {
         base64: res,
         folderName: picture?.lostItemId ? LOSTITEMS : FOUNDITEMS,
       });
-      console.log(url);
       await ItemPicture.updateURL({
         id: picture.id,
         url,

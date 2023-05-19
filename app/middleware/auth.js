@@ -11,7 +11,7 @@ const auth = (req, res, next) => {
 
   try {
     const decoded = jwt.verify(token, toString(jwtSecret));
-    console.log(token);
+
     req.jwt = decoded;
     next();
   } catch (ex) {
@@ -21,7 +21,7 @@ const auth = (req, res, next) => {
 const verifyResetToken = async (req, res, next) => {
   try {
     const { email, token } = req.params;
-    console.log(req.params);
+
     const [user, _] = await User.findUserByEmail({ userEmail: email });
     if (!user || !user.length) {
       res.status(400).send({
@@ -34,7 +34,7 @@ const verifyResetToken = async (req, res, next) => {
       jwtSecret: toString(user[0].password),
       jwtToken: token,
     });
-    console.log(user[0].password);
+
     req.user = user;
     req.decoded = decoded;
     next();

@@ -82,7 +82,7 @@ class S3Image {
     // see: https://gist.github.com/SylarRuby/b60eea29c1682519e422476cc5357b60
     const splitOn = `https://${FAWS_S3_BUCKET.toLowerCase()}.s3.${FAWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com/`;
     const Key = urlToDelete.split(splitOn)[1]; // The `image/${makeid(4)}-user-id-${userId}.${type}`
-    console.log(Key, 'Key to delete');
+    // console.log(Key, 'Key to delete');
     const params = {
       Bucket: FAWS_S3_BUCKET,
       Key, // required
