@@ -194,7 +194,6 @@ const updateUserbyId = async (req, res) => {
 
       if (address && user.address !== address) user.address = address;
       try {
-        console.log(user);
         await User.updateUser({
           user: {
             ...user,

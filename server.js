@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 8890;
 //limiter object with  options
 const limiter = rateLimit({
   windowMs: 1 * 60 * 1000, // 15 minutes
-  max: 10, // max 100 requests per windowMs
+  max: 60, // max 100 requests per windowMs
   handler: function (req, res) {
     res.status(429).json({
       error: 'Too many requests, please try again later.',

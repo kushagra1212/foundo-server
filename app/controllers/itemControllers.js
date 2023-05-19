@@ -317,7 +317,7 @@ const getItems = async (req, res) => {
 };
 const getItemsBySearchString = async (req, res) => {
   const { limit, offset, searchstring } = req.query;
-  console.log(req.query);
+
   if (
     offset === undefined ||
     limit === undefined ||
