@@ -295,7 +295,6 @@ const getItemsbyUserId = async (req, res) => {
 
 const getItems = async (req, res) => {
   const { limit, offset } = req.query;
-  console.log(req.query);
   if (offset === undefined || limit === undefined) {
     res
       .status(400)
