@@ -55,6 +55,7 @@ To run the Foundo Android application locally, follow these steps:
     MySQL
     AWS (RDS, S3)
     React Native
+    RTK Query 
     HTML
     CSS
     JavaScript
