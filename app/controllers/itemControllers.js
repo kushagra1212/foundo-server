@@ -3,6 +3,10 @@ const ItemLocation = require('../models/ItemLocation');
 const ItemPicture = require('../models/ItemPicture');
 const promisePool = require('../db');
 const { S3Image } = require('../s3/S3image');
+const ItemDetailsGetter = require('./utility');
+const ItemMatcher = require('../ai/matchingLogic');
+const itemDetailsGetter = new ItemDetailsGetter();
+const itemMatcher = new ItemMatcher();
 const addLostItem = async (req, res) => {
   const {
     itemName,
@@ -143,7 +147,7 @@ const addFoundedItem = async (req, res) => {
     let picturesArray = [];
     for (let i = 0; i < pictures.length; i++) {
       const pic = await s3ImageObj.upload({
-        id: lostItem.insertId,
+        id: foundedItem.insertId,
         base64: pictures[i].image,
         folderName: 'foundItems',
       });
@@ -207,38 +211,14 @@ const deleteItemByItemId = async (req, res) => {
 };
 const getItemByItemId = async (req, res) => {
   const { id } = req.params;
-  if (!id) {
-    return res
-      .status(400)
-      .send({ error: 'error', errorMessage: 'id is not provided' });
+  const result = await itemDetailsGetter.getItemDetails(id);
+
+  if (!result.success) {
+    res.status(result.statusCode).send(result);
+    return;
   }
-  try {
-    const [itemResult, __] = await Item.findItem({ itemId: id });
-    if (!itemResult || !itemResult.length) {
-      res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'item not found' });
-      return;
-    }
-    const [picturesResults, _] = await ItemPicture.getPictures({
-      itemId: id,
-      limit: '3',
-      offset: '0',
-    });
-    const [locationResults, ___] = await ItemLocation.getLocation({
-      itemId: id,
-    });
-    res.status(200).send({
-      item: {
-        ...itemResult[0],
-        itemPictures: picturesResults,
-        itemLocation: locationResults[0],
-      },
-      success: true,
-    });
-  } catch (err) {
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
-  }
+
+  res.status(result.statusCode).send(result);
 };
 
 const updateItemById = async (req, res) => {
@@ -294,26 +274,9 @@ const getItemsbyUserId = async (req, res) => {
 };
 
 const getItems = async (req, res) => {
-  const { limit, offset } = req.query;
-  if (offset === undefined || limit === undefined) {
-    res
-      .status(400)
-      .send({ success: false, errorMessage: 'offset and limit required' });
-    return;
-  }
+  const result = await itemDetailsGetter.getAllItems(req.query);
 
-  try {
-    const [itemResult, _] = await Item.findItemsByUserIdorAll(req.query);
-    if (!itemResult || !itemResult.length) {
-      res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'items not found' });
-      return;
-    }
-    res.status(200).send({ items: itemResult });
-  } catch (err) {
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
-  }
+  return res.status(result.statusCode).send(result);
 };
 const getItemsBySearchString = async (req, res) => {
   const { limit, offset, searchstring } = req.query;
@@ -346,6 +309,44 @@ const getItemsBySearchString = async (req, res) => {
     res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
+
+const getMatchesByItemId = async (req, res) => {
+  const { itemID } = req.params;
+  const result = await itemDetailsGetter.getItemDetails(itemID);
+
+  if (!result.success) {
+    res.status(result.statusCode).send(result);
+    return;
+  }
+  const { description } = result.item;
+
+  const itemResult = await itemDetailsGetter.getAllItems({
+    offset: '0',
+    limit: '100',
+  });
+  if (!itemResult.success) {
+    res.status(itemResult.statusCode).send(itemResult);
+    return;
+  }
+
+  const { items } = itemResult;
+
+  let foundItems = [];
+
+  for (let i = 0; i < items.length; i++) {
+    if (items[i].isFounded === 1) {
+      foundItems.push(items[i]);
+    }
+  }
+
+  const matches = itemMatcher.matchItems({
+    lostItem: result.item,
+    foundItems,
+  });
+
+  res.status(200).send({ matches });
+};
+
 module.exports = {
   addLostItem,
   addFoundedItem,
@@ -355,4 +356,5 @@ module.exports = {
   getItemsbyUserId,
   getItems,
   getItemsBySearchString,
+  getMatchesByItemId,
 };
