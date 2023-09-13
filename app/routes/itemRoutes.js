@@ -20,4 +20,6 @@ router.get('/all-by-search', itemControllers.getItemsBySearchString);
 router.get('/user/all', auth, itemControllers.getItemsbyUserId);
 router.get('/:id', itemControllers.getItemByItemId);
 
+router.get('/:itemID/matches', itemControllers.getMatchesByItemId);
+
 module.exports = router;
