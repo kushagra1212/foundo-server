@@ -60,7 +60,7 @@ class ItemMatcher {
       );
       if (similarity >= this.similarityThreshold) {
         matches.push({
-          foundItemId: { ...foundItems[i], thumbnail: '' },
+          foundItemId: foundItems[i].id ,
           similarity,
         });
       }

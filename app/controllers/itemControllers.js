@@ -3,185 +3,16 @@ const ItemLocation = require('../models/ItemLocation');
 const ItemPicture = require('../models/ItemPicture');
 const promisePool = require('../db');
 const { S3Image } = require('../s3/S3image');
-const ItemDetailsGetter = require('./utility');
+const ItemManager = require('./utility');
 const ItemMatcher = require('../ai/matchingLogic');
-const itemDetailsGetter = new ItemDetailsGetter();
+const itemManager = new ItemManager();
 const itemMatcher = new ItemMatcher();
-const addLostItem = async (req, res) => {
-  const {
-    itemName,
-    color,
-    dateTime,
-    description,
-    brand,
-    city,
-    category,
-    userId,
-    isFounded,
-    pictures,
-    location,
-    college,
-  } = req.body;
-  const item = new Item({
-    itemName,
-    color,
-    dateTime,
-    description,
-    brand,
-    city,
-    category,
-    userId,
-    isFounded: false,
-    college,
-  });
 
-  if (
-    !itemName ||
-    !color ||
-    !dateTime ||
-    !description ||
-    !brand ||
-    !city ||
-    !category ||
-    !userId ||
-    !pictures ||
-    !location
-  )
-    return res.status(400).send({
-      error: 'Bad Request',
-      errorMessage: 'Please fill all the fields',
-    });
-  let connection;
-  try {
-    connection = await promisePool.getConnection();
-    await connection.beginTransaction();
-    const [lostItem, _] = await item.save();
-    const s3ImageObj = new S3Image();
-    let picturesArray = [];
-    for (let i = 0; i < pictures.length; i++) {
-      const pic = await s3ImageObj.upload({
-        id: lostItem.insertId,
-        base64: pictures[i].image,
-        folderName: 'lostItems',
-      });
-      picturesArray.push({ image: pic });
-    }
-    const itemPicture = new ItemPicture({
-      pictures: picturesArray,
-      lostItemId: lostItem.insertId,
-      foundItemId: null,
-    });
-    await itemPicture.save();
-    const itemLocation = new ItemLocation({
-      latitude: location.latitude,
-      longitude: location.longitude,
-      lostItemId: lostItem.insertId,
-      foundItemId: null,
-    });
-    await itemLocation.save();
-    await Item.updateItem(
-      lostItem.insertId,
-      'thumbnail',
-      picturesArray[0].image
-    );
-    await connection.commit();
-    res.status(200).send({ itemId: lostItem.insertId, success: true });
-  } catch (err) {
-    if (connection) await connection.rollback();
-    res.status(400).send({ error: 'Bad Request', errorMessage: err.message });
-  } finally {
-    if (connection) connection.release();
-  }
+const addItem = async (req, res) => {
+  const result = await itemManager.addItem(req.body);
+  res.status(result.statusCode).send(result);
 };
-const addFoundedItem = async (req, res) => {
-  const {
-    itemName,
-    color,
-    dateTime,
-    description,
-    brand,
-    city,
-    category,
-    userId,
-    isFounded,
-    pictures,
-    location,
-    college,
-  } = req.body;
-  const item = new Item({
-    itemName,
-    color,
-    dateTime,
-    description,
-    brand,
-    city,
-    category,
-    userId,
-    isFounded: true,
-    college,
-  });
 
-  if (
-    !itemName ||
-    !color ||
-    !dateTime ||
-    !description ||
-    !brand ||
-    !city ||
-    !category ||
-    !userId ||
-    !pictures ||
-    !location
-  )
-    return res.status(400).send({
-      error: 'Bad Request',
-      errorMessage: 'Please fill all the fields',
-    });
-
-  let connection;
-  try {
-    connection = await promisePool.getConnection();
-    await connection.beginTransaction();
-    const [foundedItem, _] = await item.save();
-    const s3ImageObj = new S3Image();
-    let picturesArray = [];
-    for (let i = 0; i < pictures.length; i++) {
-      const pic = await s3ImageObj.upload({
-        id: foundedItem.insertId,
-        base64: pictures[i].image,
-        folderName: 'foundItems',
-      });
-      picturesArray.push({ image: pic });
-    }
-
-    const itemPicture = new ItemPicture({
-      pictures: picturesArray,
-      lostItemId: null,
-      foundItemId: foundedItem.insertId,
-    });
-    await itemPicture.save();
-    const itemLocation = new ItemLocation({
-      latitude: location.latitude,
-      longitude: location.longitude,
-      lostItemId: null,
-      foundItemId: foundedItem.insertId,
-    });
-    await Item.updateItem(
-      foundedItem.insertId,
-      'thumbnail',
-      picturesArray[0].image
-    );
-    await itemLocation.save();
-
-    await connection.commit();
-    res.status(200).send({ itemId: foundedItem.insertId, success: true });
-  } catch (err) {
-    if (connection) await connection.rollback();
-    res.status(400).send({ error: 'Bad Request', errorMessage: err.message });
-  } finally {
-    if (connection) connection.release();
-  }
-};
 const deleteItemByItemId = async (req, res) => {
   const { itemId } = req.body;
   let connection;
@@ -211,7 +42,7 @@ const deleteItemByItemId = async (req, res) => {
 };
 const getItemByItemId = async (req, res) => {
   const { id } = req.params;
-  const result = await itemDetailsGetter.getItemDetails(id);
+  const result = await itemManager.getItemDetails(id);
 
   if (!result.success) {
     res.status(result.statusCode).send(result);
@@ -251,30 +82,26 @@ const updateItemById = async (req, res) => {
 };
 
 const getItemsbyUserId = async (req, res) => {
-  const { limit, offset } = req.query;
-  if (offset === undefined || limit === undefined) {
-    res
-      .status(400)
-      .send({ success: false, errorMessage: 'offset and limit required' });
+ 
+  const { userId } = req.query;
+
+  if(!userId){
+    res.status(400).send({
+      success: false,
+      errorMessage: 'userId is required',
+    });
     return;
   }
 
-  try {
-    const [itemResult, _] = await Item.findItemsByUserIdorAll(req.query);
-    if (!itemResult || !itemResult.length) {
-      res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'items not found' });
-      return;
-    }
-    res.status(200).send({ items: itemResult });
-  } catch (err) {
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
-  }
+  req.query.userId = parseInt(userId);
+ 
+ const result = await itemManager.getAllItems(req.query);
+
+  return res.status(result.statusCode).send(result);
 };
 
 const getItems = async (req, res) => {
-  const result = await itemDetailsGetter.getAllItems(req.query);
+  const result = await itemManager.getAllItems(req.query);
 
   return res.status(result.statusCode).send(result);
 };
@@ -312,7 +139,7 @@ const getItemsBySearchString = async (req, res) => {
 
 const getMatchesByItemId = async (req, res) => {
   const { itemID } = req.params;
-  const result = await itemDetailsGetter.getItemDetails(itemID);
+  const result = await itemManager.getItemDetails(itemID);
 
   if (!result.success) {
     res.status(result.statusCode).send(result);
@@ -320,7 +147,7 @@ const getMatchesByItemId = async (req, res) => {
   }
   const { description } = result.item;
 
-  const itemResult = await itemDetailsGetter.getAllItems({
+  const itemResult = await itemManager.getAllItems({
     offset: '0',
     limit: '100',
   });
@@ -348,8 +175,7 @@ const getMatchesByItemId = async (req, res) => {
 };
 
 module.exports = {
-  addLostItem,
-  addFoundedItem,
+  addItem,
   deleteItemByItemId,
   getItemByItemId,
   updateItemById,
