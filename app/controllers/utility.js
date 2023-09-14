@@ -2,8 +2,9 @@
 const Item = require('../models/Item');
 const ItemLocation = require('../models/ItemLocation');
 const ItemPicture = require('../models/ItemPicture');
-
-class ItemDetailsGetter {
+const promisePool = require('../db');
+const { S3Image } = require('../s3/S3image');
+class ItemManager {
   constructor() {
     // You can add any constructor logic if needed
   }
@@ -84,6 +85,100 @@ class ItemDetailsGetter {
       };
     }
   }
+
+  async addItem(body) {
+    const {
+    itemName,
+    color,
+    dateTime,
+    description,
+    brand,
+    city,
+    category,
+    userId,
+    isFounded,
+    pictures,
+    location,
+    college,
+  } = body;
+  const item = new Item({
+    itemName,
+    color,
+    dateTime,
+    description,
+    brand,
+    city,
+    category,
+    userId,
+    isFounded,
+    college,
+  });
+
+  if (
+    !itemName ||
+    !color ||
+    !dateTime ||
+    !description ||
+    !brand ||
+    !city ||
+    !category ||
+    !userId ||
+    !pictures ||
+    !location
+  )
+    return ({
+      error: 'Bad Request',
+      errorMessage: 'Please fill all the fields',
+      success: false,
+      statusCode: 400,
+    });
+  let connection;
+  let result;
+  try {
+    connection = await promisePool.getConnection();
+    await connection.beginTransaction();
+    const [savedItem, _] = await item.save();
+    console.log(savedItem)
+    const s3ImageObj = new S3Image();
+    let picturesArray = [];
+    for (let i = 0; i < pictures.length; i++) {
+      const pic = await s3ImageObj.upload({
+        id: savedItem.insertId,
+        base64: pictures[i].image,
+        folderName: (isFounded?'foundItems':'lostItems'),
+      });
+      picturesArray.push({ image: pic });
+    }
+    const itemPicture = new ItemPicture({
+      pictures: picturesArray,
+      lostItemId:(isFounded ? null: savedItem.insertId),
+      foundItemId: (isFounded?savedItem.insertId: null),
+    });
+    await itemPicture.save();
+    const itemLocation = new ItemLocation({
+      latitude: location.latitude,
+      longitude: location.longitude,
+      lostItemId: isFounded?null: savedItem.insertId,
+      foundItemId: isFounded?savedItem.insertId: null,
+    });
+    await itemLocation.save();
+    await Item.updateItem(
+      savedItem.insertId,
+      'thumbnail',
+      picturesArray[0].image
+    );
+    await connection.commit();
+    result = ({ itemId: savedItem.insertId, success: true ,statusCode:200});
+  } catch (err) {
+    if (connection) await connection.rollback();
+    result = ({ error: 'Bad Request', errorMessage: err.message,success: false,statusCode:400 });
+  } finally {
+    if (connection) connection.release();
+  }
+
+  return result;
+  }
 }
 
-module.exports = ItemDetailsGetter;
+
+module.exports = ItemManager;
