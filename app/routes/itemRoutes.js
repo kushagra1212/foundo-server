@@ -17,8 +17,10 @@ router.get('/all', itemControllers.getItems);
 router.get('/all-by-search', itemControllers.getItemsBySearchString);
 //GET Item Id
 router.get('/all-by-user', auth, itemControllers.getItemsbyUserId);
+router.get('/posts', itemControllers.getMatchedPosts);
+router.get('/:itemID/matches', itemControllers.getMatchesByItemId);
 router.get('/:id', itemControllers.getItemByItemId);
 
-router.get('/:itemID/matches', itemControllers.getMatchesByItemId);
+
 
 module.exports = router;

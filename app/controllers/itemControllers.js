@@ -82,10 +82,10 @@ const updateItemById = async (req, res) => {
 };
 
 const getItemsbyUserId = async (req, res) => {
- 
+
   const { userId } = req.query;
 
-  if(!userId){
+  if (!userId) {
     res.status(400).send({
       success: false,
       errorMessage: 'userId is required',
@@ -94,8 +94,8 @@ const getItemsbyUserId = async (req, res) => {
   }
 
   req.query.userId = parseInt(userId);
- 
- const result = await itemManager.getAllItems(req.query);
+
+  const result = await itemManager.getAllItems(req.query);
 
   return res.status(result.statusCode).send(result);
 };
@@ -174,6 +174,35 @@ const getMatchesByItemId = async (req, res) => {
   res.status(200).send({ matches });
 };
 
+const getMatchedPosts = async (req, res) => {
+  const {ids} = req.body;
+
+  if(!ids) {
+    res.status(400).send({
+      success: false,
+      errorMessage: 'ids is required',
+    });
+    return;
+  }
+
+
+  const totalCount = ids.length;
+  const promises = [];
+
+  for(let i = 0; i < totalCount; i++) {
+    promises.push(itemManager.getItemDetails(ids[i]));
+  }
+
+  try{
+      const results = await Promise.all(promises);
+      return res.status(200).send({success:true,... results});
+  }catch(err) {
+    return res.status(500).send({error: 'server error', errorMessage: err.message,success:false});
+  }
+
+
+}
+
 module.exports = {
   addItem,
   deleteItemByItemId,
@@ -182,5 +211,6 @@ module.exports = {
   getItemsbyUserId,
   getItems,
   getItemsBySearchString,
-  getMatchesByItemId,
+  getMatchesByItemId, 
+  getMatchedPosts
 };

@@ -68,6 +68,8 @@ class ItemMatcher {
 
     matches.sort((a, b) => b.similarity - a.similarity);
 
+    matches=matches.map((match) =>[match.foundItemId,match.similarity]);
+
     return matches;
   }
 }
