@@ -175,27 +175,35 @@ const getMatchesByItemId = async (req, res) => {
 };
 
 const getMatchedPosts = async (req, res) => {
-  const {ids} = req.body;
-
-  if(!ids) {
+  const {userIds} = req.body;
+  if(!userIds) {
     res.status(400).send({
       success: false,
-      errorMessage: 'ids is required',
+      errorMessage: 'userIds are required',
     });
     return;
   }
 
 
-  const totalCount = ids.length;
+  const totalCount = userIds.length;
   const promises = [];
 
   for(let i = 0; i < totalCount; i++) {
-    promises.push(itemManager.getItemDetails(ids[i]));
+    promises.push(itemManager.getItemDetails(userIds[i]));
   }
 
   try{
-      const results = await Promise.all(promises);
-      return res.status(200).send({success:true,... results});
+      const results = await Promise.allSettled(promises);
+      const items = [];
+      results.forEach((result, index) => {
+        if(result.status === 'rejected') {
+          return res.status(500).send({error: 'server error', errorMessage: result.reason.message,success:false});
+        }else {
+          items.push(result.value.item);
+        }
+      });
+
+      return res.status(200).send(items);
   }catch(err) {
     return res.status(500).send({error: 'server error', errorMessage: err.message,success:false});
   }
