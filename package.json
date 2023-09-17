@@ -25,7 +25,6 @@
     "natural": "^6.7.2",
     "node-fetch": "^2.6.9",
     "nodemon": "^2.0.19",
-    "request": "^2.88.2",
     "sib-api-v3-sdk": "^8.4.2"
   }
 }
