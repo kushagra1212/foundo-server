@@ -3,8 +3,7 @@ const router = express.Router();
 const itemControllers = require('../controllers/itemControllers');
 const { auth } = require('../middleware/auth');
 //POST ADD Lost Item
-router.post('/add-lost', auth, itemControllers.addLostItem);
-router.post('/add-found', auth, itemControllers.addFoundedItem);
+router.post('/', auth, itemControllers.addItem);
 
 //DELETE Item By Item Id
 router.delete('/deleteitem', auth, itemControllers.deleteItemByItemId);
@@ -17,7 +16,11 @@ router.get('/all', itemControllers.getItems);
 //GET ALL BY SEACH
 router.get('/all-by-search', itemControllers.getItemsBySearchString);
 //GET Item Id
-router.get('/user/all', auth, itemControllers.getItemsbyUserId);
+router.get('/all-by-user', auth, itemControllers.getItemsbyUserId);
+router.post('/posts', itemControllers.getMatchedPosts);
+router.get('/:itemID/matches', itemControllers.getMatchesByItemId);
 router.get('/:id', itemControllers.getItemByItemId);
+
+
 
 module.exports = router;
