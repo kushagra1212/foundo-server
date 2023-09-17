@@ -68,7 +68,6 @@ const updateItemPictureUrl = async (req, res) => {
     const s3ImageObj = new S3Image();
     for (let i = 0; i < pictureResult.length; i++) {
       const picture = pictureResult[i];
-      // const res = await toDataURLWithPromise(picture.url);
       const res = picture.url;
       const url = await s3ImageObj.upload({
         id: picture.id,
