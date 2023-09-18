@@ -23,17 +23,7 @@ const limiter = rateLimit({
   },
 });
 
-// cross origin policy
-
-// app.use(
-//   cors({
-//     credentials: true,
-//     cors: true,
-//     origin: process.env.ORG,
-//   })
-// );
-
-// Allow all for now
+// Allow all for APP
 app.use(
   cors({
     credentials: true,
