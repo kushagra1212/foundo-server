@@ -8,7 +8,7 @@ const apiKey = client.authentications['api-key'];
 apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
 const forgotPassword = async (req, res) => {
   try {
-    const { email, web } = req.params;
+    const { email } = req.params;
     if (!email) {
       res.status(400).send({
         error: 'Bad Request',
@@ -44,10 +44,7 @@ const forgotPassword = async (req, res) => {
         email: email,
       },
     ];
-    let resetPasswordLink = '';
-    if (web === 'web')
-      resetPasswordLink = `${process.env.RESET_PASS_APP_URL_WEB}`;
-    else resetPasswordLink = `${process.env.RESET_PASS_APP_URL}`;
+    let resetPasswordLink = `${process.env.RESET_PASS_APP_URL}`;
     await tranEmailApi.sendTransacEmail({
       sender,
       to: receivers,

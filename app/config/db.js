@@ -1,9 +1,9 @@
 const config = {
-  host: process.env.FAWS_DB_HOST,
-  user: process.env.FAWS_DB_USER,
-  password: process.env.FAWS_DB_PASSWORD,
-  port: process.env.FAWS_DB_PORT,
-  database: process.env.FDATABASE,
+  host: process.env.MYSQLDB_HOST,
+  user: process.env.MYSQLDB_ROOT_USER,
+  password: process.env.MYSQLDB_ROOT_PASSWORD,
+  port: process.env.MYSQLDB_PORT,
+  database: process.env.MYSQLDB_DATABASE,
 };
 
 module.exports = { config };
