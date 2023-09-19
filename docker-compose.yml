@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  mysqldb:
+    build: ./mysql
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQL_ROOT_PASSWORD
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+    ports:
+      - 3307:$MYSQL_PORT
+    volumes:
+      - mysql-data:/var/lib/mysql
+  app:
+    depends_on:
+      - mysqldb
+    build: .
+    restart: unless-stopped
+    env_file: .env
+    ports:
+      - $PORT:$PORT
+    environment:
+      - MYSQL_USER=$MYSQL_USER
+      - MYSQL_PASSWORD=$MYSQL_PASSWORD
+      - MYSQL_DATABASE=$MYSQL_DATABASE
+      - MYSQL_HOST=$MYSQL_HOST
+      - $MYSQL_PORT=$MYSQL_PORT
+      - RESET_PASS_APP_URL=$RESET_PASS_APP_URL
+      - FAWS_S3_BUCKET=$FAWS_S3_BUCKET
+      - FAWS_ACCESS_KEY_ID=$FAWS_ACCESS_KEY_ID
+      - FAWS_SECRET_ACCESS_KEY=$FAWS_SECRET_ACCESS_KEY
+      - FAWS_DEFAULT_REGION=$FAWS_DEFAULT_REGION
+      - SALT=$SALT
+      - JWT_SECRET=$JWT_SECRET
+      - SENDINBLUE_API_KEY=$SENDINBLUE_API_KEY
+      - JWT_ALGORITHM=$JWT_ALGORITHM
+    stdin_open: true
+    tty: true
+
+volumes:
+  mysql-data:

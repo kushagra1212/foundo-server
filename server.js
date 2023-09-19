@@ -1,4 +1,5 @@
-require('dotenv').config();
+const ENV_PATH = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
+require('dotenv').config({ path: ENV_PATH });
 const express = require('express');
 const app = express();
 const cors = require('cors');
@@ -23,17 +24,7 @@ const limiter = rateLimit({
   },
 });
 
-// cross origin policy
-
-// app.use(
-//   cors({
-//     credentials: true,
-//     cors: true,
-//     origin: process.env.ORG,
-//   })
-// );
-
-// Allow all for now
+// Allow all for APP
 app.use(
   cors({
     credentials: true,
