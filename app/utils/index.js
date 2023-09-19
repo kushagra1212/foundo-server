@@ -1,5 +1,4 @@
 const jwt = require('jsonwebtoken');
-var request = require('request').defaults({ encoding: null });
 
 // Create Token
 const createToken = ({ id, jwtSecret, maxAgeOfToken }) => {
@@ -24,26 +23,5 @@ const makeid = (length) => {
   }
   return result;
 };
-const toDataURL = (url, successCallback, errorCallback) => {
-  request.get(url, function (error, response, body) {
-    if (!error && response.statusCode == 200) {
-      data =
-        'data:' +
-        response.headers['content-type'] +
-        ';base64,' +
-        Buffer.from(body).toString('base64');
-      successCallback(data);
-    } else errorCallback(error);
-  });
-};
-const toDataURLWithPromise = (url) => {
-  return new Promise((resolve, reject) => {
-    toDataURL(
-      url,
-      (data) => resolve(data),
-      (err) => reject(err)
-    );
-  });
-};
 
-module.exports = { createToken, verifyToken, makeid, toDataURLWithPromise };
+module.exports = { createToken, verifyToken, makeid };
