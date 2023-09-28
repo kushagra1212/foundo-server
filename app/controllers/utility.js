@@ -151,15 +151,13 @@ class ItemManager {
     }
     const itemPicture = new ItemPicture({
       pictures: picturesArray,
-      lostItemId:(isFounded ? null: savedItem.insertId),
-      foundItemId: (isFounded?savedItem.insertId: null),
+      itemId: savedItem.insertId
     });
     await itemPicture.save();
     const itemLocation = new ItemLocation({
       latitude: location.latitude,
       longitude: location.longitude,
-      lostItemId: isFounded?null: savedItem.insertId,
-      foundItemId: isFounded?savedItem.insertId: null,
+      itemId: savedItem.insertId
     });
     await itemLocation.save();
     await Item.updateItem(

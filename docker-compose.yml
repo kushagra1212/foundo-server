@@ -38,6 +38,7 @@ services:
       - JWT_ALGORITHM=$JWT_ALGORITHM
     stdin_open: true
     tty: true
-
+    volumes:
+      - .:/foundo-app
 volumes:
   mysql-data:

@@ -14,7 +14,7 @@ const addItem = async (req, res) => {
 };
 
 const deleteItemByItemId = async (req, res) => {
-  const { itemId } = req.body;
+  const { itemId } = req.params;
   let connection;
   try {
     const [itemResult, __] = await Item.findItem({ itemId });
