@@ -6,7 +6,7 @@ const { auth } = require('../middleware/auth');
 router.post('/', auth, itemControllers.addItem);
 
 //DELETE Item By Item Id
-router.delete('/deleteitem', auth, itemControllers.deleteItemByItemId);
+router.delete('/:itemId', auth, itemControllers.deleteItemByItemId);
 
 //Update Item by item Id
 router.patch('/update', auth, itemControllers.updateItemById);

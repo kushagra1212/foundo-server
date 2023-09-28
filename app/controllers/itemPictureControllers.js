@@ -46,8 +46,7 @@ const addPictures = async (req, res) => {
     }
     const itemPictures = new ItemPicture({
       pictures,
-      foundItemId: isFounded ? itemId : null,
-      lostItemId: isFounded ? null : itemId,
+      itemId
     });
     await itemPictures.save();
     res.status(200).send({ success: true });
