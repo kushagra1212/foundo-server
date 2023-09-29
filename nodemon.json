@@ -1,5 +1,5 @@
 {
-    "watch": ["src", "server.js"],
-    "ext": "js json"
+    "watch": ["app", "server.ts"],
+    "ext": ".js, .json, .ts"
   }
   

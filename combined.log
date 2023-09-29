@@ -1,0 +1,8 @@
+{"level":"error","message":"userId is required","timestamp":"2023-09-29T06:46:20.407Z"}
+{"level":"\u001b[31merror\u001b[39m","message":"userId is required","timestamp":"2023-09-29T06:47:03.847Z"}
+{"level":"\u001b[31merror\u001b[39m","message":"userId is required","timestamp":"2023-09-29T06:47:09.475Z"}
+[2023-09-29T06:47:49.756Z] [31merror[39m: userId is required
+{"timestamp":"2023-09-29T06:49:10.403Z","level":"\u001b[31merror\u001b[39m","message":"userId is required"}
+[2023-09-29T06:49:26.865Z] [31merror[39m: userId is required
+[2023-09-29T06:54:48.967Z] [31merror[39m: userId is required
+[2023-09-29T06:56:31.460Z] [32minfo[39m: User found

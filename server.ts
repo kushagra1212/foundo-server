@@ -1,16 +1,16 @@
 const ENV_PATH = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
 require('dotenv').config({ path: ENV_PATH });
-const express = require('express');
+import express from 'express';
 const app = express();
-const cors = require('cors');
-const cookieParser = require('cookie-parser');
-const userRoutes = require('./app/routes/userRoutes');
-const userSettingRoutes = require('./app/routes/userSettingRoutes');
-const itemRoutes = require('./app/routes/itemRoutes');
-const itemPictureRoutes = require('./app/routes/itemPictureRoutes');
-const authRoutes = require('./app/routes/app-authRoutes');
-const messageRoutes = require('./app/routes/messageRoutes');
-const rateLimit = require('express-rate-limit');
+import cors from 'cors';
+import cookieParser from 'cookie-parser';
+import userRoutes from './app/routes/userRoutes';
+import userSettingRoutes from './app/routes/userSettingRoutes';
+import itemRoutes from './app/routes/itemRoutes';
+import itemPictureRoutes from './app/routes/itemPictureRoutes';
+import authRoutes from './app/routes/app-authRoutes';
+import messageRoutes from './app/routes/messageRoutes';
+import rateLimit from 'express-rate-limit';
 const PORT = process.env.PORT || 8890;
 //limiter object with  options
 const limiter = rateLimit({
@@ -29,14 +29,14 @@ app.use(
   cors({
     credentials: true,
     origin: '*',
-  })
+  }),
 );
 
 // For parsing the cookies
 app.use(cookieParser());
 // application/json
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, origin: '*', limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 // starting the app
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
@@ -52,7 +52,7 @@ app.get('/', limiter, (req, res) => {
 app.use('/v1/app-auth', limiter, authRoutes);
 
 //user Routes
-app.use('/v1/user', limiter, userRoutes);
+app.use('/v1/users', limiter, userRoutes);
 app.use('/v1/user-setting', limiter, userSettingRoutes);
 
 //Items Routes
