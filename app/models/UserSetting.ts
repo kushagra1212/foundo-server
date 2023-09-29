@@ -1,7 +1,9 @@
 import { UserSettingType } from '../types/types';
 
 import promisePool from '../db';
-import { RowDataPacket } from 'mysql2';
+import { OkPacket, RowDataPacket } from 'mysql2';
+import { getSETQuery } from './model-utils';
+import logger from '../logger/logger';
 
 class UserSetting {
   fk_userId: number;
@@ -29,7 +31,45 @@ class UserSetting {
       userSetting.displayProfilePhoto,
       userSetting.displayAddress,
       userSetting.fk_userId,
-    ]);
+    ]) as Promise<OkPacket>;
+  }
+  static async updateUserSettingByUserId({
+    userSetting,
+    fk_userId,
+  }: {
+    userSetting: any;
+    fk_userId: number;
+  }) {
+    return new Promise(async (resolve, reject) => {
+      let connection;
+      try {
+        connection = await promisePool.getConnection();
+        await connection.beginTransaction();
+
+        let sql = `UPDATE userSetting SET ${getSETQuery(
+          userSetting,
+        )} WHERE fk_userId=?; `;
+
+        const params = [...Object.values(userSetting), fk_userId];
+        await connection.execute(sql, params);
+
+        sql = `SELECT * FROM userSetting WHERE fk_userId=?`;
+
+        const [userSettingResult, __] = await connection.execute(sql, [
+          fk_userId,
+        ]);
+
+        await connection.commit();
+        await connection.release();
+
+        resolve(userSettingResult[0]);
+      } catch (err) {
+        if (connection) await connection.rollback();
+        await connection.release();
+        logger.error(`user Setting update failed for userId ${fk_userId}`);
+        reject(err);
+      }
+    });
   }
 }
 

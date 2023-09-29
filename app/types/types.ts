@@ -5,8 +5,10 @@ type JwtPayloadWithId = JwtPayload & { id: number };
 
 export interface RequestWithJwt extends Request {
   jwt: JwtPayloadWithId;
+  decoded?: JwtPayloadWithId;
+  user?: UserType;
 }
-
+  
 export type UserType = {
   firstName: string;
   lastName: string;

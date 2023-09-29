@@ -8,20 +8,23 @@ const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
 const { S3Image } = require('../s3/S3image');
 import logger from '../logger/logger';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { OkPacket, RowDataPacket } from 'mysql2';
 import { RequestWithJwt } from '../types/types';
+import {
+  BadRequestError,
+  NotFoundError,
+  UnprocessableEntityError,
+  UpdateError,
+  ValidationError,
+} from '../custom-errors/customErrors';
 //create user | POST
-const signupUser = async (req: Request, res: Response) => {
+const signupUser = async (req: Request, res: Response, next: NextFunction) => {
   const { firstName, lastName, email, password } = req.body;
   let connection;
   try {
     if (!firstName || !lastName || !email || !password) {
-      res.status(400).send({
-        error: 'Bad Request',
-        errorMessage: 'firstName, lastName, email and password are required',
-      });
-      return;
+      throw new Error('firstName, lastName, email and password are required');
     }
     let hashedPassword = await bcrypt.hash(password, parseInt(salt));
     connection = await promisePool.getConnection();
@@ -42,53 +45,41 @@ const signupUser = async (req: Request, res: Response) => {
 
     logger.info(`User ${result.insertId} created`);
 
+    if (connection) connection.release();
     res.status(201).send({
       user: { ...user, userId: (result as OkPacket).insertId, password: '' },
       message: 'Account Created !',
     });
   } catch (err: any) {
     if (connection) connection.rollback();
-    let errorMessage = err.message;
     if (err.errno === 1062) {
-      errorMessage = 'This Email is already in use !';
+      err.message = 'This Email is already in use !';
     }
-    logger.error(errorMessage);
-    res.status(400).send({ error: 'Bad Request', errorMessage: errorMessage });
-  } finally {
+    logger.error(err.message);
     if (connection) connection.release();
+    next(err);
   }
 };
 
 //SignIn user
-const signinUser = async (req: Request, res: Response) => {
+const signinUser = async (req: Request, res: Response, next: NextFunction) => {
   const { email, password } = req.body;
   try {
     if (!email || !password) {
       logger.error(`email and password are required`);
-      res.status(400).send({
-        error: 'Bad Request',
-        errorMessage: 'email and password are required',
-      });
-      return;
+      throw new ValidationError('email and password are required');
     }
     const [user, _] = await User.findUserByEmail({ userEmail: email });
 
     if (!user || !user.length) {
       logger.error(`User with email ${email} not found`);
-      res.status(400).send({
-        error: 'Bad Request',
-        errorMessage: 'Please check your email again !',
-      });
-      return;
+      throw new BadRequestError('User not found');
     }
     const isPasswordCorrect = await bcrypt.compare(password, user[0].password);
 
     if (!isPasswordCorrect) {
       logger.error(`User ${user[0].id} entered wrong password`);
-      res
-        .status(400)
-        .send({ error: 'Bad Request', errorMessage: 'password is incorrect' });
-      return;
+      throw new BadRequestError('password is incorrect');
     }
     const token = createToken({
       id: user[0].id,
@@ -103,56 +94,47 @@ const signinUser = async (req: Request, res: Response) => {
     });
   } catch (err: any) {
     logger.error(err.message);
-    res.status(500).send({
-      error: 'server error',
-      errorMessage: err.message,
-      success: false,
-    });
+    next(err);
   }
 };
 
 //delete User based on userId | POST
 
-const deleteUserById = async (req: Request, res: Response) => {
+const deleteUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   const { id } = req.params;
   if (!id) {
     logger.error(`id is required`);
 
-    res
-      .status(400)
-      .send({ error: 'Bad Request', errorMessage: 'userId is required' });
-    return;
+    throw new BadRequestError('userId is required');
   }
   try {
     const [userResult, __] = await User.findUser({ id: Number(id) });
 
     if (!userResult || !userResult.length) {
       logger.error(`user not found with id ${id}`);
-      res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'user not found' });
-      return;
+      throw new NotFoundError('user not found');
     }
 
     const [result, _] = await User.deleteUser({ userId: Number(id) });
 
     if (result.affectedRows) {
       logger.info(`user ${id} deleted`);
-      res.status(200).send({ user: userResult[0], success: true });
-    } else {
-      logger.error(`user ${id} is not deleted`);
-      res
-        .status(400)
-        .send({ error: 'Bad Request', errorMessage: 'user is not deleted' });
+      return res.status(200).send({ user: userResult[0], success: true });
     }
+    logger.error(`user ${id} is not deleted`);
+    throw new UnprocessableEntityError('user is not deleted');
   } catch (err: any) {
-    logger.error(err.message);
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    logger.error(err);
+    next(err);
   }
 };
 
 // get user by user id | GET
-const getUserById = async (req: Request, res: Response) => {
+const getUserById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   const reqJwt = req as RequestWithJwt;
 
@@ -160,10 +142,7 @@ const getUserById = async (req: Request, res: Response) => {
 
   if (!id) {
     logger.error(`userId is required`);
-    res
-      .status(400)
-      .send({ error: 'Bad Request', errorMessage: 'fk_userId is required' });
-    return;
+    throw new ValidationError('userId is required');
   }
   try {
     const [userResult, __] = await User.findUser({ id: Number(id) });
@@ -174,10 +153,7 @@ const getUserById = async (req: Request, res: Response) => {
 
     if (!userResult || !userResult.length) {
       logger.error(`user not found with id ${id}`);
-      res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'user not found' });
-      return;
+      throw new NotFoundError('user not found');
     }
     let user = userResult[0];
     if (Number(userIdWhoMadeReq) !== user.id) {
@@ -189,13 +165,16 @@ const getUserById = async (req: Request, res: Response) => {
     logger.info(`user ${id} found`);
     res.status(200).send({ user });
   } catch (err: any) {
-    logger.error(err.message);
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    next(err);
   }
 };
 
 // Update User by Id
-const updateUserById = async (req: Request, res: Response) => {
+const updateUserById = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
   const { id: userId } = req.params;
   const newProfilePhoto = req.body.profilePhoto;
   const newAddress = req.body.address;
@@ -204,18 +183,14 @@ const updateUserById = async (req: Request, res: Response) => {
 
   if (!userId) {
     logger.error(`userId is required`);
-    res
-      .status(400)
-      .send({ error: 'Bad Request', errorMessage: 'userId is required' });
-    return;
+    throw new ValidationError('userId is required');
   }
 
   try {
     const [userResult, __] = await User.findUser({ id: Number(userId) });
     if (!userResult || !userResult.length) {
-      return res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'user not found' });
+      logger.error(`user not found with id ${userId}`);
+      throw new NotFoundError('user not found');
     }
 
     let user = userResult[0];
@@ -226,21 +201,13 @@ const updateUserById = async (req: Request, res: Response) => {
     if (newProfilePhoto) {
       const s3ImageObj = new S3Image();
 
-      try {
-        await s3ImageObj.delete(user.profilePhoto);
-        const location = await s3ImageObj.upload({
-          id: userId,
-          base64: newProfilePhoto,
-          folderName: 'profilePhoto',
-        });
-        user.profilePhoto = location;
-      } catch (err: any) {
-        logger.error(err.message);
-        return res.status(500).send({
-          error: 'server error',
-          errorMessage: err.message,
-        });
-      }
+      await s3ImageObj.delete(user.profilePhoto);
+      const location = await s3ImageObj.upload({
+        id: userId,
+        base64: newProfilePhoto,
+        folderName: 'profilePhoto',
+      });
+      user.profilePhoto = location;
     }
 
     if (newAddress && user.address !== newAddress) user.address = newAddress;
@@ -263,23 +230,21 @@ const updateUserById = async (req: Request, res: Response) => {
       return;
     } catch (err: any) {
       logger.error(err.message);
-      res
-        .status(400)
-        .send({ error: 'Bad Request', errorMessage: 'user update failed ' });
-      return;
+      throw new UpdateError('user is not updated');
     }
   } catch (err: any) {
-    logger.error(err.message);
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    logger.error(err);
+    next(err);
   }
 };
 
-const getAllUsers = async (req: Request, res: Response) => {
+const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
   const { limit, offset } = req.params;
   logger.info(`limit: ${limit}, offset: ${offset}`);
   try {
     if (!limit || !offset) {
-      throw new Error('limit and offset are required');
+      logger.error(`limit and offset are required`);
+      throw new ValidationError('limit and offset are required');
     }
     const [allUsers, __] = await User.findAllUsers({
       limit: limit.toLocaleString(),
@@ -287,33 +252,26 @@ const getAllUsers = async (req: Request, res: Response) => {
     });
     if (!allUsers || !allUsers.length) {
       logger.error(`no users found`);
-      return res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'no users' });
+      throw new NotFoundError('no users found');
     }
     logger.info(`users found`);
     res.status(200).send({ allUsers: allUsers });
   } catch (err: any) {
     logger.error(err.message);
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    next(err);
   }
 };
-const sendOtp = async (req: Request, res: Response) => {
+const sendOtp = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   try {
     if (!id) {
       logger.error('user id is required');
-      res
-        .status(400)
-        .send({ error: 'Bad Request', errorMessage: 'user id is required' });
-      return;
+      throw new ValidationError('user id is required');
     }
     const [userResult, __] = await User.findUser({ id: Number(id) });
     if (!userResult || !userResult.length) {
       logger.error(`user not found with id ${id}`);
-      return res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'user not found' });
+      throw new NotFoundError('user not found');
     }
     const otp = Math.floor(1000 + Math.random() * 9000);
     const [result, _] = await User.updateUser({
@@ -348,23 +306,20 @@ const sendOtp = async (req: Request, res: Response) => {
       logger.info(`OTP sent to ${userResult[0].email}`);
       return res.status(200).send({ success: true });
     }
-    return res
-      .status(400)
-      .send({ error: 'Bad Request', errorMessage: 'user is not updated' });
+    logger.error(`OTP sending failed for user ${id}`);
+    throw new UpdateError('OTP sending failed');
   } catch (err: any) {
-    logger.error(err.message);
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    logger.error(err);
+    next(err);
   }
 };
-const verifyOtp = async (req: Request, res: Response) => {
+const verifyOtp = async (req: Request, res: Response, next: NextFunction) => {
   const { id, otp } = req.params;
   try {
     const [userResult, __] = await User.findUser({ id: Number(id) });
     if (!userResult || !userResult.length) {
       logger.error(`user not found with id ${id}`);
-      return res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'user not found' });
+      throw new ValidationError('user not found');
     }
     if (userResult[0].otp === Number(otp) && Number(otp) !== 0) {
       const [result, _] = await User.updateUser({
@@ -387,28 +342,20 @@ const verifyOtp = async (req: Request, res: Response) => {
     }
 
     logger.error(`OTP didn't match for user ${id}`);
-
-    return res.status(400).send({
-      error: 'Bad Request',
-      errorMessage: `OTP Didn't Match`,
-    });
+    throw new NotFoundError('OTP did not match');
   } catch (err: any) {
     logger.error(err.message);
     res.status(500).send({ error: 'server error', errorMessage: err.message });
   }
 };
 
-const resetOtp = async (req: Request, res: Response) => {
+const resetOtp = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   try {
     const [userResult, __] = await User.findUser({ id: Number(id) });
     if (!userResult || !userResult.length) {
       logger.error(`user not found with id ${id}`);
-      return res.status(404).send({
-        error: 'not found',
-        errorMessage: 'user not found',
-        success: false,
-      });
+      throw new ValidationError('user not found');
     }
     const [result, _] = await User.updateUser({
       user: {
@@ -423,18 +370,10 @@ const resetOtp = async (req: Request, res: Response) => {
     }
 
     logger.error(`OTP reset failed for user ${id}`);
-    return res.status(400).send({
-      error: 'Bad Request',
-      errorMessage: `Something went wrong`,
-      success: false,
-    });
+    throw new UpdateError('OTP reset failed');
   } catch (err: any) {
-    logger.error(err.message);
-    res.status(500).send({
-      error: 'server error',
-      errorMessage: err.message,
-      success: false,
-    });
+    logger.error(err);
+    next();
   }
 };
 

@@ -290,3 +290,648 @@
 {"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:13:33"}
 {"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 16:13:33"}
 {"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:40:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid token","timestamp":"2023-09-29 17:40:22"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:40:23"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:40:31"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:41:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 17:42:57"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 17:43:44"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 17:43:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:44:29"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:46:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:46:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:46:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","timestamp":"2023-09-29 17:46:55"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 17:48:18"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 17:48:22"}
+{"level":"\u001b[31merror\u001b[39m","message":"Access denied. No token provided.","timestamp":"2023-09-29 18:05:48"}
+{"level":"\u001b[31merror\u001b[39m","message":"Access denied. No token provided.","timestamp":"2023-09-29 18:08:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting not found for userId 123","timestamp":"2023-09-29 18:12:00"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 3","timestamp":"2023-09-29 18:48:56"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:49:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:49:15"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:49:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:50:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:51:09"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?' at line 1","sql":"\n\n    BEGIN TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?;\n\n\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?;\n    \n    END TRANSACTION;\n    ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 18:51:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:52:37"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?' at line 1","sql":"\n\n    BEGIN TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?;\n\n\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?;\n    \n    END TRANSACTION;\n    ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 18:52:37"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:52:48"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?' at line 1","sql":"\n\n    BEGIN TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?;\n\n\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?;\n    \n    END TRANSACTION;\n    ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 18:52:48"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:53:44"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?' at line 1","sql":"\n\n    BEGIN TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?\n\n\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?\n    \n    END TRANSACTION;\n    ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 18:53:44"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:54:03"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?' at line 1","sql":"\n\n    BEGIN TRANSACTION;\n    \n\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?\n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?\n    END TRANSACTION;\n    ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    \n\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 18:54:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:54:26"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?\n    S' at line 1","sql":" BEGIN TRANSACTION;\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?\n    SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?\n    END TRANSACTION;\n    ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION;\n    UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?\n    S' at line 1","sqlState":"42000","timestamp":"2023-09-29 18:54:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:55:19"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION; SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?; UPDATE ' at line 1","sql":"BEGIN TRANSACTION; SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?; UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=? END TRANSACTION;","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION; SELECT * FROM userSetting  With(UPDLOCK) WHERE fk_userId=?; UPDATE ' at line 1","sqlState":"42000","timestamp":"2023-09-29 18:55:19"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 18:56:28"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting S' at line 1","sql":"BEGIN TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=? END TRANSACTION;","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting S' at line 1","sqlState":"42000","timestamp":"2023-09-29 18:56:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:01:04"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting S' at line 1","sql":"BEGIN TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=? END TRANSACTION;","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting S' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:01:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:01:25"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting S' at line 1","sql":"BEGIN TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=? END TRANSACTION;","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'TRANSACTION; SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting S' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:01:25"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:06:07"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?' at line 1","sql":"SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=? ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:06:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:06:09"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?' at line 1","sql":"SELECT * FROM userSetting   WHERE fk_userId=?; UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=? ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:06:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:07:02"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?' at line 1","sql":"SELECT * FROM userSetting   WHERE fk_userId=? UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=? ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:07:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:10:24"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'displayPhoeNo' in 'field list'","sql":"UPDATE userSetting SET displayPhoeNo=? WHERE fk_userId=? ","sqlMessage":"Unknown column 'displayPhoeNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 19:10:24"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:10:53"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'name' in 'field list'","sql":"UPDATE userSetting SET displayPhoneNo=?,name=? WHERE fk_userId=? ","sqlMessage":"Unknown column 'name' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 19:10:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:11:32"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'name' in 'field list'","sql":"UPDATE userSetting SET displayPhoneNo=?,name=? WHERE fk_userId=? ","sqlMessage":"Unknown column 'name' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 19:11:32"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'name' in 'field list'","sql":"UPDATE userSetting SET displayPhoneNo=?,name=? WHERE fk_userId=? ","sqlMessage":"Unknown column 'name' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 19:18:44"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'name' in 'field list'","sql":"UPDATE userSetting SET displayPhoneNo=?,name=? WHERE fk_userId=? ","sqlMessage":"Unknown column 'name' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 19:19:05"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'name' in 'field list'","sql":"UPDATE userSetting SET displayPhoneNo=?,name=? WHERE fk_userId=? ","sqlMessage":"Unknown column 'name' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 19:24:39"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'name' in 'field list'","sql":"UPDATE userSetting SET displayPhoneNo=?,name=? WHERE fk_userId=? ","sqlMessage":"Unknown column 'name' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 19:24:43"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * from userSetting WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET displayPhoneNo=?,name=? WHERE fk_userId=?; SELECT * from userSetting WHERE fk_userId=?","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * from userSetting WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:26:16"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * from userSetting WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; SELECT * from userSetting WHERE fk_userId=?","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'SELECT * from userSetting WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:26:30"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=false WHERE id=1' at line 2","sql":"SELECT * FROM userSetting WHERE id=1;\n    UPDATE userSetting SET displayPhoneNo=false WHERE id=1;","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=false WHERE id=1' at line 2","sqlState":"42000","timestamp":"2023-09-29 19:40:05"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=false WHERE id=1' at line 2","sql":"SELECT * FROM userSetting WHERE id=1;\n    UPDATE userSetting SET displayPhoneNo=false WHERE id=1;","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=false WHERE id=1' at line 2","sqlState":"42000","timestamp":"2023-09-29 19:40:06"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=false WHERE id=1' at line 1","sql":"SELECT * FROM userSetting WHERE id=1;UPDATE userSetting SET displayPhoneNo=false WHERE id=1;","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'UPDATE userSetting SET displayPhoneNo=false WHERE id=1' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:40:22"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:49:57"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 19:49:57"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:49:59"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 19:49:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:49:59"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 19:49:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:50:04"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 19:50:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:50:13"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 19:50:13"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:50:14"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 19:50:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:50:36"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 19:50:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:50:41"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 19:50:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:51:39"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET  WHERE fk_userId=?; ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:51:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:51:56"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'languge' in 'field list'","sql":"UPDATE userSetting SET languge=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'languge' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 19:51:56"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:52:07"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET  WHERE fk_userId=?; ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 19:52:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:55:17"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 19:55:17"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:56:00"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 19:56:00"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:57:18"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 19:57:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:24:00"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:24:00"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:24:01"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:24:01"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:24:02"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:24:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:25:07"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:25:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:25:17"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:25:17"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:25:58"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:25:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:26:20"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:26:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:26:27"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:26:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:26:53"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:26:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:27:07"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:27:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:28:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:28:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:28:31"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:28:31"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:29:23"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:29:23"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:30:40"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:30:40"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:30:41"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:30:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:30:41"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:30:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:30:42"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:30:42"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:31:16"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:31:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:31:18"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:31:18"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:37:34"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:37:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:37:35"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:37:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:37:36"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:37:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:37:55"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:37:55"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:37:57"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:37:57"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:38:35"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:38:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:39:14"}
+{"code":"ER_DATA_TOO_LONG","errno":1406,"level":"\u001b[31merror\u001b[39m","message":"Data too long for column 'language' at row 1","sql":"UPDATE userSetting SET language=? WHERE fk_userId=?; ","sqlMessage":"Data too long for column 'language' at row 1","sqlState":"22001","timestamp":"2023-09-29 20:39:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:39:36"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET  WHERE fk_userId=?; ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 20:39:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:39:37"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET  WHERE fk_userId=?; ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 20:39:37"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:39:38"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET  WHERE fk_userId=?; ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 20:39:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:39:38"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET  WHERE fk_userId=?; ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 20:39:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 20:39:39"}
+{"code":"ER_PARSE_ERROR","errno":1064,"level":"\u001b[31merror\u001b[39m","message":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sql":"UPDATE userSetting SET  WHERE fk_userId=?; ","sqlMessage":"You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'WHERE fk_userId=?' at line 1","sqlState":"42000","timestamp":"2023-09-29 20:39:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:39:43"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:39:49"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:39:50"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:40:19"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:40:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:40:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:40:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:40:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"Caught error in mysqlErrorHandler","timestamp":"2023-09-29 20:41:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId NaN","timestamp":"2023-09-29 21:16:34"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'userId' in 'field list'","sql":"UPDATE userSetting SET userId=?,displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'userId' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:16:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId NaN","timestamp":"2023-09-29 21:16:39"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'userId' in 'field list'","sql":"UPDATE userSetting SET userId=?,displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'userId' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:16:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId NaN","timestamp":"2023-09-29 21:16:40"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'userId' in 'field list'","sql":"UPDATE userSetting SET userId=?,displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'userId' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:16:40"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId NaN","timestamp":"2023-09-29 21:16:41"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'userId' in 'field list'","sql":"UPDATE userSetting SET userId=?,displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'userId' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:16:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:19:15"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:19:15"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:19:18"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:19:18"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:19:24"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:19:24"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:19:37"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:19:37"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:19:39"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:19:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:20:12"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:20:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:22:04"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:22:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:22:05"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:22:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:22:34"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:22:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:22:35"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:22:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:22:48"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:22:48"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 2","timestamp":"2023-09-29 21:23:14"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:23:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:26:41"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'displayPhNo' in 'field list'","sql":"UPDATE userSetting SET displayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'displayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:26:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:26:43"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'displayPhNo' in 'field list'","sql":"UPDATE userSetting SET displayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'displayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:26:43"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:26:52"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'displayPhNo' in 'field list'","sql":"UPDATE userSetting SET displayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'displayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:26:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:26:54"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'displayPhNo' in 'field list'","sql":"UPDATE userSetting SET displayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'displayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:26:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:26:58"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'displayPhNo' in 'field list'","sql":"UPDATE userSetting SET displayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'displayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:26:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:27:00"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'displayPhNo' in 'field list'","sql":"UPDATE userSetting SET displayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'displayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:27:00"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:27:04"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'displayPhNo' in 'field list'","sql":"UPDATE userSetting SET displayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'displayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:27:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:27:15"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'dispayPhNo' in 'field list'","sql":"UPDATE userSetting SET dispayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'dispayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:27:15"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:36:13"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 21:36:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:38:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:38:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:38:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:38:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:38:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:38:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:38:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 29 entered wrong password","timestamp":"2023-09-29 21:38:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:38:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 32 entered wrong password","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:38:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:38:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:38:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:38:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:38:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 35 entered wrong password","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:38:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:39:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:39:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:39:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 38 entered wrong password","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:39:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 41 entered wrong password","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:39:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:39:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 44 entered wrong password","timestamp":"2023-09-29 21:39:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:39:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 47 entered wrong password","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:40:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:41:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:41:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 50 entered wrong password","timestamp":"2023-09-29 21:41:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:41:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 53 entered wrong password","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:41:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:41:40"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 56 entered wrong password","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:41:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:42:19"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:42:19"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:42:19"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:42:19"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 59 entered wrong password","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:42:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:42:32"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:42:32"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:42:32"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:42:32"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:42:32"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 62 entered wrong password","timestamp":"2023-09-29 21:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:42:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:42:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:42:59"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 65 entered wrong password","timestamp":"2023-09-29 21:43:00"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:43:00"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:43:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:43:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:43:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:43:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 68 entered wrong password","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:43:04"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:44:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:44:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:44:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:44:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:44:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:44:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:44:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:44:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:44:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:44:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:44:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 71 entered wrong password","timestamp":"2023-09-29 21:44:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:44:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:46:10"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:46:10"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:46:10"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:46:10"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 74 entered wrong password","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:46:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:46:15"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:46:15"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:46:15"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:46:15"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:46:15"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 77 entered wrong password","timestamp":"2023-09-29 21:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:46:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 80 entered wrong password","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:46:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 83 entered wrong password","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:47:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:47:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:47:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:47:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 86 entered wrong password","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:47:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:47:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:47:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 89 entered wrong password","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:47:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:47:51"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:47:51"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:47:51"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 92 entered wrong password","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:47:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:48:29"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:48:29"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:48:29"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:48:29"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:48:29"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:48:29"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:48:29"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:48:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:48:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:48:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:48:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 95 entered wrong password","timestamp":"2023-09-29 21:48:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:48:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:48:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:48:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 98 entered wrong password","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:48:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:49:22"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:49:22"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:49:23"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:49:23"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:49:23"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:49:23"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:49:23"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:49:24"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:49:24"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:49:24"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:49:24"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 101 entered wrong password","timestamp":"2023-09-29 21:49:24"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:49:24"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 104 entered wrong password","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:51:07"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:51:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 107 entered wrong password","timestamp":"2023-09-29 21:51:37"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:51:37"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 110 entered wrong password","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:52:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:52:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:52:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:52:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:52:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:52:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:52:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:52:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:52:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:52:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:52:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:52:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 113 entered wrong password","timestamp":"2023-09-29 21:52:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:52:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"firstName, lastName, email and password are required","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"invalid signature","name":"JsonWebTokenError","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"User not found","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 116 entered wrong password","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"password is incorrect","timestamp":"2023-09-29 21:53:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:54:14"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'dispayPhNo' in 'field list'","sql":"UPDATE userSetting SET dispayPhNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'dispayPhNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:54:14"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:54:26"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'dispayPhoneNumber' in 'field list'","sql":"UPDATE userSetting SET dispayPhoneNumber=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'dispayPhoneNumber' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:54:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:54:36"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'dispayPhoneNo' in 'field list'","sql":"UPDATE userSetting SET dispayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'dispayPhoneNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:54:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:54:46"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'PhoneNo' in 'field list'","sql":"UPDATE userSetting SET PhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'PhoneNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:54:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:54:52"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'phoneNO' in 'field list'","sql":"UPDATE userSetting SET phoneNO=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'phoneNO' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:54:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:54:54"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'phoneNO' in 'field list'","sql":"UPDATE userSetting SET phoneNO=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'phoneNO' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:54:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:54:58"}
+{"code":"ER_BAD_FIELD_ERROR","errno":1054,"level":"\u001b[31merror\u001b[39m","message":"Unknown column 'phoneNo' in 'field list'","sql":"UPDATE userSetting SET phoneNo=? WHERE fk_userId=?; ","sqlMessage":"Unknown column 'phoneNo' in 'field list'","sqlState":"42S22","timestamp":"2023-09-29 21:54:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:55:11"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:55:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:55:12"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:55:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:55:13"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:55:13"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:55:31"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:55:31"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:55:43"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:55:43"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:55:44"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:55:44"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:55:45"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:55:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:56:55"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:56:55"}
+{"level":"\u001b[31merror\u001b[39m","message":"user Setting update failed for userId 1","timestamp":"2023-09-29 21:56:55"}
+{"code":"ER_WARN_DATA_OUT_OF_RANGE","errno":1264,"level":"\u001b[31merror\u001b[39m","message":"Out of range value for column 'displayPhoneNo' at row 1","sql":"UPDATE userSetting SET displayPhoneNo=? WHERE fk_userId=?; ","sqlMessage":"Out of range value for column 'displayPhoneNo' at row 1","sqlState":"22003","timestamp":"2023-09-29 21:56:55"}

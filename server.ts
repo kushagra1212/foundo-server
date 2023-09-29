@@ -11,6 +11,8 @@ import itemPictureRoutes from './app/routes/itemPictureRoutes';
 import authRoutes from './app/routes/app-authRoutes';
 import messageRoutes from './app/routes/messageRoutes';
 import rateLimit from 'express-rate-limit';
+import { _mysqlErrorHandler } from './app/middleware/mysqlError';
+import { _errorHandler } from './app/middleware/errorHandler';
 const PORT = process.env.PORT || 8890;
 //limiter object with  options
 const limiter = rateLimit({
@@ -37,6 +39,7 @@ app.use(cookieParser());
 // application/json
 app.use(express.json({ limit: '50mb' }));
 app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+
 // starting the app
 app.listen(PORT, () => {
   console.log(`listening on port ${PORT}`);
@@ -64,7 +67,7 @@ app.use('/v1/message', limiter, messageRoutes);
 
 // Error Handling
 
-// 404 Route
-app.use((req, res, next) => {
-  res.status(404).send({ message: '404 Not Found', success: false });
-});
+// middleware for handling mysql errors
+app.use(_mysqlErrorHandler);
+app.use(_errorHandler);
+
