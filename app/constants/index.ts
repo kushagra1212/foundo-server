@@ -22,4 +22,10 @@ export const Routes = {
     deleteUserById: '/:id',
     deleteAllUsers: '/',
   },
+  userSettings: {
+    base: '/user-setting',
+    getUserSettingByUserId: '/:userId',
+    updateUserSettingbyUserId: '/:userId',
+    updateUserSettingbyUserIdOptimized: '/optimized/:userId',
+  },
 };

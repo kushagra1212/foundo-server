@@ -24,7 +24,9 @@ DROP DATABASE IF EXISTS foundo;
 CREATE DATABASE foundo;
 
 USE foundo;
-
+SET GLOBAL log_output = "FILE";
+SET GLOBAL general_log_file = "sqllogs.log";
+SET GLOBAL general_log = 'ON';
 --
 -- Table structure for table `user`
 --
