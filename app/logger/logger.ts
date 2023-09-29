@@ -1,5 +1,5 @@
-const { createLogger, transports, format } = require('winston');
-const DailyRotateFile = require('winston-daily-rotate-file');
+import { createLogger, transports, format } from 'winston';
+import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, printf } = format;
 
 // Define a custom log format
@@ -44,4 +44,4 @@ const logger = createLogger({
   ],
 });
 
-module.exports = logger;
+export default logger;

@@ -1,10 +1,11 @@
-const { makeid } = require('../utils');
+import logger from '../logger/logger';
+import { makeid, isBase64 } from '../utils';
 
-const {
+import {
   S3Client,
   PutObjectCommand,
   DeleteObjectCommand,
-} = require('@aws-sdk/client-s3');
+} from '@aws-sdk/client-s3';
 
 const {
   FAWS_ACCESS_KEY_ID,
@@ -24,10 +25,17 @@ class S3Image {
       },
     });
   }
+
   async upload({ base64, id, folderName }) {
     // Ensure that you POST a base64 data to your server.
     // Let's assume the variable "base64" is one.
-    const base64Data = new Buffer.from(
+
+    if (!isBase64(base64)) {
+      logger.error('base64 is not valid');
+      return null;
+    }
+
+    const base64Data = Buffer.from(
       base64.replace(/^data:image\/\w+;base64,/, ''),
       'base64',
     );
@@ -49,16 +57,14 @@ class S3Image {
     let location = `https://${FAWS_S3_BUCKET.toLowerCase()}.s3.${FAWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com`;
     try {
       const response = await this.client.send(command);
-      console.log("Successfully uploaded object's data", response);
+      logger.info(`Successfully uploaded object ${Key} to bucket`);
     } catch (err) {
-      console.error(err);
+      logger.error(err);
     }
     const encodeFileName = encodeURIComponent(Key);
     return `${location}/${encodeFileName}`;
-
-    // To delete, see: https://gist.github.com/SylarRuby/b3b1430ca633bc5ffec29bbcdac2bd52
   }
-  async delete(urlToDelete) {
+  async delete(urlToDelete: string) {
     if (
       !urlToDelete ||
       urlToDelete === '' ||
@@ -71,12 +77,12 @@ class S3Image {
       urlToDelete === '   ' ||
       urlToDelete?.length < 1
     ) {
-      return console.log('No url found to delete 😢');
+      return logger.error(`urlToDelete is not valid: ${urlToDelete}`);
     }
-    // see: https://gist.github.com/SylarRuby/b60eea29c1682519e422476cc5357b60
+
     const splitOn = `https://${FAWS_S3_BUCKET.toLowerCase()}.s3.${FAWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com/`;
     let Key = urlToDelete.split(splitOn)[1]; // The `image/${makeid(4)}-user-id-${userId}.${type}`
-    // console.log(Key, 'Key to delete');
+
     Key = decodeURIComponent(Key);
     console.log(Key, 'key to delete');
     const command = new DeleteObjectCommand({
@@ -86,9 +92,9 @@ class S3Image {
 
     try {
       const response = await this.client.send(command);
-      console.log("Successfully deleted object's data", response);
+      logger.info(`Successfully deleted object ${Key} from bucket`);
     } catch (err) {
-      console.error(err);
+      logger.error(err);
     }
   }
 }

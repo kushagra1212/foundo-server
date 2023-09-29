@@ -1,7 +1,7 @@
 const ENV_PATH = process.env.NODE_ENV ? `.env.${process.env.NODE_ENV}` : '.env';
 require('dotenv').config({ path: ENV_PATH });
 import express from 'express';
-const app = express();
+export const app = express();
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRoutes from './app/routes/userRoutes';
