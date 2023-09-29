@@ -3,7 +3,7 @@ import UserSetting from '../models/UserSetting';
 import promisePool from '../db';
 const salt = process.env.SALT as string;
 import bcrypt from 'bcrypt';
-import utils from '../utils/index';
+import { createToken, sendTransactionalEmail } from '../utils/index';
 const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
 const { S3Image } = require('../s3/S3image');
@@ -90,7 +90,7 @@ const signinUser = async (req: Request, res: Response) => {
         .send({ error: 'Bad Request', errorMessage: 'password is incorrect' });
       return;
     }
-    const token = utils.createToken({
+    const token = createToken({
       id: user[0].id,
       jwtSecret,
       maxAgeOfToken,
@@ -114,9 +114,9 @@ const signinUser = async (req: Request, res: Response) => {
 //delete User based on userId | POST
 
 const deleteUserById = async (req: Request, res: Response) => {
-  const { userId } = req.body;
-  if (!userId) {
-    logger.error(`userId is required`);
+  const { id } = req.params;
+  if (!id) {
+    logger.error(`id is required`);
 
     res
       .status(400)
@@ -124,23 +124,23 @@ const deleteUserById = async (req: Request, res: Response) => {
     return;
   }
   try {
-    const [userResult, __] = await User.findUser({ id: userId });
+    const [userResult, __] = await User.findUser({ id: Number(id) });
 
     if (!userResult || !userResult.length) {
-      logger.error(`user not found with id ${userId}`);
+      logger.error(`user not found with id ${id}`);
       res
         .status(404)
         .send({ error: 'not found', errorMessage: 'user not found' });
       return;
     }
 
-    const [result, _] = await User.deleteUser({ userId });
+    const [result, _] = await User.deleteUser({ userId: Number(id) });
 
     if (result.affectedRows) {
-      logger.info(`user ${userId} deleted`);
+      logger.info(`user ${id} deleted`);
       res.status(200).send({ user: userResult[0], success: true });
     } else {
-      logger.error(`user ${userId} is not deleted`);
+      logger.error(`user ${id} is not deleted`);
       res
         .status(400)
         .send({ error: 'Bad Request', errorMessage: 'user is not deleted' });
@@ -336,7 +336,7 @@ const sendOtp = async (req: Request, res: Response) => {
           email: userResult[0].email,
         },
       ];
-      await utils.sendTransactionalEmail({
+      await sendTransactionalEmail({
         sender,
         to: receivers,
         subject: 'Verification OTP',

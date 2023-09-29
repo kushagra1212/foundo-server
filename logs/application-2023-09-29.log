@@ -133,3 +133,332 @@
 {"level":"\u001b[31merror\u001b[39m","message":"OTP didn't match for user 1","timestamp":"2023-09-29 11:22:23"}
 {"level":"\u001b[32minfo\u001b[39m","message":"OTP reset for user 1","timestamp":"2023-09-29 11:23:03"}
 {"level":"\u001b[32minfo\u001b[39m","message":"OTP reset for user 1","timestamp":"2023-09-29 11:23:04"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 34 created","timestamp":"2023-09-29 12:59:57"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:00:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:01:06"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:11:50"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 13:11:50"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:11:50"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:31:21"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 13:31:21"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:32:17"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 13:32:17"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:32:45"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 13:32:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:32:48"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 13:32:48"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 13:39:11"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 13:39:11","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:39:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:40:09"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 13:40:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:40:09"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 13:45:31"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 13:45:31","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:45:31"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 13:46:45"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 13:46:45","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:46:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:47:35"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 13:47:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:47:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:48:22"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 13:48:22"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:48:22"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 13:50:17"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 13:50:17","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:50:18"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 13:51:30"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 13:51:30","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:51:31"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 13:52:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 13:52:28","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:52:29"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 13:57:26"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 13:57:26","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:57:26"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 13:59:54"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 13:59:54","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 13:59:54"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 1 logged in","timestamp":"2023-09-29 14:00:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:02:51"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 14:02:51"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:02:51"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 14:07:27"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 14:07:27","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:07:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 14:10:08"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 14:10:08","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:10:08"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 14:11:59"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 14:11:59","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:11:59"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 14:12:41"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 14:12:41","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:12:41"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 14:22:31"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 14:22:31","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:22:31"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:22:58"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 14:22:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:22:58"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 14:23:34"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 14:23:34","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:23:34"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 14:25:00"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 14:25:00","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 14:25:00"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 1 logged in","timestamp":"2023-09-29 14:28:40"}
+{"level":"\u001b[31merror\u001b[39m","message":"userId is required","timestamp":"2023-09-29 15:20:26"}
+{"level":"\u001b[31merror\u001b[39m","message":"userId is required","timestamp":"2023-09-29 15:20:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"userId is required","timestamp":"2023-09-29 15:21:50"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 15:23:05"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:23:16"}
+{"level":"\u001b[32minfo\u001b[39m","message":"limit: 10, offset: 0","timestamp":"2023-09-29 15:23:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":"users found","timestamp":"2023-09-29 15:23:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 15:26:34"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 15:26:34","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:26:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:27:33"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:27:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:27:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:27:36"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:27:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:27:37"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 15:29:13"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 15:29:13","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:29:13"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:29:49"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:29:49"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:29:50"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:29:54"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:29:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:29:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:30:30"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:30:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:30:30"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:31:42"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:31:42"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:31:42"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:31:42"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:31:52"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:31:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:31:52"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:31:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:33:02"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:33:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:33:02"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:33:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:33:16"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:33:16"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:33:17"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:33:17"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 1 logged in","timestamp":"2023-09-29 15:34:10"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:35:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:35:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:35:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:35:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:35:32"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:35:32"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:35:32"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:35:32"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:36:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:36:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:36:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:36:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:37:12"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:37:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:37:13"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:37:13"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:37:35"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:37:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:37:46"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:37:46"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 15:38:25"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 15:38:25","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:38:25"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:38:25"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:40:44"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:40:44"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:40:44"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Invalid token.","timestamp":"2023-09-29 15:40:44"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzIsImlhdCI6MTY5NjAwMjE1MywiZXhwIjoxNjk2MjYxMzUzfQ.04XqOk24hd2p6SrOPnBqupdot8_TeI84fRPeRYVyq-Q","timestamp":"2023-09-29 15:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:42:33"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:42:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:42:34"}
+{"level":"\u001b[32minfo\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzIsImlhdCI6MTY5NjAwMjE1MywiZXhwIjoxNjk2MjYxMzUzfQ.04XqOk24hd2p6SrOPnBqupdot8_TeI84fRPeRYVyq-Q","timestamp":"2023-09-29 15:42:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsImlhdCI6MTY5NjAwMjIxMywiZXhwIjoxNjk2MjYxNDEzfQ.2EU2Pvqur742fK7FSEraiD-h_2KUwpNqpJ1zXKdJ4gY","timestamp":"2023-09-29 15:43:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:43:34"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:43:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:43:34"}
+{"level":"\u001b[32minfo\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzUsImlhdCI6MTY5NjAwMjIxMywiZXhwIjoxNjk2MjYxNDEzfQ.2EU2Pvqur742fK7FSEraiD-h_2KUwpNqpJ1zXKdJ4gY","timestamp":"2023-09-29 15:43:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzgsImlhdCI6MTY5NjAwMjIzMywiZXhwIjoxNjk2MjYxNDMzfQ.UUypILslblZuZ0GFqqozob37tX5WtfBMP2upiB9xVa0","timestamp":"2023-09-29 15:43:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:43:53"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:43:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:43:54"}
+{"level":"\u001b[32minfo\u001b[39m","timestamp":"2023-09-29 15:43:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDEsImlhdCI6MTY5NjAwMjI2NywiZXhwIjoxNjk2MjYxNDY3fQ.cv6vITvRTzq-WGIf50y-jSFm3RbwpjlQFFM173DtBkc","timestamp":"2023-09-29 15:44:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:44:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:44:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:44:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDQsImlhdCI6MTY5NjAwMjI4MSwiZXhwIjoxNjk2MjYxNDgxfQ.8BFs0cD-MPJzHlXJSbxjloyh9fbf75NEJQdngKoFe_0","timestamp":"2023-09-29 15:44:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:44:41"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:44:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:44:41"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NDcsImlhdCI6MTY5NjAwMjI5MiwiZXhwIjoxNjk2MjYxNDkyfQ.gGqxyeNzY18g2vhPndNJdRowPA1SBpea-1Yk8EhTm_w","timestamp":"2023-09-29 15:44:52"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:44:53"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:44:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:44:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTAsImlhdCI6MTY5NjAwMjMyMCwiZXhwIjoxNjk2MjYxNTIwfQ.bo0V0xlAAQ4k8QnXa7mQZwEMzj3urnrdv2r2ivFY44Y","timestamp":"2023-09-29 15:45:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:45:20"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:45:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:45:20"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTMsImlhdCI6MTY5NjAwMjMyNywiZXhwIjoxNjk2MjYxNTI3fQ.8LCR_pW3_EMqeGOymqrrosGuco_2Akw7OB4yA3xHMVE","timestamp":"2023-09-29 15:45:27"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:45:28"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:45:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:45:28"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTYsImlhdCI6MTY5NjAwMjMzNSwiZXhwIjoxNjk2MjYxNTM1fQ.ohoLd7FL1UM1_xw5NocyY5i20_1Vi3Wv9Iy1rs2JSSM","timestamp":"2023-09-29 15:45:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:45:36"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:45:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:45:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NTksImlhdCI6MTY5NjAwMjM0NCwiZXhwIjoxNjk2MjYxNTQ0fQ.SE29qVUCZoiXAmkQ7ncUXHHgNnfU8U0Z3-MOWoOmLuw","timestamp":"2023-09-29 15:45:44"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:45:44"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:45:44"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:45:44"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImlhdCI6MTY5NjAwMjQwNSwiZXhwIjoxNjk2MjYxNjA1fQ.RDwzhUqmx7iZ3hiWYU7P5HykcJd0wBlb5WAgVl_sKuw","timestamp":"2023-09-29 15:46:45"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 15:46:46"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 15:46:46","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:46:46"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 15:46:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjksImlhdCI6MTY5NjAwMjQ1OCwiZXhwIjoxNjk2MjYxNjU4fQ.04yS9pDEfrvBTQ6f6nvOsRT9DeimR-BOmN3TXVWWaKo","timestamp":"2023-09-29 15:47:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:47:39"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:47:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:47:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:47:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 32","timestamp":"2023-09-29 15:47:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MzIsImlhdCI6MTY5NjAwMjQ4MSwiZXhwIjoxNjk2MjYxNjgxfQ.vct5bXrd7mebvuYNqTAwjLU5uSXSyHMpdUKNoXv4BI8","timestamp":"2023-09-29 15:48:01"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:48:01"}
+{"level":"\u001b[32minfo\u001b[39m","message":{"error":"Bad Request","errorMessage":"This Email is already in use !"},"timestamp":"2023-09-29 15:48:01"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:48:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:48:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImlhdCI6MTY5NjAwMjU3OCwiZXhwIjoxNjk2MjYxNzc4fQ.BaNBTocqRtSIAqBBFE6o_ZYkLCU19Xv__T1XSVaTLGU","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 15:49:38","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 15:49:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjYsImlhdCI6MTY5NjAwMjY1OCwiZXhwIjoxNjk2MjYxODU4fQ.Pd4CHgwdpGEfDTrmkl_Kt5x13gVWfn5_2vI_OOzR9W8","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[32minfo\u001b[39m","message":"Account Created !","timestamp":"2023-09-29 15:50:58","user":{"email":"newuser@test.com","firstName":"New","lastName":"User","password":"","userId":27}}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 15:50:58"}
+{"level":"\u001b[31merror\u001b[39m","message":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjksImlhdCI6MTY5NjAwMjczMSwiZXhwIjoxNjk2MjYxOTMxfQ.mpHtInqTqRVya30SoQ_AOixHuzXiIk2jB7lNnCJNJbs","timestamp":"2023-09-29 15:52:11"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:52:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:52:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:52:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:52:12"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 29 logged in","timestamp":"2023-09-29 15:52:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:52:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:52:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 15:52:12"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 29 entered wrong password","timestamp":"2023-09-29 15:52:13"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 32 logged in","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 32 entered wrong password","timestamp":"2023-09-29 15:52:21"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 15:58:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:58:36"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 15:58:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:58:36"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 15:58:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:58:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:58:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 15:58:36"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 15:58:36"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 15:59:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 15:59:38"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 15:59:38"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 15:59:38"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 15:59:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:59:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 15:59:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 15:59:39"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 15:59:39"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 16:02:09"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:02:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:02:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:02:45"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:02:45"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 29 logged in","timestamp":"2023-09-29 16:02:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:02:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:02:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 16:02:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 29 entered wrong password","timestamp":"2023-09-29 16:02:46"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 16:04:46"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:04:47"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 16:04:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:04:47"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 16:04:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:04:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:04:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 16:04:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 16:04:47"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:05:02"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:05:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:05:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:05:03"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 29 logged in","timestamp":"2023-09-29 16:05:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:05:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:05:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 16:05:03"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 29 entered wrong password","timestamp":"2023-09-29 16:05:03"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 16:08:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:08:53"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 16:08:53"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:08:53"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 16:08:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:08:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:08:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 16:08:54"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 16:08:54"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 16:11:34"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:11:35"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 16:11:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:11:35"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 16:11:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:11:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:11:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 16:11:35"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 16:11:35"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 27 created","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"This Email is already in use !","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user 1 deleted","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"user not found with id 1","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[32minfo\u001b[39m","message":"User 26 logged in","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"email and password are required","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"User with email nonexistent@test.com not found","timestamp":"2023-09-29 16:13:33"}
+{"level":"\u001b[31merror\u001b[39m","message":"User 26 entered wrong password","timestamp":"2023-09-29 16:13:33"}

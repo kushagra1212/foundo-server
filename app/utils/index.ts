@@ -1,20 +1,33 @@
-const jwt = require('jsonwebtoken');
-const fetch = require('node-fetch');
-const loggger = require('../logger/logger');
+import jwt, { VerifyOptions } from 'jsonwebtoken';
+import fetch from 'node-fetch';
+import loggger from '../logger/logger';
+import { SENDINBLUE_API_URL } from '../constants';
 // Create Token
-const createToken = ({ id, jwtSecret, maxAgeOfToken }) => {
-  return jwt.sign({ id }, toString(jwtSecret), {
+export const createToken = ({
+  id,
+  jwtSecret,
+  maxAgeOfToken,
+}: {
+  id: string | number;
+  jwtSecret: jwt.Secret;
+  maxAgeOfToken: string | number;
+}): string => {
+  const algorithm: jwt.Algorithm = process.env.JWT_ALGORITHM as jwt.Algorithm;
+  return jwt.sign({ id }, jwtSecret, {
     expiresIn: maxAgeOfToken,
-    algorithm: process.env.JWT_ALGORITHM,
+    algorithm,
   });
 };
 // Verify Token
-const verifyToken = ({ jwtToken, jwtSecret }) => {
-  return jwt.verify(jwtToken, jwtSecret, {
-    algorithm: process.env.JWT_ALGORITHM,
-  });
+export const verifyToken = ({ jwtToken, jwtSecret }) => {
+  const algorithm: jwt.Algorithm = process.env.JWT_ALGORITHM as jwt.Algorithm;
+  const algorithms: jwt.Algorithm[] | undefined = [algorithm];
+  const options: VerifyOptions = {
+    algorithms: algorithms,
+  };
+  return jwt.verify(jwtToken, jwtSecret, options);
 };
-const makeid = length => {
+export const makeid = length => {
   var result = '';
   var characters =
     'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
@@ -25,7 +38,7 @@ const makeid = length => {
   return result;
 };
 
-const isBase64 = str => {
+export const isBase64 = str => {
   if (str === '' || str.trim() === '') {
     return false;
   }
@@ -36,14 +49,16 @@ const isBase64 = str => {
   }
 };
 
-const convertURLToBase64 = url => {
+export const convertURLToBase64 = (
+  url: string,
+): Promise<string | ArrayBuffer> => {
   return new Promise(async (resolve, reject) => {
     if (isBase64(url)) {
       resolve(url);
       return;
     }
     const data = await fetch(url);
-    const blob = await data.blob();
+    const blob = (await data.blob()) as Blob;
     const reader = new FileReader();
     reader.readAsDataURL(blob);
     reader.onloadend = () => {
@@ -53,18 +68,14 @@ const convertURLToBase64 = url => {
   });
 };
 
-// Replace 'YOUR_API_KEY' with your actual API key
-const API_KEY = process.env.SENDINBLUE_API_KEY;
-const API_URL = 'https://api.brevo.com/v3/smtp/email';
-
-async function sendTransactionalEmail(requestData) {
+export async function sendTransactionalEmail(requestData) {
   try {
-    const response = await fetch(API_URL, {
+    const response = await fetch(SENDINBLUE_API_URL, {
       method: 'POST',
       body: JSON.stringify(requestData),
       headers: {
         accept: 'application/json',
-        'api-key': API_KEY,
+        'api-key': process.env.SENDINBLUE_API_KEY,
         'content-type': 'application/json',
       },
     });
@@ -82,12 +93,3 @@ async function sendTransactionalEmail(requestData) {
     throw error;
   }
 }
-
-module.exports = {
-  createToken,
-  verifyToken,
-  makeid,
-  isBase64,
-  convertURLToBase64,
-  sendTransactionalEmail,
-};

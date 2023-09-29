@@ -1,37 +1,39 @@
 import express from 'express';
 import userControllers from '../controllers/userControllers';
 import { auth } from '../middleware/auth';
+import { Routes } from '../constants';
 
 const router = express.Router();
 
 /* Send OTP */
-router.get('/send/otp/:id', auth, userControllers.sendOtp);
+router.get(Routes.users.sendOtp, auth, userControllers.sendOtp);
 
 /* Reset OTP */
-router.get('/reset/otp/:id', auth, userControllers.resetOtp);
+router.get(Routes.users.resetOtp, auth, userControllers.resetOtp);
 
 /* Verify OTP */
-router.get('/verify/otp/:id/:otp', auth, userControllers.verifyOtp);
+router.get(Routes.users.verifyOtp, auth, userControllers.verifyOtp);
 
 /* User Signup */
-router.post('/signup', userControllers.signupUser);
+router.post(Routes.users.signupUser, userControllers.signupUser);
 
 /* User Signin */
-router.post('/signin', userControllers.signinUser);
+router.post(Routes.users.signinUser, userControllers.signinUser);
 
 /* Get All Users */
-router.get('/:limit/:offset', auth, userControllers.getAllUsers);
+router.get(Routes.users.getAllUsers, auth, userControllers.getAllUsers);
 
 /* Get User By Id */
-router.get('/:id', auth, userControllers.getUserById);
+router.get(Routes.users.getUserById, auth, userControllers.getUserById);
 
 /* Update User By Id */
-router.patch('/:id', auth, userControllers.updateUserById);
+router.patch(Routes.users.updateUserById, auth, userControllers.updateUserById);
 
 /* Delete User By Id */
-router.delete('/:id', auth, userControllers.deleteUserById);
-
-// delete request Delete by Id
-router.delete('/', userControllers.deleteUserById);
+router.delete(
+  Routes.users.deleteUserById,
+  auth,
+  userControllers.deleteUserById,
+);
 
 export default router;
