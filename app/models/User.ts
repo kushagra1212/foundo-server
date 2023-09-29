@@ -24,7 +24,7 @@ class User {
     ]) as Promise<OkPacket[]>;
   }
 
-  static findAllUsers({ limit, offset }: { limit: number; offset: number }) {
+  static findAllUsers({ limit, offset }: { limit: string; offset: string }) {
     let sql = `SELECT * FROM user LIMIT ? OFFSET ?`;
     return promisePool.execute(sql, [limit, offset]) as Promise<
       RowDataPacket[]

@@ -61,3 +61,10 @@ app.use('/v1/item-picture', limiter, itemPictureRoutes);
 
 // Messages Routes
 app.use('/v1/message', limiter, messageRoutes);
+
+// Error Handling
+
+// 404 Route
+app.use((req, res, next) => {
+  res.status(404).send({ message: '404 Not Found', success: false });
+});

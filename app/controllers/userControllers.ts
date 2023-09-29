@@ -3,15 +3,11 @@ import UserSetting from '../models/UserSetting';
 import promisePool from '../db';
 const salt = process.env.SALT as string;
 import bcrypt from 'bcrypt';
+import utils from '../utils/index';
 const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
-import utils from '../utils/index';
-const { imageUpload, S3Image } = require('../s3/S3image');
-const Sib = require('sib-api-v3-sdk');
+const { S3Image } = require('../s3/S3image');
 import logger from '../logger/logger';
-const client = Sib.ApiClient.instance;
-const apiKey = client.authentications['api-key'];
-apiKey.apiKey = process.env.SENDINBLUE_API_KEY;
 import { Request, Response } from 'express';
 import { OkPacket, RowDataPacket } from 'mysql2';
 import { RequestWithJwt } from '../types/types';
@@ -279,14 +275,15 @@ const updateUserById = async (req: Request, res: Response) => {
 };
 
 const getAllUsers = async (req: Request, res: Response) => {
-  const { limit, offset } = req.query;
+  const { limit, offset } = req.params;
+  logger.info(`limit: ${limit}, offset: ${offset}`);
   try {
     if (!limit || !offset) {
       throw new Error('limit and offset are required');
     }
     const [allUsers, __] = await User.findAllUsers({
-      limit: Number(limit),
-      offset: Number(offset),
+      limit: limit.toLocaleString(),
+      offset: offset.toString(),
     });
     if (!allUsers || !allUsers.length) {
       logger.error(`no users found`);
@@ -329,17 +326,17 @@ const sendOtp = async (req: Request, res: Response) => {
     if (result?.affectedRows) {
       const message = `Your OTP for Email Verification is ${otp}`;
 
-      const tranEmailApi = new Sib.TransactionalEmailsApi();
       const sender = {
         email: 'foundoapplication@gmail.com',
         name: 'Foundo App',
       };
       const receivers = [
         {
+          name: userResult[0].firstName + ' ' + userResult[0].lastName,
           email: userResult[0].email,
         },
       ];
-      await tranEmailApi.sendTransacEmail({
+      await utils.sendTransactionalEmail({
         sender,
         to: receivers,
         subject: 'Verification OTP',
@@ -407,9 +404,11 @@ const resetOtp = async (req: Request, res: Response) => {
     const [userResult, __] = await User.findUser({ id: Number(id) });
     if (!userResult || !userResult.length) {
       logger.error(`user not found with id ${id}`);
-      return res
-        .status(404)
-        .send({ error: 'not found', errorMessage: 'user not found' });
+      return res.status(404).send({
+        error: 'not found',
+        errorMessage: 'user not found',
+        success: false,
+      });
     }
     const [result, _] = await User.updateUser({
       user: {
@@ -427,10 +426,15 @@ const resetOtp = async (req: Request, res: Response) => {
     return res.status(400).send({
       error: 'Bad Request',
       errorMessage: `Something went wrong`,
+      success: false,
     });
   } catch (err: any) {
     logger.error(err.message);
-    res.status(500).send({ error: 'server error', errorMessage: err.message });
+    res.status(500).send({
+      error: 'server error',
+      errorMessage: err.message,
+      success: false,
+    });
   }
 };
 
