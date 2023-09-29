@@ -1,0 +1,17 @@
+{"level":"error","message":"userId is required","timestamp":"2023-09-29T06:46:20.407Z"}
+{"level":"\u001b[31merror\u001b[39m","message":"userId is required","timestamp":"2023-09-29T06:47:03.847Z"}
+{"level":"\u001b[31merror\u001b[39m","message":"userId is required","timestamp":"2023-09-29T06:47:09.475Z"}
+[2023-09-29T06:47:49.756Z] [31merror[39m: userId is required
+{"timestamp":"2023-09-29T06:49:10.403Z","level":"\u001b[31merror\u001b[39m","message":"userId is required"}
+[2023-09-29T06:49:26.865Z] [31merror[39m: userId is required
+[2023-09-29T06:54:48.967Z] [31merror[39m: userId is required
+[2023-09-29T06:56:31.460Z] [32minfo[39m: User found
+{"level":"\u001b[32minfo\u001b[39m","message":"User found","timestamp":"2023-09-29T06:59:30.915Z"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user found","timestamp":"2023-09-29T06:59:52.349Z","user":{"address":"451001, Shahpura, Madhya Pradesh, India","countryCode":null,"createdAt":"2023-01-19T09:02:29.000Z","email":"kushagrarathore002@gmail.com","firstName":"Kushagra","id":1,"isVerified":1,"lastName":"Rathore","otp":0,"password":"$2b$10$/c4ZhKZOK5tw7/LJJHUNAOcxUqzdIck9DB30NDsfCgxb7KbttN/7m","phoneNo":"23432","profilePhoto":"https://foundo-1-s3.s3.ap-south-1.amazonaws.com/image%2FprofilePhoto%2Fje3i-id-1.jpeg"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"user found","timestamp":"2023-09-29T06:59:57.790Z","user":{"address":"451001, Shahpura, Madhya Pradesh, India","countryCode":null,"createdAt":"2023-01-19T09:02:29.000Z","email":"kushagrarathore002@gmail.com","firstName":"Kushagra","id":1,"isVerified":1,"lastName":"Rathore","otp":0,"password":"$2b$10$/c4ZhKZOK5tw7/LJJHUNAOcxUqzdIck9DB30NDsfCgxb7KbttN/7m","phoneNo":"23432","profilePhoto":"https://foundo-1-s3.s3.ap-south-1.amazonaws.com/image%2FprofilePhoto%2Fje3i-id-1.jpeg"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"user found","timestamp":"2023-09-29T07:01:08.827Z","user":{"address":"451001, Shahpura, Madhya Pradesh, India","countryCode":null,"createdAt":"2023-01-19T09:02:29.000Z","email":"kushagrarathore002@gmail.com","firstName":"Kushagra","id":1,"isVerified":1,"lastName":"Rathore","otp":0,"password":"$2b$10$/c4ZhKZOK5tw7/LJJHUNAOcxUqzdIck9DB30NDsfCgxb7KbttN/7m","phoneNo":"23432","profilePhoto":"https://foundo-1-s3.s3.ap-south-1.amazonaws.com/image%2FprofilePhoto%2Fje3i-id-1.jpeg"}}
+{"level":"\u001b[32minfo\u001b[39m","message":"user found","timestamp":"2023-09-29 07:02:52"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user found","timestamp":"2023-09-29 07:05:41"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user found","timestamp":"2023-09-29 07:05:46"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user found","timestamp":"2023-09-29 07:06:05"}
+{"level":"\u001b[32minfo\u001b[39m","message":"user found","timestamp":"2023-09-29 07:10:47"}

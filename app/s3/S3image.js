@@ -1,22 +1,27 @@
 const { makeid } = require('../utils');
 
-const AWS = require('aws-sdk');
+const {
+  S3Client,
+  PutObjectCommand,
+  DeleteObjectCommand,
+} = require('@aws-sdk/client-s3');
+
 const {
   FAWS_ACCESS_KEY_ID,
   FAWS_SECRET_ACCESS_KEY,
   FAWS_DEFAULT_REGION,
   FAWS_S3_BUCKET,
 } = process.env;
+
 class S3Image {
-  s3;
+  client;
   constructor() {
-    // Configure AWS to use promise
-    AWS.config.setPromisesDependency(require('bluebird'));
-    AWS.config.update({
-      accessKeyId: FAWS_ACCESS_KEY_ID,
-      secretAccessKey: FAWS_SECRET_ACCESS_KEY,
+    this.client = new S3Client({
       region: FAWS_DEFAULT_REGION,
-      bucket: FAWS_S3_BUCKET,
+      credentials: {
+        accessKeyId: FAWS_ACCESS_KEY_ID,
+        secretAccessKey: FAWS_SECRET_ACCESS_KEY,
+      },
     });
   }
   async upload({ base64, id, folderName }) {
@@ -24,42 +29,32 @@ class S3Image {
     // Let's assume the variable "base64" is one.
     const base64Data = new Buffer.from(
       base64.replace(/^data:image\/\w+;base64,/, ''),
-      'base64'
+      'base64',
     );
 
-    const s3 = new AWS.S3();
     // Getting the file type, ie: jpeg, png or gif
     const type = base64.split(';')[0].split('/')[1];
 
-    // Generally we'd have an id associated with the image
-    // For this example, we'll simulate one
-
-    // With this setup, each time your user uploads an image, will be overwritten.
-    // To prevent this, use a different Key each time.
-    // This won't be needed if they're uploading their avatar, hence the filename, userAvatar.js.
-
+    const Key = `image/${folderName}/${makeid(4)}-id-${id}.${type}`;
     const params = {
       Bucket: FAWS_S3_BUCKET,
-      Key: `image/${folderName}/${makeid(4)}-id-${id}.${type}`, // type is not required
+      Key, // type is not required
       Body: base64Data,
-      ACL: 'public-read',
       ContentEncoding: 'base64', // required
-      ContentType: `image/${type}`, // required. Notice the back ticks
+      ContentType: `image/${type}`, // required. Notice the back ticks,
     };
+    const command = new PutObjectCommand(params);
 
     // The upload() is used instead of putObject() as we'd need the location url and assign that to our user profile/database
-    // see: http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#upload-property
-    let location = '';
-    let key = '';
+    let location = `https://${FAWS_S3_BUCKET.toLowerCase()}.s3.${FAWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com`;
     try {
-      const { Location, Key } = await s3.upload(params).promise();
-      location = Location;
-      key = Key;
-    } catch (error) {
-      console.log(error);
+      const response = await this.client.send(command);
+      console.log("Successfully uploaded object's data", response);
+    } catch (err) {
+      console.error(err);
     }
-
-    return location;
+    const encodeFileName = encodeURIComponent(Key);
+    return `${location}/${encodeFileName}`;
 
     // To delete, see: https://gist.github.com/SylarRuby/b3b1430ca633bc5ffec29bbcdac2bd52
   }
@@ -78,19 +73,23 @@ class S3Image {
     ) {
       return console.log('No url found to delete 😢');
     }
-    const s3 = new AWS.S3();
     // see: https://gist.github.com/SylarRuby/b60eea29c1682519e422476cc5357b60
     const splitOn = `https://${FAWS_S3_BUCKET.toLowerCase()}.s3.${FAWS_DEFAULT_REGION.toLowerCase()}.amazonaws.com/`;
-    const Key = urlToDelete.split(splitOn)[1]; // The `image/${makeid(4)}-user-id-${userId}.${type}`
+    let Key = urlToDelete.split(splitOn)[1]; // The `image/${makeid(4)}-user-id-${userId}.${type}`
     // console.log(Key, 'Key to delete');
-    const params = {
+    Key = decodeURIComponent(Key);
+    console.log(Key, 'key to delete');
+    const command = new DeleteObjectCommand({
       Bucket: FAWS_S3_BUCKET,
       Key, // required
-    };
+    });
 
-    // More on the deleteObject property:
-    // see: https://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3.html#deleteObject-property
-    const data = await s3.deleteObject(params).promise();
+    try {
+      const response = await this.client.send(command);
+      console.log("Successfully deleted object's data", response);
+    } catch (err) {
+      console.error(err);
+    }
   }
 }
 module.exports = { S3Image };
