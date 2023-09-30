@@ -56,7 +56,7 @@ class User {
     password: string;
   }) {
     let sql = `UPDATE user SET password=? WHERE email=?`;
-    return promisePool.execute(sql, [password, email]);
+    return promisePool.execute(sql, [password, email]) as Promise<RowDataPacket[]>;
   }
 
   static deleteUser({ userId }: { userId: number }) {

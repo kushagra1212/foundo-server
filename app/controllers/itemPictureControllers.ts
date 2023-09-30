@@ -2,7 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 
 import Item from '../models/Item';
 import ItemPicture from '../models/ItemPicture';
-import S3Image from '../s3/S3image';
 import { NotFoundError, ValidationError } from '../custom-errors/customErrors';
 import logger from '../logger/logger';
 

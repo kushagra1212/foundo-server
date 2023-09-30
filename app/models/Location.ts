@@ -1,5 +1,6 @@
 import {  LocationType } from "../types/types";
 import promisePool from '../db';
+import { RowDataPacket } from "mysql2";
 
 class Location {
   location:LocationType;;
@@ -11,7 +12,7 @@ class Location {
     return promisePool.execute(sql, [
         this.location.latitude,
         this.location.longitude,
-    ]);
+    ]) as Promise<RowDataPacket[]>;
   }
 
   static deleteById({ id }) {

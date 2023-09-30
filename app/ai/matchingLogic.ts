@@ -1,12 +1,13 @@
 // ai/matchingLogic.js
-const natural = require('natural');
+import natural from 'natural';
 class ItemMatcher {
+  similarityThreshold:number;
   constructor(similarityThreshold = 0.7) {
     this.similarityThreshold = similarityThreshold;
   }
 
   calculateAttributeSimilarity(attribute1, attribute2) {
-    return natural.JaroWinklerDistance(attribute1, attribute2);
+    return natural.JaroWinklerDistance(attribute1, attribute2,{});
   }
   calculateOverallSimilarity(lostItem, foundItem) {
     const itemNameSimilarity = this.calculateAttributeSimilarity(
@@ -74,4 +75,4 @@ class ItemMatcher {
   }
 }
 
-module.exports = ItemMatcher;
+export default ItemMatcher;

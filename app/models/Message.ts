@@ -1,4 +1,4 @@
-const promisePool = require('../db');
+import promisePool from '../db';
 
 class Message {
   constructor({
@@ -9,24 +9,25 @@ class Message {
     isPhoneNoShared,
     isFound,
   }) {
-    this.senderId = senderId;
-    this.receiverId = receiverId;
-    this.message = message;
+    // this.senderId = senderId;
+    // this.receiverId = receiverId;
+    // this.message = message;
 
-    this.title = title;
-    this.isPhoneNoShared = isPhoneNoShared;
-    this.isFound = isFound;
+    // this.title = title;
+    // this.isPhoneNoShared = isPhoneNoShared;
+    // this.isFound = isFound;
   }
   save() {
-    let sql = `INSERT INTO messages(senderId,receiverId,message,title,isPhoneNoShared,isFound) VALUES(?,?,?,?,?,?)`;
-    return promisePool.execute(sql, [
-      this.senderId,
-      this.receiverId,
-      this.message,
-      this.title,
-      this.isPhoneNoShared,
-      this.isFound,
-    ]);
+    // let sql = `INSERT INTO messages(senderId,receiverId,message,title,isPhoneNoShared,isFound) VALUES(?,?,?,?,?,?)`;
+    // return promisePool.execute(sql, [
+    //   this.senderId,
+    //   this.receiverId,
+    //   this.message,
+    //   this.title,
+    //   this.isPhoneNoShared,
+    //   this.isFound,
+    // ]);
+    return null;
   }
   static getContactList({ userId, limit, offset }) {
     let sql = `select m1.senderId,u1.firstName,u1.lastName,m1.messagesCount from (select distinct(senderId),count(*) as messagesCount from messages where receiverId=? group by senderId) as m1 inner join (select id,firstName,lastName from users) as u1 on m1.senderId=u1.id limit ? offset ?`;
@@ -45,4 +46,4 @@ class Message {
   }
 }
 
-module.exports = Message;
+export default Message;

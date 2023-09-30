@@ -1,6 +1,6 @@
-const Message = require('../models/Message');
-const ItemLocation = require('../models/ItemLocation');
-const promisePool = require('../db');
+
+import promisePool from '../db';
+import Message from '../models/Message';
 
 const addMessage = async (req, res) => {
   const {
@@ -31,14 +31,14 @@ const addMessage = async (req, res) => {
     await connection.beginTransaction();
     const [message, _] = await messageModel.save();
     if (isFound) {
-      const itemLocation = new ItemLocation({
-        latitude: location.latitude,
-        longitude: location.longitude,
-        lostItemId: null,
-        foundItemId: null,
-        messageId: message.insertId,
-      });
-      await itemLocation.save();
+      // const itemLocation = new ItemLocation({
+      //   latitude: location.latitude,
+      //   longitude: location.longitude,
+      //   lostItemId: null,
+      //   foundItemId: null,
+      //   messageId: message.insertId,
+      // });
+      // await itemLocation.save();
     }
     await connection.commit();
     res.status(200).send({ messageId: message.insertId, success: true });
@@ -86,7 +86,7 @@ const getMessages = async (req, res) => {
   }
 };
 
-module.exports = {
+export default {
   addMessage,
   getContactList,
   getMessages,
