@@ -19,5 +19,5 @@ jobs:
 
     - name: Run run-test.sh
       run: |
-        chmod +x run-test.sh # Make the script executable
-        ./run-test.sh # Execute your custom script
+        chmod +x run-tests.sh # Make the script executable
+        ./run-tests.sh # Execute your custom script
