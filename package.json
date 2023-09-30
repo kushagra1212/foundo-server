@@ -2,7 +2,7 @@
   "name": "foundo-server",
   "version": "1.0.0",
   "description": "foundo-server",
-  "main": "dist/server.js",
+  "main": "server.js",
   "scripts": {
     "devstart": "nodemon server.ts",
     "start": "node server.js",
