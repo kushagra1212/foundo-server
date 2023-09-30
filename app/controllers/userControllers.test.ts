@@ -7,6 +7,8 @@ import bcrypt from 'bcrypt';
 import { createToken } from '../utils/index';
 import logger from '../logger/logger';
 import { Routes, TEST_JWT_TOKEN } from '../constants';
+import { BadRequestError, ValidationError, customErrorMappings } from '../custom-errors/customErrors';
+import { errorMappings } from '../middleware/mysqlError';
 
 const salt = process.env.SALT;
 const jwtSecret = process.env.JWT_SECRET;
@@ -68,8 +70,8 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signupUser)
         .send({});
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Bad Request');
+      expect(res.status).toBe(customErrorMappings.ValidationError.ErrorStatusCode);
+      expect(res.body.error).toBe(customErrorMappings.ValidationError.ErrorName);
       expect(res.body.errorMessage).toBe(
         'firstName, lastName, email and password are required',
       );
@@ -84,19 +86,19 @@ describe('User Controller', () => {
           email: 'testuser@test.com',
           password: 'testpassword',
         });
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Bad Request');
-      expect(res.body.errorMessage).toBe('This Email is already in use !');
+      expect(res.status).toBe(409);
+      expect(res.body.error).toBe('something went wrong');
+      expect(res.body.errorMessage).toBe(errorMappings.ER_DUP_ENTRY.message);
     });
   });
 
   describe('deleteUserById', () => {
     it('should delete a user', async () => {
       const res = await request(app)
-        .delete(user_base_url + `/1`)
-        .set(x_auth_token, `${TEST_JWT_TOKEN}`);
+        .delete(user_base_url + `/3`)
+        .set(x_auth_token, `${token}`);
       expect(res.status).toBe(200);
-      expect(res.body.user.id).toBe(1);
+      expect(res.body.user.id).toBe(3);
       expect(res.body.success).toBe(true);
     });
 
@@ -104,10 +106,10 @@ describe('User Controller', () => {
 
     it('should return an error if user is not found', async () => {
       const res = await request(app)
-        .delete(user_base_url +`/1`)
-        .set(x_auth_token, `${TEST_JWT_TOKEN}`)
-      expect(res.status).toBe(404);
-      expect(res.body.error).toBe('not found');
+        .delete(user_base_url +`/3`)
+        .set(x_auth_token, `${token}`)
+      expect(res.status).toBe(customErrorMappings.NotFoundError.ErrorStatusCode);
+      expect(res.body.error).toBe(customErrorMappings.NotFoundError.ErrorName);
       expect(res.body.errorMessage).toBe('user not found');
     });
   });
@@ -130,8 +132,8 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signinUser)
         .send({ password: 'testpassword' });
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Bad Request');
+      expect(res.status).toBe(customErrorMappings.ValidationError.ErrorStatusCode);
+      expect(res.body.error).toBe(customErrorMappings.ValidationError.ErrorName);
       expect(res.body.errorMessage).toBe('email and password are required');
     });
 
@@ -139,8 +141,8 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signinUser)
         .send({ email: 'testuser@test.com' });
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Bad Request');
+      expect(res.status).toBe(customErrorMappings.ValidationError.ErrorStatusCode);
+      expect(res.body.error).toBe(customErrorMappings.ValidationError.ErrorName);
       expect(res.body.errorMessage).toBe('email and password are required');
     });
 
@@ -148,17 +150,17 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signinUser)
         .send({ email: 'nonexistent@test.com', password: 'testpassword' });
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Bad Request');
-      expect(res.body.errorMessage).toBe('Please check your email again !');
+      expect(res.status).toBe(customErrorMappings.BadRequestError.ErrorStatusCode);
+      expect(res.body.error).toBe(customErrorMappings.BadRequestError.ErrorName);
+      expect(res.body.errorMessage).toBe('User not found');
     });
 
     it('should return an error if password is incorrect', async () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signinUser)
         .send({ email: 'testuser@test.com', password: 'wrongpassword' });
-      expect(res.status).toBe(400);
-      expect(res.body.error).toBe('Bad Request');
+      expect(res.status).toBe(customErrorMappings.BadRequestError.ErrorStatusCode);
+      expect(res.body.error).toBe(customErrorMappings.BadRequestError.ErrorName);
       expect(res.body.errorMessage).toBe('password is incorrect');
     });
   });
