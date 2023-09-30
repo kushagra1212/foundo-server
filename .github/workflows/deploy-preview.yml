@@ -2,13 +2,13 @@ name: Deploy Preview
 
 on:
     workflow_run:
-      workflows: ["Foundo Server Test"]
+      workflows: 
+        "Foundo Server Test"
       types:
         - completed
 jobs:
   deploy:
     runs-on: ubuntu-latest  
-    if: "!contains(github.event.head_commit.message, '[skip ci]')"
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,5 +20,4 @@ jobs:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          CREATE_COMMENT: false
           PRODUCTION: false
