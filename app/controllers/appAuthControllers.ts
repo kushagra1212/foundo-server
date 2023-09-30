@@ -95,7 +95,7 @@ const resetPassword = async (
       email: req?.user[0]?.email,
       password: hashedPassword,
     });
-    logger.info(`Password Changed Successfully for userId: ${user.id}`);
+    logger.info(`Password Changed Successfully for userId: ${user?.id}`);
     res.send({
       user,
       message: 'Password Changed Successfully !',

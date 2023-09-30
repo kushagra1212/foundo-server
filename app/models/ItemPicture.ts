@@ -1,3 +1,4 @@
+import { RowDataPacket } from 'mysql2';
 import promisePool from '../db';
 import { ImageType } from '../types/types';
 
@@ -28,7 +29,7 @@ class ItemPicture {
   static getPictures({ limit, offset, fk_itemId }) {
     let sql =
       'SELECT * FROM itemPicture WHERE fk_itemId=? LIMIT ? OFFSET ?';
-    return promisePool.execute(sql, [fk_itemId, limit, offset]);
+    return promisePool.execute(sql, [fk_itemId, limit, offset])  as Promise<RowDataPacket[]>;
   }
   static updateURL({ url, id }) {
     let sql = 'UPDATE itemPicture SET url=? WHERE id=?';

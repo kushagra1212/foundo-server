@@ -2,10 +2,10 @@
   "name": "foundo-server",
   "version": "1.0.0",
   "description": "foundo-server",
-  "main": "server.js",
+  "main": "server.ts",
   "scripts": {
     "devstart": "nodemon server.ts",
-    "start": "node server.js",
+    "start": "node server.ts",
     "test": "jest --verbose --detectOpenHandles --forceExit"
   },
   "author": "",

@@ -34,7 +34,7 @@ class UserSetting {
       userSetting.displayProfilePhoto,
       userSetting.displayAddress,
       userSetting.fk_userId,
-    ]) as Promise<OkPacket>;
+    ]) as Promise<RowDataPacket[]>;
   }
 
   static async updateUserSettingByUserId({
