@@ -6,7 +6,7 @@
   "scripts": {
     "devstart": "nodemon server.ts",
     "start": "node server.js",
-    "test": "jest --watchAll --verbose --detectOpenHandles"
+    "test": "jest --verbose --detectOpenHandles --forceExit"
   },
   "author": "",
   "license": "ISC",

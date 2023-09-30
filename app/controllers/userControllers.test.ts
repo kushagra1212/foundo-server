@@ -1,13 +1,14 @@
 import request from 'supertest';
-import { app } from '../../server';
+import { app, server } from '../../server';
 import User from '../models/User';
 import UserSetting from '../models/UserSetting';
-import promisePool from '../db';
+
 import bcrypt from 'bcrypt';
 import { createToken } from '../utils/index';
-import logger from '../logger/logger';
-import { Routes, TEST_JWT_TOKEN } from '../constants';
-import { BadRequestError, ValidationError, customErrorMappings } from '../custom-errors/customErrors';
+import { Routes } from '../constants';
+import {
+  customErrorMappings,
+} from '../custom-errors/customErrors';
 import { errorMappings } from '../middleware/mysqlError';
 
 const salt = process.env.SALT;
@@ -70,8 +71,12 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signupUser)
         .send({});
-      expect(res.status).toBe(customErrorMappings.ValidationError.ErrorStatusCode);
-      expect(res.body.error).toBe(customErrorMappings.ValidationError.ErrorName);
+      expect(res.status).toBe(
+        customErrorMappings.ValidationError.ErrorStatusCode,
+      );
+      expect(res.body.error).toBe(
+        customErrorMappings.ValidationError.ErrorName,
+      );
       expect(res.body.errorMessage).toBe(
         'firstName, lastName, email and password are required',
       );
@@ -102,13 +107,13 @@ describe('User Controller', () => {
       expect(res.body.success).toBe(true);
     });
 
-
-
     it('should return an error if user is not found', async () => {
       const res = await request(app)
-        .delete(user_base_url +`/3`)
-        .set(x_auth_token, `${token}`)
-      expect(res.status).toBe(customErrorMappings.NotFoundError.ErrorStatusCode);
+        .delete(user_base_url + `/3`)
+        .set(x_auth_token, `${token}`);
+      expect(res.status).toBe(
+        customErrorMappings.NotFoundError.ErrorStatusCode,
+      );
       expect(res.body.error).toBe(customErrorMappings.NotFoundError.ErrorName);
       expect(res.body.errorMessage).toBe('user not found');
     });
@@ -132,8 +137,12 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signinUser)
         .send({ password: 'testpassword' });
-      expect(res.status).toBe(customErrorMappings.ValidationError.ErrorStatusCode);
-      expect(res.body.error).toBe(customErrorMappings.ValidationError.ErrorName);
+      expect(res.status).toBe(
+        customErrorMappings.ValidationError.ErrorStatusCode,
+      );
+      expect(res.body.error).toBe(
+        customErrorMappings.ValidationError.ErrorName,
+      );
       expect(res.body.errorMessage).toBe('email and password are required');
     });
 
@@ -141,8 +150,12 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signinUser)
         .send({ email: 'testuser@test.com' });
-      expect(res.status).toBe(customErrorMappings.ValidationError.ErrorStatusCode);
-      expect(res.body.error).toBe(customErrorMappings.ValidationError.ErrorName);
+      expect(res.status).toBe(
+        customErrorMappings.ValidationError.ErrorStatusCode,
+      );
+      expect(res.body.error).toBe(
+        customErrorMappings.ValidationError.ErrorName,
+      );
       expect(res.body.errorMessage).toBe('email and password are required');
     });
 
@@ -150,8 +163,12 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signinUser)
         .send({ email: 'nonexistent@test.com', password: 'testpassword' });
-      expect(res.status).toBe(customErrorMappings.BadRequestError.ErrorStatusCode);
-      expect(res.body.error).toBe(customErrorMappings.BadRequestError.ErrorName);
+      expect(res.status).toBe(
+        customErrorMappings.BadRequestError.ErrorStatusCode,
+      );
+      expect(res.body.error).toBe(
+        customErrorMappings.BadRequestError.ErrorName,
+      );
       expect(res.body.errorMessage).toBe('User not found');
     });
 
@@ -159,9 +176,17 @@ describe('User Controller', () => {
       const res = await request(app)
         .post(user_base_url + Routes.users.signinUser)
         .send({ email: 'testuser@test.com', password: 'wrongpassword' });
-      expect(res.status).toBe(customErrorMappings.BadRequestError.ErrorStatusCode);
-      expect(res.body.error).toBe(customErrorMappings.BadRequestError.ErrorName);
+      expect(res.status).toBe(
+        customErrorMappings.BadRequestError.ErrorStatusCode,
+      );
+      expect(res.body.error).toBe(
+        customErrorMappings.BadRequestError.ErrorName,
+      );
       expect(res.body.errorMessage).toBe('password is incorrect');
     });
   });
+  afterAll(() => {
+    server.close();
+  });
+
 });
