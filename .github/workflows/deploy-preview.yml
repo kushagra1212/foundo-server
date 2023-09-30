@@ -1,11 +1,7 @@
 name: Deploy Preview
 
 on:
-    workflow_run:
-      workflows: 
-        "Foundo Server Test"
-      types:
-        - completed
+  push:
 jobs:
   deploy:
     runs-on: ubuntu-latest  
