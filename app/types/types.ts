@@ -29,3 +29,29 @@ export type UserSettingType = {
   displayProfilePhoto: number;
   displayAddress: number;
 };
+
+
+export type ItemBaseType = {
+  itemName: string;
+  color: string;
+  dateTime: string;
+  description: string;
+  brand: string;
+  city: string;
+  category: string;
+  fk_userId: number;
+  isFounded: number;
+};
+export type ImageType = {
+  image: string;
+};
+
+export type ItemLocationType = {
+  fk_itemId: number;
+  fk_locationId: number;
+};
+
+export type LocationType = {
+  latitude: number;
+  longitude: number;
+};

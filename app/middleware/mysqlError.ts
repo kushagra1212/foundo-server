@@ -1,13 +1,13 @@
 import { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import logger from '../logger/logger';
 
-export const _mysqlErrorHandler = (
+const mysqlErrorHandler = (
   err: ErrorRequestHandler,
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
-  logger.info('Caught error in mysqlErrorHandler');
+  logger.warn('Caught error in mysqlErrorHandler');
   err = err as any;
   if (err && err['code'] && errorMappings[err['code']]) {
     const errorMapping = errorMappings[err['code']];
@@ -17,10 +17,9 @@ export const _mysqlErrorHandler = (
       success: false,
     });
   }
-  console.log(err['code']);
   next(err);
 };
-
+export default mysqlErrorHandler;
 const errorMappings = {
   ER_DATA_TOO_LONG: {
     message: 'The data provided is too long for this field.',
@@ -266,5 +265,4 @@ const errorMappings = {
     message: 'Invalid data format. Please check your input.',
     status: 400, // Bad Request
   },
-
 };

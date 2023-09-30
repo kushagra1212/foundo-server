@@ -30,10 +30,6 @@ class S3Image {
     // Ensure that you POST a base64 data to your server.
     // Let's assume the variable "base64" is one.
 
-    if (!isBase64(base64)) {
-      logger.error('base64 is not valid');
-      return null;
-    }
 
     const base64Data = Buffer.from(
       base64.replace(/^data:image\/\w+;base64,/, ''),
@@ -98,4 +94,5 @@ class S3Image {
     }
   }
 }
-module.exports = { S3Image };
+
+export default S3Image;
