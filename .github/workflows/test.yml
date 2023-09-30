@@ -17,9 +17,6 @@ jobs:
       with:
         node-version: 20.7.0 # Change to your desired Node.js version
 
-    - name: Install dependencies
-      run: npm install
-
     - name: Setup environment
       run: |
         echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
@@ -39,7 +36,7 @@ jobs:
         echo "JWT_ALGORITHM=${{ secrets.JWT_ALGORITHM }}" >> .env
         echo "PORT=${{ secrets.PORT }}" >> .env
         echo "TEST_JWT_TOKEN=${{ secrets.TEST_JWT_TOKEN }}" >> .env
-        
+
     - name: Run run-test.sh
       run: |
         chmod +x run-tests.sh # Make the script executable
