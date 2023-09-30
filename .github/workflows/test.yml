@@ -1,4 +1,4 @@
-name: Foundo-Server Tests
+name: Foundo Server Test
 
 on:
   push:
