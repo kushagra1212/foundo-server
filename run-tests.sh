@@ -13,4 +13,4 @@ docker-compose up -d
 sleep 5
 
 
-docker-compose exec -e PORT=8891 app npm run test
+docker-compose run -e PORT=8891 app npm run test
