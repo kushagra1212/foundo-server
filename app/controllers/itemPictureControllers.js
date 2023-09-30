@@ -1,6 +1,6 @@
 const Item = require('../models/Item');
 const ItemPicture = require('../models/ItemPicture');
-const { S3Image } = require('../s3/S3image');
+const S3Image = require('../s3/S3image');
 
 const getItemPictures = async (req, res) => {
   const { limit, offset, itemId } = req.query;

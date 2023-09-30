@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 import { createToken, sendTransactionalEmail } from '../utils/index';
 const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
-const { S3Image } = require('../s3/S3image');
+import S3Image  from '../s3/S3image';
 import logger from '../logger/logger';
 import { NextFunction, Request, Response } from 'express';
 import { OkPacket, RowDataPacket } from 'mysql2';
@@ -49,6 +49,7 @@ const signupUser = async (req: Request, res: Response, next: NextFunction) => {
     res.status(201).send({
       user: { ...user, userId: (result as OkPacket).insertId, password: '' },
       message: 'Account Created !',
+      success: true,
     });
   } catch (err: any) {
     if (connection) connection.rollback();
@@ -91,6 +92,7 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
       jwtToken: token,
       message: 'successfully loggedin',
       user: { ...user[0], password: '' },
+      success: true,
     });
   } catch (err: any) {
     logger.error(err.message);
@@ -163,7 +165,7 @@ const getUserById = async (req: Request, res: Response, next: NextFunction) => {
         user = { ...user, profilePhoto: null };
     }
     logger.info(`user ${id} found`);
-    res.status(200).send({ user });
+    res.status(200).send({ user, success: true });
   } catch (err: any) {
     next(err);
   }
@@ -226,7 +228,7 @@ const updateUserById = async (
       });
 
       logger.info(`user ${userId} updated`);
-      res.status(200).send({ user });
+      res.status(200).send({ user, success: true });
       return;
     } catch (err: any) {
       logger.error(err.message);
@@ -255,9 +257,9 @@ const getAllUsers = async (req: Request, res: Response, next: NextFunction) => {
       throw new NotFoundError('no users found');
     }
     logger.info(`users found`);
-    res.status(200).send({ allUsers: allUsers });
+    res.status(200).send({ allUsers: allUsers, success: true });
   } catch (err: any) {
-    logger.error(err.message);
+    logger.error(err);
     next(err);
   }
 };
@@ -304,7 +306,7 @@ const sendOtp = async (req: Request, res: Response, next: NextFunction) => {
           <h3>${message}</h3>`,
       });
       logger.info(`OTP sent to ${userResult[0].email}`);
-      return res.status(200).send({ success: true });
+      return res.status(200).send({ success: true, message: 'OTP sent' });
     }
     logger.error(`OTP sending failed for user ${id}`);
     throw new UpdateError('OTP sending failed');
@@ -366,7 +368,7 @@ const resetOtp = async (req: Request, res: Response, next: NextFunction) => {
     });
     if (result?.affectedRows) {
       logger.info(`OTP reset for user ${id}`);
-      return res.status(200).send({ success: true });
+      return res.status(200).send({ success: true, message: 'OTP reset' });
     }
 
     logger.error(`OTP reset failed for user ${id}`);

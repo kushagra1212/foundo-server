@@ -6,12 +6,12 @@ import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import userRoutes from './app/routes/userRoutes';
 import userSettingRoutes from './app/routes/userSettingRoutes';
-import itemRoutes from './app/routes/itemRoutes';
+import postRoutes from './app/routes/postRoutes';
 import itemPictureRoutes from './app/routes/itemPictureRoutes';
 import authRoutes from './app/routes/app-authRoutes';
 import messageRoutes from './app/routes/messageRoutes';
 import rateLimit from 'express-rate-limit';
-import { _mysqlErrorHandler } from './app/middleware/mysqlError';
+import mysqlErrorHandler from './app/middleware/mysqlError';
 import { _errorHandler } from './app/middleware/errorHandler';
 const PORT = process.env.PORT || 8890;
 //limiter object with  options
@@ -56,10 +56,14 @@ app.use('/v1/app-auth', limiter, authRoutes);
 
 //user Routes
 app.use('/v1/users', limiter, userRoutes);
+
+//user setting Routes
 app.use('/v1/user-setting', limiter, userSettingRoutes);
 
 //Items Routes
-app.use('/v1/item', limiter, itemRoutes);
+app.use('/v1/posts', limiter, postRoutes);
+
+//Item Picture Routes
 app.use('/v1/item-picture', limiter, itemPictureRoutes);
 
 // Messages Routes
@@ -68,6 +72,6 @@ app.use('/v1/message', limiter, messageRoutes);
 // Error Handling
 
 // middleware for handling mysql errors
-app.use(_mysqlErrorHandler);
+app.use(mysqlErrorHandler);
 app.use(_errorHandler);
 

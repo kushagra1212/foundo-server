@@ -1,10 +1,6 @@
-const LOSTITEMS = 'lostitems';
-const FOUNDITEMS = 'founditems';
-
 export const SENDINBLUE_API_URL = 'https://api.brevo.com/v3/smtp/email';
 
 export const TEST_JWT_TOKEN = process.env.TEST_JWT_TOKEN;
-
 
 export const Routes = {
   v1: '/v1',
@@ -27,5 +23,16 @@ export const Routes = {
     getUserSettingByUserId: '/:userId',
     updateUserSettingbyUserId: '/:userId',
     updateUserSettingbyUserIdOptimized: '/optimized/:userId',
+  },
+  posts:{
+    base: '/posts',
+    getMatchesByItemId: '/matches/:itemId',
+    getItemsbyUserId: '/user/:userId',
+    getItemsBySearchString: '/search',
+    deleteItemById: '/:id',
+    getItemByItemId: '/:id',
+    updateItemById: '/:id',
+    getItems: '/',
+    addItem: '/',
   },
 };
