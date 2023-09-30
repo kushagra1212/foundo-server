@@ -11,5 +11,10 @@
       "src": "/(.*)",
       "dest": "server.js"
     }
-  ]
+  ],
+  "github": {
+    "enabled": false,
+    "autoAlias": true,
+    "silent": true
+  }
 }
