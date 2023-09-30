@@ -10,16 +10,16 @@ class CustomError extends Error {
 class ValidationError extends CustomError {
   constructor(message: string) {
     super(message);
-    this.name = 'Validation Error';
-    this.statusCode = 400;
+    this.name = customErrorMappings.ValidationError.ErrorName;
+    this.statusCode = customErrorMappings.ValidationError.ErrorStatusCode;
   }
 }
 
-class NotFoundError extends CustomError {
+class NotFoundError extends CustomError { 
   constructor(message: string) {
     super(message);
-    this.name = 'Not Found Error';
-    this.statusCode = 404;
+    this.name = customErrorMappings.NotFoundError.ErrorName;
+    this.statusCode = customErrorMappings.NotFoundError.ErrorStatusCode;
   }
 }
 
@@ -34,8 +34,8 @@ class TooManyRequestsError extends CustomError {
 class BadRequestError extends CustomError {
   constructor(message: string) {
     super(message);
-    this.name = 'Bad Request Error';
-    this.statusCode = 400;
+    this.name = customErrorMappings.BadRequestError.ErrorName;
+    this.statusCode = customErrorMappings.BadRequestError.ErrorStatusCode;
   }
 }
 
@@ -101,6 +101,38 @@ class UpdateError extends CustomError {
     this.statusCode = 500;
   }
 }
+
+export const customErrorMappings = {
+  NotFoundError:{
+    ErrorName: 'Not Found Error',
+    ErrorStatusCode: 404,
+  },
+  TooManyRequestsError:{
+    ErrorName: 'Too Many Requests Error',
+    ErrorStatusCode: 429,
+  },
+  BadRequestError:{
+    ErrorName: 'Bad Request Error',
+    ErrorStatusCode: 400,
+  },
+  UnauthorizedError:{
+    ErrorName: 'Unauthorized Error',
+    ErrorStatusCode: 401,
+  },
+  ForbiddenError:{
+    ErrorName: 'Forbidden Error',
+    ErrorStatusCode: 403,
+  },
+  InternalServerError:{
+    ErrorName: 'Internal Server Error',
+    ErrorStatusCode: 500,
+  },
+  ValidationError:{
+    ErrorName: 'Validation Error',
+    ErrorStatusCode: 400,
+  },
+};
+
 export {
   NotFoundError,
   TooManyRequestsError,

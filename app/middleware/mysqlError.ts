@@ -20,7 +20,7 @@ const mysqlErrorHandler = (
   next(err);
 };
 export default mysqlErrorHandler;
-const errorMappings = {
+export const errorMappings = {
   ER_DATA_TOO_LONG: {
     message: 'The data provided is too long for this field.',
     status: 400, // Bad Request

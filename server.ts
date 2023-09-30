@@ -7,9 +7,9 @@ import cookieParser from 'cookie-parser';
 import userRoutes from './app/routes/userRoutes';
 import userSettingRoutes from './app/routes/userSettingRoutes';
 import postRoutes from './app/routes/postRoutes';
-import itemPictureRoutes from './app/routes/itemPictureRoutes';
 import authRoutes from './app/routes/app-authRoutes';
 import messageRoutes from './app/routes/messageRoutes';
+import pictureRoutes from './app/routes/pictureRoutes';
 import rateLimit from 'express-rate-limit';
 import mysqlErrorHandler from './app/middleware/mysqlError';
 import { _errorHandler } from './app/middleware/errorHandler';
@@ -63,8 +63,8 @@ app.use('/v1/user-setting', limiter, userSettingRoutes);
 //Items Routes
 app.use('/v1/posts', limiter, postRoutes);
 
-//Item Picture Routes
-app.use('/v1/item-picture', limiter, itemPictureRoutes);
+//Item Pictures Routes
+app.use('/v1/pictures', limiter, pictureRoutes);
 
 // Messages Routes
 app.use('/v1/message', limiter, messageRoutes);

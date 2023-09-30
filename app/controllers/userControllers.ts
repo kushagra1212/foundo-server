@@ -6,7 +6,7 @@ import bcrypt from 'bcrypt';
 import { createToken, sendTransactionalEmail } from '../utils/index';
 const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
-import S3Image  from '../s3/S3image';
+import S3Image from '../s3/S3image';
 import logger from '../logger/logger';
 import { NextFunction, Request, Response } from 'express';
 import { OkPacket, RowDataPacket } from 'mysql2';
@@ -24,7 +24,9 @@ const signupUser = async (req: Request, res: Response, next: NextFunction) => {
   let connection;
   try {
     if (!firstName || !lastName || !email || !password) {
-      throw new Error('firstName, lastName, email and password are required');
+      throw new ValidationError(
+        'firstName, lastName, email and password are required',
+      );
     }
     let hashedPassword = await bcrypt.hash(password, parseInt(salt));
     connection = await promisePool.getConnection();
@@ -45,7 +47,6 @@ const signupUser = async (req: Request, res: Response, next: NextFunction) => {
 
     logger.info(`User ${result.insertId} created`);
 
-    if (connection) connection.release();
     res.status(201).send({
       user: { ...user, userId: (result as OkPacket).insertId, password: '' },
       message: 'Account Created !',
@@ -57,8 +58,9 @@ const signupUser = async (req: Request, res: Response, next: NextFunction) => {
       err.message = 'This Email is already in use !';
     }
     logger.error(err.message);
-    if (connection) connection.release();
     next(err);
+  } finally {
+    if (connection) connection.release();
   }
 };
 

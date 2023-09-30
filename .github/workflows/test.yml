@@ -1,0 +1,23 @@
+name: Foundo-Server Tests
+
+on:
+  push:
+
+jobs:
+  test:
+    name: Run tests
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 20.7.0 # Change to your desired Node.js version
+
+    - name: Run run-test.sh
+      run: |
+        chmod +x run-test.sh # Make the script executable
+        ./run-test.sh # Execute your custom script
