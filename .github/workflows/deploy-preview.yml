@@ -1,31 +1,38 @@
-name: Deploy Preview
-
+name: Preview Deployment
+env:
+  VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+  VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
 on:
   push:
+    branches-ignore:
+      - main
+      - master
+      - production
 jobs:
-  deploy:
-    runs-on: ubuntu-latest  
+  Deploy-Preview:
+    runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v3
-     
+
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.7.0 
-  
+          node-version: 20.7.0 # Change to your desired Node.js version
+
       - name: Install dependencies
         run: npm install
-
-      - name: Build
-        run: npm run build
       
-      - name: Deploy to Vercel Action
-        id: vercel-deploy
-        uses: BetaHuhn/deploy-to-vercel-action@v1.9.12
-        with:
-          GITHUB_TOKEN: ${{ secrets.GH_PAT }}
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
-          VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
-          VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
-          PRODUCTION: false
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
+
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
+      
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
+
+
