@@ -1,0 +1,4 @@
+{
+  "watch": ["app", "server.ts", "dist"],
+  "ext": ".js, .json, .ts"
+}
