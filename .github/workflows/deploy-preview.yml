@@ -29,6 +29,9 @@ jobs:
       - name: build project
         run: npm run build
 
+      - name: copy json files
+        run: cp -rf *.json build/
+
       - name: cd into build folder
         run: cd build
 
