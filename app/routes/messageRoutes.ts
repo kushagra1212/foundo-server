@@ -1,15 +1,27 @@
 import express from 'express';
 import messageControllers from '../controllers/messageControllers';
 import { auth } from '../middleware/auth';
+import { Routes } from '../config/routes';
 const router = express.Router();
 
-// POST  Create Message
-router.post('/add', auth, messageControllers.addMessage);
+/* Add Contact Message | POST */
+router.post(Routes.messages.addContactMessage, auth, messageControllers.addContactMessage);
 
-// GET  Get Contact List
-router.get('/contact-list', auth, messageControllers.getContactList);
+/* Get Contact List | GET */
+router.get(
+  Routes.messages.getContactList,
+  auth,
+  messageControllers.getContactList,
+);
 
 // GET  Get Messages with limit and offset
-router.get('/messages', auth, messageControllers.getMessages);
+router.get(
+  Routes.messages.getMessages,
+  auth,
+  messageControllers.getMessages,
+);
+
+/* Add Message | POST */
+router.post(Routes.messages.addMessage, auth, messageControllers.addMessage);
 
 export default router;

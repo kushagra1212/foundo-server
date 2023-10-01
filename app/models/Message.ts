@@ -1,48 +1,46 @@
+import { OkPacket, RowDataPacket } from 'mysql2';
 import promisePool from '../db';
+import { messageType } from '../types/types';
+import { getInsertQuery } from './model-utils';
 
 class Message {
-  constructor({
-    senderId,
-    receiverId,
-    message,
-    title,
-    isPhoneNoShared,
-    isFound,
-  }) {
-    // this.senderId = senderId;
-    // this.receiverId = receiverId;
-    // this.message = message;
+  message: messageType;
+  constructor(message: messageType) {
+    this.message = message;
+  }
+  async save() {
+    let sql = `INSERT INTO ${getInsertQuery('message', this.message)}`;
+    return promisePool.execute(sql, Object.values(this.message)) as Promise<OkPacket[]>;
+  }
 
-    // this.title = title;
-    // this.isPhoneNoShared = isPhoneNoShared;
-    // this.isFound = isFound;
+  static getContactList({
+    fk_receiverId,
+    limit,
+    offset,
+  }: {
+    fk_receiverId: number;
+    limit: number;
+    offset: number;
+  }) {
+    let sql = `select m1.fk_senderId,u1.firstName,u1.lastName,m1.messagesCount from (select distinct(fk_senderId),count(*) as messagesCount from message where fk_receiverId=${fk_receiverId} group by fk_senderId) as m1 inner join (select id,firstName,lastName from user) as u1 on m1.fk_senderId=u1.id limit ${limit} offset ${offset}`;
+    return promisePool.execute(sql);
   }
-  save() {
-    // let sql = `INSERT INTO messages(senderId,receiverId,message,title,isPhoneNoShared,isFound) VALUES(?,?,?,?,?,?)`;
-    // return promisePool.execute(sql, [
-    //   this.senderId,
-    //   this.receiverId,
-    //   this.message,
-    //   this.title,
-    //   this.isPhoneNoShared,
-    //   this.isFound,
-    // ]);
-    return null;
-  }
-  static getContactList({ userId, limit, offset }) {
-    let sql = `select m1.senderId,u1.firstName,u1.lastName,m1.messagesCount from (select distinct(senderId),count(*) as messagesCount from messages where receiverId=? group by senderId) as m1 inner join (select id,firstName,lastName from users) as u1 on m1.senderId=u1.id limit ? offset ?`;
-    return promisePool.execute(sql, [userId, limit, offset]);
-  }
-  static getMessages({ senderId, receiverId, limit, offset }) {
-    let sql = `SELECT * FROM (SELECT * FROM messages WHERE (senderId=? AND receiverId=?) OR (senderId=? AND receiverId=?)) AS u1  LEFT JOIN (SELECT latitude,longitude,messageId FROM itemslocations) AS i1 ON u1.id=i1.messageId ORDER BY createdAt DESC LIMIT ? OFFSET ?`;
-    return promisePool.execute(sql, [
-      senderId,
-      receiverId,
-      receiverId,
-      senderId,
-      limit,
-      offset,
-    ]);
+
+  static getMessages({
+    fk_senderId,
+    fk_receiverId,
+    limit,
+    offset,
+  }: {
+    fk_senderId: number;
+    fk_receiverId: number;
+    limit: number;
+    offset: number;
+  }) {
+    let sql = `
+    SELECT * from (SELECT * From ((SELECT * FROM message WHERE ((fk_senderId=${fk_senderId} AND fk_receiverId=${fk_receiverId}) OR (fk_senderId=${fk_senderId} AND fk_receiverId=${fk_receiverId}))) as m LEFT JOIN (SELECT location.latitude,location.longitude,messageLocation.fk_messageId,location.id as locationId FROM location INNER JOIN messageLocation where location.id=messageLocation.fk_locationId) as ml ON m.id=ml.fk_messageId)) as c1 
+    LEFT JOIN contactMessage ON contactMessage.fk_messageId=c1.id ORDER BY createdAt DESC limit ${limit} offset ${offset};`;
+    return promisePool.execute(sql) as Promise<RowDataPacket[]>;
   }
 }
 

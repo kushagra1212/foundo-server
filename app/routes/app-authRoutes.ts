@@ -1,15 +1,16 @@
 import express from 'express';
 import authControllers from '../controllers/appAuthControllers';
 import auth from '../middleware/auth';
+import { Routes } from '../config/routes';
 
 const router = express.Router();
 /* Forgot Password  | GET */
-router.get('/forgot-password/:email', authControllers.forgotPassword);
+router.get(Routes.appAuth.forgotPassword, authControllers.forgotPassword);
 
 
 /* Verify Reset Password Token | GET */
 router.get(
-  '/verify-reset-password-token/:email/:token',
+  Routes.appAuth.verifyResetPasswordToken,
   auth.verifyResetToken,
   authControllers.checkValidityofToken
 );
@@ -17,14 +18,14 @@ router.get(
 
 /* Verify Token | GET */
 router.get(
-  '/verify-token/:token',
+  Routes.appAuth.verifyToken,
   auth.verifyToken,
   authControllers.checkValidityofToken
 );
 
 /* Reset Password | POST */
 router.post(
-  '/reset-password/:email/:token',
+  Routes.appAuth.resetPassword,
   auth.verifyResetToken,
   authControllers.resetPassword
 );
