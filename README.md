@@ -62,4 +62,44 @@ To run the Foundo Android application locally, follow these steps:
     TypeScript
     JSON
   
-   
+# INSTALLATION
+
+## Docker
+### Prerequisites
+- Docker
+- Docker Compose
+
+
+### Steps
+1. Clone the repository:
+   ```shell
+   git clone
+
+    ```
+2. Navigate to the project directory:
+    ```shell
+    cd foundo-server
+    ```
+3. Build the Docker image:
+    ```shell
+    docker-compose build
+    ```
+4. Start the Docker container:
+    ```shell
+    docker-compose up
+    ```
+5. Open the application in your browser:
+    ```shell
+    http://localhost:8890
+    ```
+
+# Testing
+
+##  Tests
+
+## Unit && Integration Tests
+To run the integration tests, run the following command:
+```shell
+./run-tests.sh 
+```
+
