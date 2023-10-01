@@ -2,6 +2,6 @@
 node_modules
 .env.production
 .env.development
-logs
-error.log
+build
 .vercel
+**/*.env.*/*

@@ -5,16 +5,16 @@ import UserSetting from '../models/UserSetting';
 
 import bcrypt from 'bcrypt';
 import { createToken } from '../utils/index';
-import { Routes } from '../constants';
 import {
   customErrorMappings,
 } from '../custom-errors/customErrors';
 import { errorMappings } from '../middleware/mysqlError';
+import { Routes } from '../config/routes';
 
 const salt = process.env.SALT;
 const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
-const user_base_url = Routes.v1 + Routes.users.base;
+let user_base_url = Routes.v1 + Routes.users.base;
 const x_auth_token = 'x-auth-token';
 describe('User Controller', () => {
   let userId;

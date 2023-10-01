@@ -277,31 +277,31 @@ UNLOCK TABLES;
 
 
 --
--- Table structure for table `concactMessage`
+-- Table structure for table `contactMessage`
 --
 
-DROP TABLE IF EXISTS `concactMessage`;
+DROP TABLE IF EXISTS `contactMessage`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `concactMessage` (
+CREATE TABLE `contactMessage` (
   `id` int NOT NULL AUTO_INCREMENT,
   `fk_messageId` int NOT NULL,
   `isFound` int NOT NULL,
-  `isPhoneNoShared` int DEFAULT '0',
+  `isPhoneNoShared` int NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `fk_messageId` (`fk_messageId`),
-  CONSTRAINT `concactMessage_ibfk_1` FOREIGN KEY (`fk_messageId`) REFERENCES `message` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `contactMessage_ibfk_1` FOREIGN KEY (`fk_messageId`) REFERENCES `message` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 ;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `concactMessage`
+-- Dumping data for table `contactMessage`
 --
 
-LOCK TABLES `concactMessage` WRITE;
-/*!40000 ALTER TABLE `concactMessage` DISABLE KEYS */;
-INSERT INTO `concactMessage` VALUES (1,1,0,1);
-/*!40000 ALTER TABLE `concactMessage` ENABLE KEYS */;
+LOCK TABLES `contactMessage` WRITE;
+/*!40000 ALTER TABLE `contactMessage` DISABLE KEYS */;
+INSERT INTO `contactMessage` VALUES (1,1,0,1);
+/*!40000 ALTER TABLE `contactMessage` ENABLE KEYS */;
 UNLOCK TABLES;
 
 

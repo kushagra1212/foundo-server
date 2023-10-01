@@ -38,7 +38,7 @@ app.use(
 app.use(cookieParser());
 // application/json
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true, limit: '50mb' }));
+app.use(express.urlencoded({ extended: true,  limit: '50mb' }));
 
 // starting the app
 export const server = app.listen(PORT, () => {
@@ -54,24 +54,23 @@ app.get('/', limiter, (req, res) => {
 // Auth Routes
 app.use('/v1/app-auth', limiter, authRoutes);
 
-//user Routes
+// User Routes
 app.use('/v1/users', limiter, userRoutes);
 
-//user setting Routes
+// User Setting Routes
 app.use('/v1/user-setting', limiter, userSettingRoutes);
 
-//Items Routes
+// Items Routes
 app.use('/v1/posts', limiter, postRoutes);
 
-//Item Pictures Routes
+// Pictures Routes
 app.use('/v1/pictures', limiter, pictureRoutes);
 
 // Messages Routes
-app.use('/v1/message', limiter, messageRoutes);
+app.use('/v1/messages', limiter, messageRoutes);
 
 // Error Handling
 
 // middleware for handling mysql errors
 app.use(mysqlErrorHandler);
 app.use(_errorHandler);
-
