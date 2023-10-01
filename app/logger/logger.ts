@@ -1,3 +1,4 @@
+import path from 'path';
 import { createLogger, transports, format } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, printf } = format;
@@ -21,7 +22,7 @@ const logger = createLogger({
 
     // Log errors to a separate file
     new transports.File({
-      filename: 'tmp/foundo-error.log',
+      filename: path.join(process.cwd(), 'tmp/foundo-error.log'),
       level: 'error',
       format: combine(
         timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
@@ -31,7 +32,7 @@ const logger = createLogger({
 
     // Log all levels to another file with daily rotation
     new DailyRotateFile({
-      filename: 'tmp/application-%DATE%.log',
+      filename: path.join(process.cwd(), 'tmp/application-%DATE%.log'),
       datePattern: 'YYYY-MM-DD',
       zippedArchive: true,
       maxSize: '20m',

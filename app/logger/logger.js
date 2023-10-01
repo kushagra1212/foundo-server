@@ -3,6 +3,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const path_1 = __importDefault(require("path"));
 const winston_1 = require("winston");
 const winston_daily_rotate_file_1 = __importDefault(require("winston-daily-rotate-file"));
 const { combine, timestamp, printf } = winston_1.format;
@@ -20,13 +21,13 @@ const logger = (0, winston_1.createLogger)({
         new winston_1.transports.Console(),
         // Log errors to a separate file
         new winston_1.transports.File({
-            filename: 'tmp/foundo-error.log',
+            filename: path_1.default.join(process.cwd(), 'tmp/foundo-error.log'),
             level: 'error',
             format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), winston_1.format.json()), // Customize timestamp format
         }),
         // Log all levels to another file with daily rotation
         new winston_daily_rotate_file_1.default({
-            filename: 'tmp/application-%DATE%.log',
+            filename: path_1.default.join(process.cwd(), 'tmp/application-%DATE%.log'),
             datePattern: 'YYYY-MM-DD',
             zippedArchive: true,
             maxSize: '20m',
