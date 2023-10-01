@@ -1,8 +1,7 @@
 import express from 'express';
 import userControllers from '../controllers/userControllers';
 import {auth} from '../middleware/auth';
-import { Routes } from '../constants';
-
+import {Routes} from "../config/routes"
 const router = express.Router();
 
 /* Send OTP */

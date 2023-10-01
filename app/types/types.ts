@@ -8,7 +8,7 @@ export interface RequestWithJwt extends Request {
   decoded?: JwtPayloadWithId;
   user?: UserType;
 }
-  
+
 export type UserType = {
   firstName: string;
   lastName: string;
@@ -29,7 +29,6 @@ export type UserSettingType = {
   displayProfilePhoto: number;
   displayAddress: number;
 };
-
 
 export type ItemBaseType = {
   itemName: string;
@@ -54,4 +53,23 @@ export type ItemLocationType = {
 export type LocationType = {
   latitude: number;
   longitude: number;
+};
+
+export type messageType = {
+  fk_senderId: number;
+  fk_receiverId: number;
+  message: string;
+  title: string;
+};
+
+export type contactMessageType = {
+  baseMessage: messageType;
+  location: LocationType | undefined;
+  isFound: number;
+  isPhoneNoShared: number;
+};
+
+export type MessageLocationType = {
+  fk_messageId: number;
+  fk_locationId: number;
 };

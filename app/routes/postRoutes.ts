@@ -2,7 +2,7 @@ import express from 'express';
 const router = express.Router();
 import postControllers from '../controllers/postControllers';
 import { auth } from '../middleware/auth';
-import { Routes } from '../constants';
+import { Routes } from "../config/routes"
 
 /* Get Matches By Item Id | GET */
 router.get(Routes.posts.getMatchesByItemId, auth,postControllers.getMatchesByItemId);

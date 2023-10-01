@@ -2,8 +2,7 @@ import express from 'express';
 const router = express.Router();
 import userSettingControllers from '../controllers/userSettingControllers';
 import { auth } from '../middleware/auth';
-import { Routes } from '../constants';
-
+import { Routes } from "../config/routes"
 /* Get user setting by User Id | Get */
 router.get(Routes.userSettings.getUserSettingByUserId, auth, userSettingControllers.getUserSettingByUserId);
 
