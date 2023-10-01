@@ -1,5 +1,5 @@
 import request from 'supertest';
-import { app, server } from '../../server';
+import { app } from '../../server';
 import User from '../models/User';
 import UserSetting from '../models/UserSetting';
 
@@ -19,9 +19,11 @@ const x_auth_token = 'x-auth-token';
 describe('User Controller', () => {
   let userId;
   let token;
+  let server;
 
   beforeAll(async () => {
     // create a test user
+    server = app.listen(8891);
     const hashedPassword = await bcrypt.hash('testpassword', parseInt(salt));
     const user = new User({
       firstName: 'Test',
