@@ -20,13 +20,13 @@ const logger = (0, winston_1.createLogger)({
         new winston_1.transports.Console(),
         // Log errors to a separate file
         new winston_1.transports.File({
-            filename: 'error.log',
+            filename: 'tmp/foundo-error.log',
             level: 'error',
             format: combine(timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }), winston_1.format.json()), // Customize timestamp format
         }),
         // Log all levels to another file with daily rotation
         new winston_daily_rotate_file_1.default({
-            filename: 'logs/application-%DATE%.log',
+            filename: 'tmp/application-%DATE%.log',
             datePattern: 'YYYY-MM-DD',
             zippedArchive: true,
             maxSize: '20m',
