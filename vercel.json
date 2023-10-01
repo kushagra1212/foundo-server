@@ -13,8 +13,7 @@
       }
     ],
     "github": {
-      "silent": true,
-        "autoAlias": true
+      "enabled": false
     }
   }
   
