@@ -8,8 +8,9 @@ on:
       - main
       - master
       - production
+      
 jobs:
-  Deploy-Production:
+  Deploy-Preview:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -18,7 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 20.7.0 # The version of node to use
+          node-version: 20.7.0 # Change to your desired Node.js version
 
       - name: Install dependencies
         run: npm install
@@ -29,11 +30,25 @@ jobs:
       - name: build project
         run: npm run build
 
-      - name: copy json files
-        run: cp -rf *.json build/
-
-      - name: cd into build folder
-        run: cd build
+      - name: Setup environment
+        run: |
+          echo "MYSQL_USER=${{ secrets.MYSQL_USER }}" >> .env
+          echo "MYSQL_DATABASE=${{ secrets.MYSQL_DATABASE }}" >> .env
+          echo "MYSQL_PASSWORD=${{ secrets.MYSQL_PASSWORD }}" >> .env
+          echo "MYSQL_ROOT_PASSWORD=${{ secrets.MYSQL_ROOT_PASSWORD }}" >> .env
+          echo "MYSQL_HOST=${{ secrets.MYSQL_HOST }}" >> .env
+          echo "MYSQL_PORT=${{ secrets.MYSQL_PORT }}" >> .env
+          echo "RESET_PASS_APP_URL=${{ secrets.RESET_PASS_APP_URL }}" >> .env
+          echo "FAWS_S3_BUCKET=${{ secrets.FAWS_S3_BUCKET }}" >> .env
+          echo "FAWS_ACCESS_KEY_ID=${{ secrets.FAWS_ACCESS_KEY_ID }}" >> .env
+          echo "FAWS_SECRET_ACCESS_KEY=${{ secrets.FAWS_SECRET_ACCESS_KEY }}" >> .env
+          echo "FAWS_DEFAULT_REGION=${{ secrets.FAWS_DEFAULT_REGION }}" >> .env
+          echo "SALT=${{ secrets.SALT }}" >> .env
+          echo "JWT_SECRET=${{ secrets.JWT_SECRET }}" >> .env
+          echo "SENDINBLUE_API_KEY=${{ secrets.SENDINBLUE_API_KEY }}" >> .env
+          echo "JWT_ALGORITHM=${{ secrets.JWT_ALGORITHM }}" >> .env
+          echo "PORT=${{ secrets.PORT }}" >> .env
+          echo "TEST_JWT_TOKEN=${{ secrets.TEST_JWT_TOKEN }}" >> .env
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
@@ -42,4 +57,4 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
       
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
+        run: vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
