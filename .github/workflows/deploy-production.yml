@@ -57,4 +57,4 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
       
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}

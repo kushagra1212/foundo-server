@@ -3,9 +3,9 @@ export const Routes = {
     v2: '/v2',
     users: {
       base: '/users',
-      sendOtp: '/send-otp',
-      resetOtp: '/reset-otp',
-      verifyOtp: '/verify-otp',
+      sendOtp: '/send-otp/:id',
+      resetOtp: '/reset-otp/:id',
+      verifyOtp: '/verify-otp/:id/:otp',
       signupUser: '/signup',
       signinUser: '/signin',
       getAllUsers: '/:limit/:offset',
@@ -23,6 +23,7 @@ export const Routes = {
     posts:{
       base: '/posts',
       getMatchesByItemId: '/matches/:itemId',
+      getPostsByPostIds: '/post-ids',
       getItemsbyUserId: '/user/:userId',
       getItemsBySearchString: '/search',
       deleteItemById: '/:id',

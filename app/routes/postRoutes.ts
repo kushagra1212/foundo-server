@@ -10,6 +10,11 @@ router.get(Routes.posts.getMatchesByItemId, auth,postControllers.getMatchesByIte
 /* Get Items By User Id | GET */
 router.get(Routes.posts.getItemsbyUserId, auth, postControllers.getItemsbyUserId);
 
+
+/* Get Posts By Posts IDs | GET */
+router.post(Routes.posts.getPostsByPostIds, auth, postControllers.getPostsByPostIds);
+
+
 /* Get Items By Search String | GET */
 router.get(Routes.posts.getItemsBySearchString, postControllers.getItemsBySearchString);
 

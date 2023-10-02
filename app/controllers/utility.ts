@@ -11,7 +11,7 @@ import Item from '../models/Item';
 import logger from '../logger/logger';
 
 class ItemManager {
-  async getItemDetails(id:any):Promise<any> {
+  async getItemDetails(id: any): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
         if (!id) {
@@ -45,7 +45,7 @@ class ItemManager {
     });
   }
 
-  async getAllItems(query):Promise<any> {
+  async getAllItems(query): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
         const { limit, offset } = query;
@@ -112,7 +112,7 @@ class ItemManager {
 
         connection = await promisePool.getConnection();
         await connection.beginTransaction();
-         logger.info('connection started');
+        logger.info('connection started');
 
         // Save item
         const [savedItem, _] = await item.save();
@@ -141,7 +141,7 @@ class ItemManager {
         });
         const [savedLocation, __] = await createLocation.save();
         // Save item location
-        
+
         const itemLocation = new ItemLocation({
           fk_itemId: savedItem.insertId,
           fk_locationId: savedLocation.insertId,
@@ -173,6 +173,23 @@ class ItemManager {
           logger.info('connection released');
           connection.release();
         }
+      }
+    });
+  }
+
+  async getItemsByPostIds(postIds: number[]) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const [itemResult, _] = await Item.findItemsByPostIds(postIds);
+        if (!itemResult || !itemResult.length) {
+          throw new NotFoundError('item not found');
+        }
+        resolve({
+          items: itemResult,
+          success: true,
+        });
+      } catch (err) {
+        reject(err);
       }
     });
   }
