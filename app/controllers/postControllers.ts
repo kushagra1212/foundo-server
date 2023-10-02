@@ -175,6 +175,19 @@ const getMatchesByItemId = async (
   }
 };
 
+const getPostsByPostIds = async(req:Request,res:Response,next:NextFunction)=> {
+  try{
+    if (!req.body.postIds) {
+      throw new ValidationError('postIds is required');
+    }
+    const result = await itemManager.getItemsByPostIds(req.body.postIds);
+    res.status(200).send(result);
+  }catch(err) {
+    logger.error(err);
+    next(err);
+  }
+}
+
 
 export default {
   getItemByItemId,
@@ -184,5 +197,5 @@ export default {
   getItemsbyUserId,
   getItems,
   getItemsBySearchString,
-  getMatchesByItemId,
+  getMatchesByItemId,getPostsByPostIds
 };

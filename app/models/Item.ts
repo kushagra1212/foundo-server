@@ -1,7 +1,8 @@
 import logger from '../logger/logger';
 import { ItemBaseType } from '../types/types';
 
-const promisePool = require('../db');
+import promisePool from '../db';
+import { OkPacket, RowDataPacket } from 'mysql2';
 class Item {
   itemBase: ItemBaseType;
   constructor(itemBase: ItemBaseType) {
@@ -20,12 +21,12 @@ class Item {
       this.itemBase.category,
       this.itemBase.fk_userId,
       this.itemBase.isFounded,
-    ]);
+    ]) as Promise<OkPacket[]>;
   }
   
   static findItem({ itemId }) {
     let sql = `SELECT * FROM item WHERE id=?`;
-    return promisePool.execute(sql, [itemId]);
+    return promisePool.execute(sql, [itemId]) as Promise<RowDataPacket[]>;
   }
 
   static deleteItem({ id }) {
@@ -101,7 +102,7 @@ class Item {
     sql += ` LIMIT ${limit} OFFSET ${offset}`;
     sql = `SELECT * from user as u1 INNER JOIN (${sql}) as i1 on u1.id=i1.fk_userId;`;
     
-    return promisePool.execute(sql, validFields);
+    return promisePool.execute(sql, validFields) as Promise<any>;
   }
   static findItemBySearchStringRegExp({
     searchString,
@@ -146,7 +147,12 @@ class Item {
     return Promise.all([
       promisePool.execute(sql),
       promisePool.execute(CountSql),
-    ]);
+    ]) as Promise<any>;
+  }
+
+  static  findItemsByPostIds(postIds: number[]) {
+    let sql = `SELECT * FROM item WHERE id IN (${postIds})`;
+    return promisePool.execute(sql) as Promise<RowDataPacket[]>;
   }
 }
 
