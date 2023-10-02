@@ -40,7 +40,7 @@ export const Routes = {
     messages:{
       base: '/messages',
       addContactMessage: '/contact',
-      getContactList: '/contact-list/:fk_receiverId/:limit/:offset',
+      getContactList: '/contact-list/:fk_user_Id_1/:limit/:offset',
       getMessages: '/:fk_senderId/:fk_receiverId/:limit/:offset',
       addMessage: '/',
     },

@@ -40,7 +40,8 @@ const updateUserSettingbyUserId = async (
 ) => {
   const { userId } = req.params;
   try {
-    const userSettingResult = await UserSetting.updateUserSettingByUserId({
+    console.log (req.body,userId)
+    const result = await UserSetting.updateUserSettingByUserId({
       userSetting: req.body,
       fk_userId: Number(userId),
     });
@@ -48,7 +49,7 @@ const updateUserSettingbyUserId = async (
     logger.info(`user Setting updated for userId ${userId}`);
     return res
       .status(200)
-      .send({ userSetting: userSettingResult, success: true });
+      .send(result);
 
   } catch (err) {
     logger.error(err);

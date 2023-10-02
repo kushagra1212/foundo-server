@@ -3,7 +3,12 @@ import UserSetting from '../models/UserSetting';
 import promisePool from '../db';
 const salt = process.env.SALT as string;
 import bcrypt from 'bcrypt';
-import { createToken, sendTransactionalEmail } from '../utils/index';
+import {
+  createToken,
+  isValidCountryCode,
+  isValidPhoneNumber,
+  sendTransactionalEmail,
+} from '../utils/index';
 const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
 import S3Image from '../s3/S3image';
@@ -199,22 +204,29 @@ const updateUserById = async (
 
     let user = userResult[0];
 
-    if (newPhoneNo && user.phoneNo !== newPhoneNo) user.phoneNo = newPhoneNo;
-    if (newCountryCode && user.countryCode !== newCountryCode)
+    if (isValidPhoneNumber(newPhoneNo) && user.phoneNo !== newPhoneNo)
+      user.phoneNo = newPhoneNo;
+    if (
+      isValidCountryCode(newCountryCode) &&
+      user.countryCode !== newCountryCode
+    )
       user.countryCode = newCountryCode;
     if (newProfilePhoto) {
-      const s3ImageObj = new S3Image();
-
-      await s3ImageObj.delete(user.profilePhoto);
-      const location = await s3ImageObj.upload({
-        id: userId,
-        base64: newProfilePhoto,
-        folderName: 'profilePhoto',
-      });
-      user.profilePhoto = location;
+      try {
+        const s3ImageObj = new S3Image();
+        await s3ImageObj.delete(user.profilePhoto);
+        const location = await s3ImageObj.upload({
+          id: userId,
+          base64: newProfilePhoto,
+          folderName: 'profilePhoto',
+        });
+        user.profilePhoto = location;
+      } catch (err) {
+        logger.error(err.message);
+      }
     }
 
-    if (newAddress && user.address !== newAddress) user.address = newAddress;
+    if (newAddress!==undefined && user.address !== newAddress) user.address = newAddress;
 
     try {
       user = {

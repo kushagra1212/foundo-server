@@ -24,9 +24,6 @@ DROP DATABASE IF EXISTS foundo;
 CREATE DATABASE foundo;
 
 USE foundo;
-SET GLOBAL log_output = "FILE";
-SET GLOBAL general_log_file = "sqllogs.log";
-SET GLOBAL general_log = 'ON';
 --
 -- Table structure for table `user`
 --
@@ -304,6 +301,35 @@ INSERT INTO `contactMessage` VALUES (1,1,0,1);
 /*!40000 ALTER TABLE `contactMessage` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+-- Table structure for table `contactList`
+--
+
+DROP TABLE IF EXISTS `contactList`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contactList` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fk_user_Id_1` int NOT NULL,
+  `fk_user_Id_2` int NOT NULL,
+  `chat_enabled` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_Id_1` (`fk_user_Id_1`),
+  KEY `fk_user_Id_2` (`fk_user_Id_2`),
+  CONSTRAINT `contactList_ibfk_1` FOREIGN KEY (`fk_user_Id_1`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `contactList_ibfk_2` FOREIGN KEY (`fk_user_Id_2`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 ;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contactList`
+--
+
+LOCK TABLES `contactList` WRITE;
+/*!40000 ALTER TABLE `contactList` DISABLE KEYS */;
+INSERT INTO `contactList` VALUES (1,1,0,1);
+/*!40000 ALTER TABLE `contactList` ENABLE KEYS */;
+UNLOCK TABLES;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

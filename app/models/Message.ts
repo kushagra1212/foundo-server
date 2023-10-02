@@ -38,8 +38,7 @@ class Message {
     offset: number;
   }) {
     let sql = `
-    SELECT * from (SELECT * From ((SELECT * FROM message WHERE ((fk_senderId=${fk_senderId} AND fk_receiverId=${fk_receiverId}) OR (fk_senderId=${fk_senderId} AND fk_receiverId=${fk_receiverId}))) as m LEFT JOIN (SELECT location.latitude,location.longitude,messageLocation.fk_messageId,location.id as locationId FROM location INNER JOIN messageLocation where location.id=messageLocation.fk_locationId) as ml ON m.id=ml.fk_messageId)) as c1 
-    LEFT JOIN contactMessage ON contactMessage.fk_messageId=c1.id ORDER BY createdAt DESC limit ${limit} offset ${offset};`;
+    SELECT * from (SELECT * From ((SELECT * FROM message WHERE ((fk_senderId=${fk_senderId} AND fk_receiverId=${fk_receiverId}) OR (fk_senderId=${fk_receiverId} AND fk_receiverId=${fk_senderId}))) as m LEFT JOIN (SELECT location.latitude,location.longitude,messageLocation.fk_messageId,location.id as locationId FROM location INNER JOIN messageLocation where location.id=messageLocation.fk_locationId) as ml ON m.id=ml.fk_messageId)) as c1 LEFT JOIN contactMessage ON contactMessage.fk_messageId=c1.id ORDER BY createdAt DESC limit ${limit} offset ${offset};`;
     return promisePool.execute(sql) as Promise<RowDataPacket[]>;
   }
 }
