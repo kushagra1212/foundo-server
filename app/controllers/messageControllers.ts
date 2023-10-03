@@ -16,6 +16,10 @@ const addMessage = async (req: Request, res: Response, next: NextFunction) => {
     if (!fk_senderId || !fk_receiverId || !message) {
       throw new ValidationError('Missing required fields');
     }
+    if(fk_senderId===fk_receiverId){
+      throw new ValidationError('Sender and receiver cannot be same');
+    }
+
     const createdMessage = new Message(req.body);
     const [rows, _] = await createdMessage.save();
 
@@ -39,6 +43,10 @@ const addContactMessage = async (
       throw new ValidationError('Missing required fields');
     }
 
+    if(req.body.baseMessage.fk_senderId===req.body.baseMessage.fk_receiverId){
+      throw new ValidationError('Sender and receiver cannot be same');
+    }
+
     connection = await promisePool.getConnection();
     await connection.beginTransaction();
     logger.info('Transaction started');
@@ -48,7 +56,6 @@ const addContactMessage = async (
       fk_user_Id_2: req.body.baseMessage.fk_receiverId,
       chat_enabled: 0,
     }).saveIfNotExist();
-
     const [createdMessage, _] = await new Message(req.body.baseMessage).save();
     const messageId = createdMessage.insertId;
 
