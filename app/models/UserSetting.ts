@@ -51,6 +51,7 @@ class UserSetting {
         )} WHERE fk_userId=?`;
         const params = [...Object.values(userSetting), fk_userId];
         await promisePool.execute(sql, params);
+        console.log(params)
         resolve({  success: true,message:'user setting updated successfully'  });
       } catch (err) {
         logger.error(`user Setting update failed for userId ${fk_userId}`);
