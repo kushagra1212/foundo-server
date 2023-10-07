@@ -40,7 +40,6 @@ const updateUserSettingbyUserId = async (
 ) => {
   const { userId } = req.params;
   try {
-    console.log (req.body,userId)
     const result = await UserSetting.updateUserSettingByUserId({
       userSetting: req.body,
       fk_userId: Number(userId),
