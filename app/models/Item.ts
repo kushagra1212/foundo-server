@@ -48,8 +48,8 @@ class Item {
     itemName,
     description,
     city,
-    latest='1',
-    and = false,
+    latest='0',
+    and = true,
   }) {
     let sql = 'SELECT * FROM item ';
     let validFields = [];

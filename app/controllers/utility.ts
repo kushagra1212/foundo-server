@@ -45,7 +45,7 @@ class ItemManager {
     });
   }
 
-  async getAllItems(query): Promise<any> {
+  async getAllItems(query:any): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
         const { limit, offset } = query;

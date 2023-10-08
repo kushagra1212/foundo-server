@@ -95,7 +95,7 @@ const getItemsbyUserId = async (
       throw new ValidationError('userId is required');
     }
     req.query.userId = userId;
-    const result = await itemManager.getAllItems(req.query);
+    const result = await itemManager.getAllItems({...req.query,latest:'1'});
     return res.status(200).send(result);
   } catch (err) {
     logger.error(err);

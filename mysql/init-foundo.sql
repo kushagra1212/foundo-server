@@ -24,9 +24,6 @@ DROP DATABASE IF EXISTS foundo;
 CREATE DATABASE foundo;
 
 USE foundo;
-SET GLOBAL log_output = "FILE";
-SET GLOBAL general_log_file = "sqllogs.log";
-SET GLOBAL general_log = 'ON';
 --
 -- Table structure for table `user`
 --
@@ -58,7 +55,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (1,'Kushagra','Rathore','kushagrarathore002@gmail.com','$2b$10$/c4ZhKZOK5tw7/LJJHUNAOcxUqzdIck9DB30NDsfCgxb7KbttN/7m','+919764811688',NULL,'https://foundo-1-s3.s3.ap-south-1.amazonaws.com/image/profilePhoto/ae14-id-1.jpeg','451001, Shahpura, Madhya Pradesh, India','2023-01-19 09:02:29',1,0),(2,'John','Doe','Johndoe@example.com','$2b$10$6YQ5vbqdqst90WGfAoHBKudwJjmpLX7fg6jE3543ONfkk2.N9q4y6',NULL,NULL,NULL,NULL,'2023-01-20 07:59:01',0,0),(3,'Jane','Smith','Janesmith@example.com','$2b$10$yNivmoCzu04RwEpXhYa7M.aXIJXSTADb5u9f49Au06LHgIXfil.ba',NULL,NULL,NULL,NULL,'2023-01-20 07:59:26',0,0),(4,'Rohan','Sharma','rohansharma@gmail.com','$2b$10$dBsu4RyU6/X8it8vxYeZe.GFe2VtPgZlLPcc1/glem6ixm1OdGRBO',NULL,NULL,'https://foundo-1-s3.s3.ap-south-1.amazonaws.com/image/tGQp-user-id-4.jpeg','453331, Indore, Indore Division, Madhya Pradesh, India','2023-01-20 08:02:47',0,0),(5,'Priya','Gupta','priyagupta@gmail.com','$2b$10$tNSU/6ucY790.hVf1r0csOj.wcIFP2X.KN4kzjXq5fFpaJEmJgkqO',NULL,NULL,NULL,NULL,'2023-01-20 08:03:19',0,0),(6,'Anjali','Rao','anjalirao@gamil.com','$2b$10$B/a1KuXVwEOfyqiPMPlvbOvhlB/OKJUBgr2bCv9p4XuQ0GxgreZ5W',NULL,NULL,NULL,NULL,'2023-01-20 08:04:01',0,0),(7,'Vikram','Kumar','vikramkumar@gmail.com','$2b$10$VHSiZIBTjDztYx9J2ZAGSOCx27iPnpkjxjkSSbTgeDtvCT1jDYlCq',NULL,NULL,NULL,NULL,'2023-01-20 08:04:22',0,0),(8,'Sachin','Mishra','sachinmishra@gmail.com','$2b$10$6df/5kxL5b4fVI2V2fiITeI2PkcujEvkTitO89cK49/gJYbsBjzly',NULL,NULL,NULL,NULL,'2023-01-20 08:04:56',0,0),(9,'Sonal','Chauhan','sonalchauhan@gmail.com','$2b$10$WTMiFyIrLIXsNTSlVF4mK.rHz97FBK.NADpePCnJnPsBNqXzJHUlu',NULL,NULL,NULL,NULL,'2023-01-20 08:05:23',0,0),(10,'Rajesh','Verma','rajeshverma@gmail.com','$2b$10$mLKwdO4aR4BSC1YnpHPA8OdUMBENhwXyuDJKRLrB32ERQ7m.GabSC',NULL,NULL,NULL,NULL,'2023-01-20 08:05:40',0,0),(11,'Nidhi','Patel','nidhipatel@gmail.com','$2b$10$tbtqvT/v5vtSXgy.rhTWrescTGpCOwUjLO.9HgScpqu7YcZcziYay',NULL,NULL,NULL,NULL,'2023-01-20 08:06:09',0,0),(12,'Aditya','Jain','adityajain@gmail.com','$2b$10$1UsXTnBEsCacrC/zRBFDGuVHPlMnm9Tv/F/0yjXV7cG.RjLaBXyxq',NULL,NULL,NULL,NULL,'2023-01-20 08:06:43',0,0),(13,'Neha','Goyal','nehagoyal@gmail.com','$2b$10$2OuQBut0A7ItIK9OzbiziO8GQf.SZwfSpSSS74FZKkprD.g5xhjjG',NULL,NULL,NULL,NULL,'2023-01-20 08:07:03',0,0);
+INSERT INTO `user` VALUES (1,'Kushagra','Rathore','kushagrarathore002@gmail.com','$2b$10$/c4ZhKZOK5tw7/LJJHUNAOcxUqzdIck9DB30NDsfCgxb7KbttN/7m','+919764811688',NULL,'','451001, Shahpura, Madhya Pradesh, India','2023-01-19 09:02:29',1,0),(2,'John','Doe','Johndoe@example.com','$2b$10$6YQ5vbqdqst90WGfAoHBKudwJjmpLX7fg6jE3543ONfkk2.N9q4y6',NULL,NULL,NULL,NULL,'2023-01-20 07:59:01',0,0),(3,'Jane','Smith','Janesmith@example.com','$2b$10$yNivmoCzu04RwEpXhYa7M.aXIJXSTADb5u9f49Au06LHgIXfil.ba',NULL,NULL,NULL,NULL,'2023-01-20 07:59:26',0,0),(4,'Rohan','Sharma','rohansharma@gmail.com','$2b$10$dBsu4RyU6/X8it8vxYeZe.GFe2VtPgZlLPcc1/glem6ixm1OdGRBO',NULL,NULL,'','453331, Indore, Indore Division, Madhya Pradesh, India','2023-01-20 08:02:47',0,0),(5,'Priya','Gupta','priyagupta@gmail.com','$2b$10$tNSU/6ucY790.hVf1r0csOj.wcIFP2X.KN4kzjXq5fFpaJEmJgkqO',NULL,NULL,NULL,NULL,'2023-01-20 08:03:19',0,0),(6,'Anjali','Rao','anjalirao@gamil.com','$2b$10$B/a1KuXVwEOfyqiPMPlvbOvhlB/OKJUBgr2bCv9p4XuQ0GxgreZ5W',NULL,NULL,NULL,NULL,'2023-01-20 08:04:01',0,0),(7,'Vikram','Kumar','vikramkumar@gmail.com','$2b$10$VHSiZIBTjDztYx9J2ZAGSOCx27iPnpkjxjkSSbTgeDtvCT1jDYlCq',NULL,NULL,NULL,NULL,'2023-01-20 08:04:22',0,0),(8,'Sachin','Mishra','sachinmishra@gmail.com','$2b$10$6df/5kxL5b4fVI2V2fiITeI2PkcujEvkTitO89cK49/gJYbsBjzly',NULL,NULL,NULL,NULL,'2023-01-20 08:04:56',0,0),(9,'Sonal','Chauhan','sonalchauhan@gmail.com','$2b$10$WTMiFyIrLIXsNTSlVF4mK.rHz97FBK.NADpePCnJnPsBNqXzJHUlu',NULL,NULL,NULL,NULL,'2023-01-20 08:05:23',0,0),(10,'Rajesh','Verma','rajeshverma@gmail.com','$2b$10$mLKwdO4aR4BSC1YnpHPA8OdUMBENhwXyuDJKRLrB32ERQ7m.GabSC',NULL,NULL,NULL,NULL,'2023-01-20 08:05:40',0,0),(11,'Nidhi','Patel','nidhipatel@gmail.com','$2b$10$tbtqvT/v5vtSXgy.rhTWrescTGpCOwUjLO.9HgScpqu7YcZcziYay',NULL,NULL,NULL,NULL,'2023-01-20 08:06:09',0,0),(12,'Aditya','Jain','adityajain@gmail.com','$2b$10$1UsXTnBEsCacrC/zRBFDGuVHPlMnm9Tv/F/0yjXV7cG.RjLaBXyxq',NULL,NULL,NULL,NULL,'2023-01-20 08:06:43',0,0),(13,'Neha','Goyal','nehagoyal@gmail.com','$2b$10$2OuQBut0A7ItIK9OzbiziO8GQf.SZwfSpSSS74FZKkprD.g5xhjjG',NULL,NULL,NULL,NULL,'2023-01-20 08:07:03',0,0);
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -304,6 +301,35 @@ INSERT INTO `contactMessage` VALUES (1,1,0,1);
 /*!40000 ALTER TABLE `contactMessage` ENABLE KEYS */;
 UNLOCK TABLES;
 
+
+-- Table structure for table `contactList`
+--
+
+DROP TABLE IF EXISTS `contactList`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `contactList` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `fk_user_Id_1` int NOT NULL,
+  `fk_user_Id_2` int NOT NULL,
+  `chat_enabled` int NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `fk_user_Id_1` (`fk_user_Id_1`),
+  KEY `fk_user_Id_2` (`fk_user_Id_2`),
+  CONSTRAINT `contactList_ibfk_1` FOREIGN KEY (`fk_user_Id_1`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `contactList_ibfk_2` FOREIGN KEY (`fk_user_Id_2`) REFERENCES `user` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 ;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `contactList`
+--
+
+LOCK TABLES `contactList` WRITE;
+/*!40000 ALTER TABLE `contactList` DISABLE KEYS */;
+INSERT INTO `contactList` VALUES (1,1,0,1);
+/*!40000 ALTER TABLE `contactList` ENABLE KEYS */;
+UNLOCK TABLES;
 
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
