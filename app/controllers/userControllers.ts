@@ -7,6 +7,7 @@ import {
   createToken,
   isValidCountryCode,
   isValidPhoneNumber,
+  isValidPhoneNumberWithCountryCodeWithSign,
   sendTransactionalEmail,
 } from '../utils/index';
 const jwtSecret = process.env.JWT_SECRET;
@@ -213,7 +214,7 @@ const updateUserById = async (
 
     /* Phone Number Update */
 
-    const isNewPhoneNoValid = isValidPhoneNumber(newPhoneNo);
+    const isNewPhoneNoValid = isValidPhoneNumberWithCountryCodeWithSign(newPhoneNo);
 
     const isPhoneNoExistAndIsNotValid = newPhoneNo && !isNewPhoneNoValid;
     if (isPhoneNoExistAndIsNotValid) {
@@ -291,7 +292,7 @@ const updateUserById = async (
       logger.error(err.message);
       throw new UpdateError('user is not updated');
     }
-  } catch (err: any) {
+  } catch (err: any) {  
     logger.error(err);
     next(err);
   }

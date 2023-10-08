@@ -47,6 +47,13 @@ export const isValidCountryCode = (countryCode: string): boolean => {
   const regex = /^\d{1,4}$/;
   return regex.test(countryCode);
 }
+
+export const isValidPhoneNumberWithCountryCodeWithSign = (phoneNumber: string): boolean => {
+  if(!phoneNumber) return false;
+  const regex = /^\+\d{1,4}\d{10}$/;
+  return regex.test(phoneNumber);
+}
+
 export const isBase64 = str => {
   if (str === '' || str.trim() === '') {
     return false;

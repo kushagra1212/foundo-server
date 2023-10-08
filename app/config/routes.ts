@@ -42,6 +42,7 @@ export const Routes = {
       addContactMessage: '/contact',
       getContactList: '/contact-list/:fk_user_Id_1/:limit/:offset',
       getMessages: '/:fk_senderId/:fk_receiverId/:limit/:offset',
+      getContact: '/:fk_user_Id_1/contact/:fk_user_Id_2',
       addMessage: '/',
     },
     appAuth:{

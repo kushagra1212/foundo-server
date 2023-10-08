@@ -46,6 +46,9 @@ const addContactMessage = async (
     if(req.body.baseMessage.fk_senderId===req.body.baseMessage.fk_receiverId){
       throw new ValidationError('Sender and receiver cannot be same');
     }
+    if(!req.body.baseMessage.message || req.body.baseMessage.message===''){
+      throw new ValidationError('Message cannot be empty');
+    }
 
     connection = await promisePool.getConnection();
     await connection.beginTransaction();
@@ -137,9 +140,30 @@ const getMessages = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+const getContact = async (req: Request, res: Response, next: NextFunction) => {
+  try {
+    const { fk_user_Id_1, fk_user_Id_2 } = req.params;
+    if (!fk_user_Id_1 || !fk_user_Id_2) {
+      throw new ValidationError('Missing required fields');
+    }
+    const [rows, _] = await ContactList.getContact({
+      fk_user_Id_1: Number(fk_user_Id_1),
+      fk_user_Id_2: Number(fk_user_Id_2),
+    });
+    if(rows.length===0){
+      throw new BadRequestError('Not a contact');
+    }
+
+    res.status(200).send({contact:rows[0],success:true});
+  } catch (err) {
+    logger.error(err);
+    next(err);
+  }
+}
+
 export default {
   addMessage,
   addContactMessage,
   getContactList,
-  getMessages,
+  getMessages,getContact
 };

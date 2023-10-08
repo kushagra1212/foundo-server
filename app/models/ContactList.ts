@@ -73,7 +73,38 @@ class ContactList {
     ON cl.fk_user_Id_1 = u.id OR cl.fk_user_Id_2 = u.id
     WHERE fk_userId != ?
     LIMIT ${limit} OFFSET ${offset};`;
-    return promisePool.execute(sql, [fk_user_Id_1,fk_user_Id_1,fk_user_Id_1]) as Promise<RowDataPacket[]>;
+    return promisePool.execute(sql, [
+      fk_user_Id_1,
+      fk_user_Id_1,
+      fk_user_Id_1,
+    ]) as Promise<RowDataPacket[]>;
+  }
+
+  static async getContact({
+    fk_user_Id_1,
+    fk_user_Id_2,
+  }: {
+    fk_user_Id_1: number;
+    fk_user_Id_2: number;
+  }) {
+    let sql = `    SELECT cl.*, u.*, COUNT(*) OVER () as total_count
+    FROM (
+      SELECT * 
+      FROM contactList 
+      WHERE (fk_user_Id_1 = ? AND fk_user_Id_2 = ?) OR (fk_user_Id_1 = ? AND fk_user_Id_2 = ?)
+    ) AS cl
+    INNER JOIN (
+      SELECT *, id as fk_userId 
+      FROM user
+    ) AS u
+    ON (cl.fk_user_Id_1 = u.fk_userId OR cl.fk_user_Id_2 = u.fk_userId) AND (u.fk_userId=?)`;
+    return promisePool.execute(sql, [
+      fk_user_Id_1,
+      fk_user_Id_2,
+      fk_user_Id_2,
+      fk_user_Id_1,
+      fk_user_Id_2,
+    ]) as Promise<RowDataPacket[]>;
   }
 }
 
