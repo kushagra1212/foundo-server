@@ -24,6 +24,7 @@ import {
   UpdateError,
   ValidationError,
 } from '../custom-errors/customErrors';
+import { sendFcmMessage } from '../firebase/firebase';
 //create user | POST
 const signupUser = async (req: Request, res: Response, next: NextFunction) => {
   const { firstName, lastName, email, password } = req.body;
@@ -72,7 +73,7 @@ const signupUser = async (req: Request, res: Response, next: NextFunction) => {
 
 //SignIn user
 const signinUser = async (req: Request, res: Response, next: NextFunction) => {
-  const { email, password } = req.body;
+  const { email, password, pushNotificationToken } = req.body;
   try {
     if (!email || !password) {
       logger.error(`email and password are required`);
@@ -96,6 +97,20 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
       maxAgeOfToken,
     });
     logger.info(`User ${user[0].id} logged in`);
+    logger.info('Sending FCM Notification'+ pushNotificationToken);
+    sendFcmMessage({
+      message: {
+        token:pushNotificationToken,
+        notification: {
+          title: 'Hii Kushagra From Foundo',
+          body: 'This is an FCM notification message!',
+        },
+        data: {
+          title: 'Data of message in FCM Notification',
+          body: 'This is an FCM notification message!',
+        },
+      },
+    });
     res.status(200).send({
       jwtToken: token,
       message: 'successfully loggedin',
@@ -214,7 +229,8 @@ const updateUserById = async (
 
     /* Phone Number Update */
 
-    const isNewPhoneNoValid = isValidPhoneNumberWithCountryCodeWithSign(newPhoneNo);
+    const isNewPhoneNoValid =
+      isValidPhoneNumberWithCountryCodeWithSign(newPhoneNo);
 
     const isPhoneNoExistAndIsNotValid = newPhoneNo && !isNewPhoneNoValid;
     if (isPhoneNoExistAndIsNotValid) {
@@ -292,7 +308,7 @@ const updateUserById = async (
       logger.error(err.message);
       throw new UpdateError('user is not updated');
     }
-  } catch (err: any) {  
+  } catch (err: any) {
     logger.error(err);
     next(err);
   }

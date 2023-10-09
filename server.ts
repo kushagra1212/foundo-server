@@ -13,6 +13,7 @@ import pictureRoutes from './app/routes/pictureRoutes';
 import rateLimit from 'express-rate-limit';
 import mysqlErrorHandler from './app/middleware/mysqlError';
 import { _errorHandler } from './app/middleware/errorHandler';
+import { sendFcmMessage } from './app/firebase/firebase';
 const PORT = process.env.PORT || 8890;
 //limiter object with  options
 const limiter = rateLimit({
@@ -38,7 +39,7 @@ app.use(
 app.use(cookieParser());
 // application/json
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true,  limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // starting the app
 export const server = app.listen(PORT, () => {
@@ -47,6 +48,7 @@ export const server = app.listen(PORT, () => {
 
 // Handling Routes
 // base Route
+
 app.get('/', limiter, (req, res) => {
   res.send({ message: 'You hit the base route', success: true });
 });
