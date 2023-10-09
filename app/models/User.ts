@@ -35,6 +35,11 @@ class User {
     return promisePool.execute(sql, [id]) as Promise<RowDataPacket[]>;
   }
 
+  static findAll() {
+    let sql = `SELECT * FROM user`;
+    return promisePool.execute(sql) as Promise<RowDataPacket[]>;
+  }
+
   static updateUser({ user, id }: { user: UserType; id: number }) {
     let sql = `UPDATE user SET address=?,phoneNo=?,profilePhoto=?, countryCode=?, otp=?, isVerified=?, pushNotificationToken=? WHERE id=?`;
 

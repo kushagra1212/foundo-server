@@ -7,7 +7,6 @@ import logger from '../logger/logger';
 import Location from '../models/Location';
 import MessageLocation from '../models/MessageLocation';
 import ContactMessage from '../models/ContactMessage';
-import { log } from 'console';
 import ContactList from '../models/ContactList';
 
 const addMessage = async (req: Request, res: Response, next: NextFunction) => {

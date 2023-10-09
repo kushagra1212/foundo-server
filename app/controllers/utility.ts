@@ -9,9 +9,10 @@ import ItemLocation from '../models/ItemLocation';
 import Location from '../models/Location';
 import Item from '../models/Item';
 import logger from '../logger/logger';
+import ItemMatcher from '../ai/matchingLogic';
 
 class ItemManager {
-  async getItemDetails(id: any): Promise<any> {
+  static async getItemDetails(id: any): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
         if (!id) {
@@ -45,7 +46,7 @@ class ItemManager {
     });
   }
 
-  async getAllItems(query:any): Promise<any> {
+  static async getAllItems(query: any): Promise<any> {
     return new Promise(async (resolve, reject) => {
       try {
         const { limit, offset } = query;
@@ -66,7 +67,7 @@ class ItemManager {
     });
   }
 
-  async addItem(body) {
+  static async addItem(body) {
     return new Promise(async (resolve, reject) => {
       let connection;
       try {
@@ -177,7 +178,7 @@ class ItemManager {
     });
   }
 
-  async getItemsByPostIds(postIds: number[]) {
+  static async getItemsByPostIds(postIds: number[]) {
     return new Promise(async (resolve, reject) => {
       try {
         const [itemResult, _] = await Item.findItemsByPostIds(postIds);
@@ -193,6 +194,35 @@ class ItemManager {
       }
     });
   }
+
+  static async getMatchedItems(itemId: number):Promise<any[]> {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const result = await ItemManager.getItemDetails(itemId);
+        const { description } = result.item;
+        const { items } = await ItemManager.getAllItems({
+          offset: '0',
+          limit: '100',
+        });
+        let foundItems = [];
+
+        for (let i = 0; i < items.length; i++) {
+          if (items[i].isFounded === 1) {
+            foundItems.push(items[i]);
+          }
+        }
+        const itemMatcher = new ItemMatcher();
+        const matches = itemMatcher.matchItems({
+          lostItem: result.item,
+          foundItems,
+        });
+
+        resolve(matches);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }
 }
 
-export default new ItemManager();
+export default ItemManager;
