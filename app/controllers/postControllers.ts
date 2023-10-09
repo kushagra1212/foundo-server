@@ -7,7 +7,10 @@ import logger from '../logger/logger';
 import Item from '../models/Item';
 import { NotFoundError, ValidationError } from '../custom-errors/customErrors';
 import ItemManager from './utility';
-import { sendMatchedItemsPushNotification } from '../ai/notification';
+import {
+  sendMatchedItemsPushNotification,
+  sendMatchedItemsPushNotificationForSingleItem,
+} from '../ai/notification';
 const itemMatcher = new ItemMatcher();
 
 const getItemByItemId = async (
@@ -28,9 +31,12 @@ const getItemByItemId = async (
 const addItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const result = await ItemManager.addItem(req.body);
-    const {isFounded} = req.body;
-    if(!isFounded){
-      sendMatchedItemsPushNotification();
+    const { isFounded } = req.body;
+    if (!isFounded && result?.itemId && req.body?.fk_userId) {
+      sendMatchedItemsPushNotificationForSingleItem(
+        req.body.fk_userId,
+        result.itemId,
+      );
     }
     return res.status(201).send(result);
   } catch (err) {
@@ -158,7 +164,6 @@ const getMatchesByItemId = async (
 
     const matches = await ItemManager.getMatchedItems(Number(itemId));
     res.status(200).send({ matches });
-
   } catch (err) {
     logger.error(err);
     next(err);

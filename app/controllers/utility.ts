@@ -67,7 +67,7 @@ class ItemManager {
     });
   }
 
-  static async addItem(body) {
+  static async addItem(body):Promise<any> {
     return new Promise(async (resolve, reject) => {
       let connection;
       try {
