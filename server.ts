@@ -13,7 +13,10 @@ import pictureRoutes from './app/routes/pictureRoutes';
 import rateLimit from 'express-rate-limit';
 import mysqlErrorHandler from './app/middleware/mysqlError';
 import { _errorHandler } from './app/middleware/errorHandler';
-import { sendFcmMessage } from './app/firebase/firebase';
+import { sendFcmMessage, sendFcmMessageLegacy } from './app/firebase/firebase';
+import schedule from 'node-schedule';
+import { sendMatchedItemsPushNotification } from './app/ai/notification';
+import logger from './app/logger/logger';
 const PORT = process.env.PORT || 8890;
 //limiter object with  options
 const limiter = rateLimit({
@@ -49,6 +52,18 @@ export const server = app.listen(PORT, () => {
 // Handling Routes
 // base Route
 
+app.post('/test/message', async (req, res) => {
+  const fcmMessage = req.body;
+
+  try {
+    const data = await sendFcmMessageLegacy(fcmMessage);
+    res.status(200).send({ message: 'Message sent', success: true ,data:data});
+  } catch (err) {
+    logger.info(err);
+    res.status(500).send({ message: 'Message failed to send', success: false });
+  }
+});
+
 app.get('/', limiter, (req, res) => {
   res.send({ message: 'You hit the base route', success: true });
 });
@@ -70,6 +85,11 @@ app.use('/v1/pictures', limiter, pictureRoutes);
 
 // Messages Routes
 app.use('/v1/messages', limiter, messageRoutes);
+
+// Schedule push notifications to be sent every 10 seconds (adjust the cron schedule as needed)
+const job = schedule.scheduleJob('*/10 * * * * *', () => {
+  sendMatchedItemsPushNotification();
+});
 
 // Error Handling
 
