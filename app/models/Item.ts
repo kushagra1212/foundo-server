@@ -50,6 +50,19 @@ class Item {
     city,
     latest='0',
     and = true,
+  }:{
+    limit: number,
+    offset: number,
+    userId?: number,
+    founded?: number,
+    category?: string,
+    brand?: string,
+    color?: string,
+    itemName?: string,
+    description?: string,
+    city?: string,
+    latest?: string,
+    and?: boolean
   }) {
     let sql = 'SELECT * FROM item ';
     let validFields = [];
