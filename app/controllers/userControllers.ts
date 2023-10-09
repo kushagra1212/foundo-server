@@ -3,7 +3,13 @@ import UserSetting from '../models/UserSetting';
 import promisePool from '../db';
 const salt = process.env.SALT as string;
 import bcrypt from 'bcrypt';
-import { createToken, sendTransactionalEmail } from '../utils/index';
+import {
+  createToken,
+  isValidCountryCode,
+  isValidPhoneNumber,
+  isValidPhoneNumberWithCountryCodeWithSign,
+  sendTransactionalEmail,
+} from '../utils/index';
 const jwtSecret = process.env.JWT_SECRET;
 const maxAgeOfToken = 3 * 24 * 60 * 60; // 3 days
 import S3Image from '../s3/S3image';
@@ -18,6 +24,8 @@ import {
   UpdateError,
   ValidationError,
 } from '../custom-errors/customErrors';
+import { sendFcmMessage } from '../firebase/firebase';
+import { sendPushNotification } from '../firebase/expo-push-notify';
 //create user | POST
 const signupUser = async (req: Request, res: Response, next: NextFunction) => {
   const { firstName, lastName, email, password } = req.body;
@@ -66,7 +74,7 @@ const signupUser = async (req: Request, res: Response, next: NextFunction) => {
 
 //SignIn user
 const signinUser = async (req: Request, res: Response, next: NextFunction) => {
-  const { email, password } = req.body;
+  const { email, password, pushNotificationToken } = req.body;
   try {
     if (!email || !password) {
       logger.error(`email and password are required`);
@@ -90,6 +98,17 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
       maxAgeOfToken,
     });
     logger.info(`User ${user[0].id} logged in`);
+    logger.info(`Sending FCM Notification`);
+    if (pushNotificationToken !== undefined) {
+      await User.updateUser({
+        user: {
+          ...user[0],
+          pushNotificationToken,
+        },
+        id: user[0].id,
+      });
+    }
+
     res.status(200).send({
       jwtToken: token,
       message: 'successfully loggedin',
@@ -109,13 +128,13 @@ const deleteUserById = async (
   res: Response,
   next: NextFunction,
 ) => {
-  const { id } = req.params;
-  if (!id) {
-    logger.error(`id is required`);
-
-    throw new BadRequestError('userId is required');
-  }
   try {
+    const { id } = req.params;
+    if (!id) {
+      logger.error(`id is required`);
+
+      throw new BadRequestError('userId is required');
+    }
     const [userResult, __] = await User.findUser({ id: Number(id) });
 
     if (!userResult || !userResult.length) {
@@ -144,11 +163,11 @@ const getUserById = async (req: Request, res: Response, next: NextFunction) => {
 
   const userIdWhoMadeReq = reqJwt.jwt.id;
 
-  if (!id) {
-    logger.error(`userId is required`);
-    throw new ValidationError('userId is required');
-  }
   try {
+    if (!id) {
+      logger.error(`userId is required`);
+      throw new ValidationError('userId is required');
+    }
     const [userResult, __] = await User.findUser({ id: Number(id) });
     const [userSettingResult, ___] = await UserSetting.findUserSetting({
       fk_userId: Number(id),
@@ -160,12 +179,13 @@ const getUserById = async (req: Request, res: Response, next: NextFunction) => {
       throw new NotFoundError('user not found');
     }
     let user = userResult[0];
-    if (Number(userIdWhoMadeReq) !== user.id) {
+    if (userSetting && user.id !== userIdWhoMadeReq) {
       if (!userSetting.displayPhoneNo) user = { ...user, phoneNo: null };
       if (!userSetting.displayAddress) user = { ...user, address: null };
       if (!userSetting.displayProfilePhoto)
         user = { ...user, profilePhoto: null };
     }
+
     logger.info(`user ${id} found`);
     res.status(200).send({ user, success: true });
   } catch (err: any) {
@@ -175,22 +195,28 @@ const getUserById = async (req: Request, res: Response, next: NextFunction) => {
 
 // Update User by Id
 const updateUserById = async (
-  req: Request,
+  req: RequestWithJwt,
   res: Response,
   next: NextFunction,
 ) => {
+  const idFromJwt = req.jwt.id;
   const { id: userId } = req.params;
   const newProfilePhoto = req.body.profilePhoto;
   const newAddress = req.body.address;
   const newPhoneNo = req.body.phoneNo;
   const newCountryCode = req.body.countryCode;
 
-  if (!userId) {
-    logger.error(`userId is required`);
-    throw new ValidationError('userId is required');
-  }
-
   try {
+    if (!userId) {
+      logger.error(`userId is required`);
+      throw new ValidationError('userId is required');
+    }
+    if (idFromJwt !== Number(userId)) {
+      logger.error(
+        `user ${idFromJwt} is not authorized to update user ${userId}`,
+      );
+      throw new BadRequestError(`you are not authorized to update user`);
+    }
     const [userResult, __] = await User.findUser({ id: Number(userId) });
     if (!userResult || !userResult.length) {
       logger.error(`user not found with id ${userId}`);
@@ -199,22 +225,66 @@ const updateUserById = async (
 
     let user = userResult[0];
 
-    if (newPhoneNo && user.phoneNo !== newPhoneNo) user.phoneNo = newPhoneNo;
-    if (newCountryCode && user.countryCode !== newCountryCode)
-      user.countryCode = newCountryCode;
-    if (newProfilePhoto) {
-      const s3ImageObj = new S3Image();
+    /* Phone Number Update */
 
-      await s3ImageObj.delete(user.profilePhoto);
-      const location = await s3ImageObj.upload({
-        id: userId,
-        base64: newProfilePhoto,
-        folderName: 'profilePhoto',
-      });
-      user.profilePhoto = location;
+    const isNewPhoneNoValid =
+      isValidPhoneNumberWithCountryCodeWithSign(newPhoneNo);
+
+    const isPhoneNoExistAndIsNotValid = newPhoneNo && !isNewPhoneNoValid;
+    if (isPhoneNoExistAndIsNotValid) {
+      logger.error(`invalid phone number`);
+      throw new ValidationError('invalid phone number');
+    }
+    const isPhoneNoExistAndIsValid = newPhoneNo && isNewPhoneNoValid;
+    if (isPhoneNoExistAndIsValid && user.phoneNo === newPhoneNo) {
+      logger.error(`phone number already exists`);
+      throw new ValidationError('phone number already exists');
     }
 
-    if (newAddress && user.address !== newAddress) user.address = newAddress;
+    if (isPhoneNoExistAndIsValid && user.phoneNo !== newPhoneNo) {
+      user.phoneNo = newPhoneNo;
+    }
+
+    /* Country Code Update */
+
+    const isCountryCodeValid = isValidCountryCode(newCountryCode);
+    const isCountryCodeExistAndIsNotValid =
+      newCountryCode && !isCountryCodeValid;
+    if (isCountryCodeExistAndIsNotValid) {
+      logger.error(`invalid country code`);
+      throw new ValidationError('invalid country code');
+    }
+
+    const isCountryCodeExistAndIsValid = newCountryCode && isCountryCodeValid;
+
+    if (isCountryCodeExistAndIsValid) {
+      user.countryCode = newCountryCode;
+    }
+
+    /* Profile Photo Update */
+
+    if (newProfilePhoto) {
+      try {
+        const s3ImageObj = new S3Image();
+        await s3ImageObj.delete(user.profilePhoto);
+        const location = await s3ImageObj.upload({
+          id: userId,
+          base64: newProfilePhoto,
+          folderName: 'profilePhoto',
+        });
+        user.profilePhoto = location;
+      } catch (err) {
+        logger.error(err.message);
+      }
+    }
+
+    /* Address Update */
+
+    const isAddressExistAndIsValid = newAddress && newAddress.length > 0;
+
+    if (isAddressExistAndIsValid) {
+      user.address = newAddress;
+    }
 
     try {
       user = {

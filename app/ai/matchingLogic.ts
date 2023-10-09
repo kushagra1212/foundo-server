@@ -73,6 +73,7 @@ class ItemMatcher {
 
     return matches;
   }
+  
 }
 
 export default ItemMatcher;

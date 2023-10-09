@@ -37,10 +37,33 @@ class Message {
     limit: number;
     offset: number;
   }) {
+    
+
     let sql = `
-    SELECT * from (SELECT * From ((SELECT * FROM message WHERE ((fk_senderId=${fk_senderId} AND fk_receiverId=${fk_receiverId}) OR (fk_senderId=${fk_senderId} AND fk_receiverId=${fk_receiverId}))) as m LEFT JOIN (SELECT location.latitude,location.longitude,messageLocation.fk_messageId,location.id as locationId FROM location INNER JOIN messageLocation where location.id=messageLocation.fk_locationId) as ml ON m.id=ml.fk_messageId)) as c1 
-    LEFT JOIN contactMessage ON contactMessage.fk_messageId=c1.id ORDER BY createdAt DESC limit ${limit} offset ${offset};`;
-    return promisePool.execute(sql) as Promise<RowDataPacket[]>;
+    SELECT c1.*, COUNT(*) OVER () as total_count
+    FROM (
+      SELECT m.*, ml.latitude, ml.longitude, ml.locationId, m.id as contactMessageId
+      FROM (
+        SELECT *
+        FROM message
+        WHERE ((fk_senderId=? AND fk_receiverId=?)
+               OR (fk_senderId=? AND fk_receiverId=?))
+      ) as m
+      LEFT JOIN (
+        SELECT location.latitude, location.longitude, messageLocation.fk_messageId, location.id as locationId
+        FROM location
+        INNER JOIN messageLocation
+        ON location.id = messageLocation.fk_locationId
+      ) as ml
+      ON m.id = ml.fk_messageId
+    ) as c1
+    LEFT JOIN contactMessage
+    ON contactMessage.fk_messageId = c1.id
+    ORDER BY c1.createdAt DESC
+    LIMIT ${limit}
+    OFFSET ${offset}
+    `;
+    return promisePool.execute(sql,[fk_senderId,fk_receiverId,fk_receiverId,fk_senderId]) as Promise<RowDataPacket[]>;
   }
 }
 

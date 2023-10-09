@@ -45,30 +45,15 @@ class UserSetting {
     fk_userId: number;
   }) {
     return new Promise(async (resolve, reject) => {
-      let connection;
       try {
-        connection = await promisePool.getConnection();
-        await connection.beginTransaction();
-
         let sql = `UPDATE userSetting SET ${getSETQuery(
-          userSetting,
-        )} WHERE fk_userId=?; `;
-
+          userSetting
+        )} WHERE fk_userId=?`;
         const params = [...Object.values(userSetting), fk_userId];
-        await connection.execute(sql, params);
-
-        sql = `SELECT * FROM userSetting WHERE fk_userId=?`;
-
-        const [userSettingResult, __] = await connection.execute(sql, [
-          fk_userId,
-        ]);
-
-        await connection.commit();
-        await connection.release();
-        resolve(userSettingResult[0]);
+        await promisePool.execute(sql, params);
+        console.log(params)
+        resolve({  success: true,message:'user setting updated successfully'  });
       } catch (err) {
-        if (connection) await connection.rollback();
-        await connection.release();
         logger.error(`user Setting update failed for userId ${fk_userId}`);
         reject(err);
       }

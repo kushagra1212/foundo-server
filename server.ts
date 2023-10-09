@@ -13,6 +13,10 @@ import pictureRoutes from './app/routes/pictureRoutes';
 import rateLimit from 'express-rate-limit';
 import mysqlErrorHandler from './app/middleware/mysqlError';
 import { _errorHandler } from './app/middleware/errorHandler';
+import { sendFcmMessage, sendFcmMessageLegacy } from './app/firebase/firebase';
+import schedule from 'node-schedule';
+import { sendMatchedItemsPushNotification } from './app/ai/notification';
+import logger from './app/logger/logger';
 const PORT = process.env.PORT || 8890;
 //limiter object with  options
 const limiter = rateLimit({
@@ -38,7 +42,7 @@ app.use(
 app.use(cookieParser());
 // application/json
 app.use(express.json({ limit: '50mb' }));
-app.use(express.urlencoded({ extended: true,  limit: '50mb' }));
+app.use(express.urlencoded({ extended: true, limit: '50mb' }));
 
 // starting the app
 export const server = app.listen(PORT, () => {
@@ -47,6 +51,19 @@ export const server = app.listen(PORT, () => {
 
 // Handling Routes
 // base Route
+
+app.post('/test/message', async (req, res) => {
+  const fcmMessage = req.body;
+
+  try {
+    const data = await sendFcmMessageLegacy(fcmMessage);
+    res.status(200).send({ message: 'Message sent', success: true ,data:data});
+  } catch (err) {
+    logger.info(err);
+    res.status(500).send({ message: 'Message failed to send', success: false });
+  }
+});
+
 app.get('/', limiter, (req, res) => {
   res.send({ message: 'You hit the base route', success: true });
 });
@@ -69,6 +86,10 @@ app.use('/v1/pictures', limiter, pictureRoutes);
 // Messages Routes
 app.use('/v1/messages', limiter, messageRoutes);
 
+// Schedule push notifications to be sent every 24 hours (at midnight)
+const job = schedule.scheduleJob('0 0 * * *', () => {
+  sendMatchedItemsPushNotification();
+});
 // Error Handling
 
 // middleware for handling mysql errors

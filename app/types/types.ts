@@ -10,6 +10,7 @@ export interface RequestWithJwt extends Request {
 }
 
 export type UserType = {
+  id?: number;
   firstName: string;
   lastName: string;
   email: string;
@@ -20,6 +21,7 @@ export type UserType = {
   countryCode?: string;
   otp?: string | number;
   isVerified?: number;
+  pushNotificationToken?: string;
 };
 
 export type UserSettingType = {

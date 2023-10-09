@@ -49,6 +49,12 @@ jobs:
           echo "JWT_ALGORITHM=${{ secrets.JWT_ALGORITHM }}" >> .env
           echo "PORT=${{ secrets.PORT }}" >> .env
           echo "TEST_JWT_TOKEN=${{ secrets.TEST_JWT_TOKEN }}" >> .env
+          echo "FIREBASE_PROJECT_ID=${{ secrets.FIREBASE_PROJECT_ID }}" >> .env
+          echo "FIREBASE_PRIVATE_KEY=${{ secrets.FIREBASE_PRIVATE_KEY }}" >> .env
+          echo "FIREBASE_CLIENT_EMAIL=${{ secrets.FIREBASE_CLIENT_EMAIL }}" >> .env
+          echo "FIREBASE_FCM_SERVICE_KEY_LEGACY=${{ secrets.FIREBASE_FCM_SERVICE_KEY_LEGACY }}" >> .env
+          echo "EXPO_PROJECT_SLUG=${{ secrets.EXPO_PROJECT_SLUG }}" >> .env
+          echo "EXPO_USERNAME=${{ secrets.EXPO_USERNAME }}" >> .env
 
       - name: Pull Vercel Environment Information
         run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
@@ -57,4 +63,4 @@ jobs:
         run: vercel build --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
       
       - name: Deploy Project Artifacts to Vercel
-        run: vercel deploy --prod --prebuilt --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}
+        run: vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN_FOUNDO_SERVER }}

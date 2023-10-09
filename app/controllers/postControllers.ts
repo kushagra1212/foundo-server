@@ -1,12 +1,16 @@
 import ItemLocation from '../models/ItemLocation';
 import ItemPicture from '../models/ItemPicture';
 import promisePool from '../db';
-import itemManager from './utility';
 import ItemMatcher from '../ai/matchingLogic';
 import { NextFunction, Request, Response } from 'express';
 import logger from '../logger/logger';
 import Item from '../models/Item';
 import { NotFoundError, ValidationError } from '../custom-errors/customErrors';
+import ItemManager from './utility';
+import {
+  sendMatchedItemsPushNotification,
+  sendMatchedItemsPushNotificationForSingleItem,
+} from '../ai/notification';
 const itemMatcher = new ItemMatcher();
 
 const getItemByItemId = async (
@@ -16,7 +20,7 @@ const getItemByItemId = async (
 ) => {
   const { id } = req.params;
   try {
-    const result = await itemManager.getItemDetails(id);
+    const result = await ItemManager.getItemDetails(id);
     return res.status(200).send(result);
   } catch (err) {
     logger.error(err);
@@ -26,7 +30,14 @@ const getItemByItemId = async (
 
 const addItem = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await itemManager.addItem(req.body);
+    const result = await ItemManager.addItem(req.body);
+    const { isFounded } = req.body;
+    if (!isFounded && result?.itemId && req.body?.fk_userId) {
+      sendMatchedItemsPushNotificationForSingleItem(
+        req.body.fk_userId,
+        result.itemId,
+      );
+    }
     return res.status(201).send(result);
   } catch (err) {
     logger.error(err);
@@ -95,7 +106,7 @@ const getItemsbyUserId = async (
       throw new ValidationError('userId is required');
     }
     req.query.userId = userId;
-    const result = await itemManager.getAllItems(req.query);
+    const result = await ItemManager.getAllItems({ ...req.query, latest: '1' });
     return res.status(200).send(result);
   } catch (err) {
     logger.error(err);
@@ -105,7 +116,7 @@ const getItemsbyUserId = async (
 
 const getItems = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const result = await itemManager.getAllItems(req.query);
+    const result = await ItemManager.getAllItems(req.query);
     return res.status(200).send(result);
   } catch (err) {
     logger.error(err);
@@ -150,24 +161,8 @@ const getMatchesByItemId = async (
 ) => {
   try {
     const { itemId } = req.params;
-    const result = await itemManager.getItemDetails(itemId);
-    const { description } = result.item;
-    const { items } = await itemManager.getAllItems({
-      offset: '0',
-      limit: '100',
-    });
-    let foundItems = [];
 
-    for (let i = 0; i < items.length; i++) {
-      if (items[i].isFounded === 1) {
-        foundItems.push(items[i]);
-      }
-    }
-    const matches = itemMatcher.matchItems({
-      lostItem: result.item,
-      foundItems,
-    });
-
+    const matches = await ItemManager.getMatchedItems(Number(itemId));
     res.status(200).send({ matches });
   } catch (err) {
     logger.error(err);
@@ -175,6 +170,22 @@ const getMatchesByItemId = async (
   }
 };
 
+const getPostsByPostIds = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    if (!req.body.postIds) {
+      throw new ValidationError('postIds is required');
+    }
+    const result = await ItemManager.getItemsByPostIds(req.body.postIds);
+    res.status(200).send(result);
+  } catch (err) {
+    logger.error(err);
+    next(err);
+  }
+};
 
 export default {
   getItemByItemId,
@@ -185,4 +196,5 @@ export default {
   getItems,
   getItemsBySearchString,
   getMatchesByItemId,
+  getPostsByPostIds,
 };

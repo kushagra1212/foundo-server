@@ -21,6 +21,13 @@ router.get(
   messageControllers.getMessages,
 );
 
+/* Is A Contact | GET */
+router.get(
+  Routes.messages.getContact,
+  auth,
+  messageControllers.getContact,
+);
+
 /* Add Message | POST */
 router.post(Routes.messages.addMessage, auth, messageControllers.addMessage);
 

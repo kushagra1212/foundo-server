@@ -1,10 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import UserSetting from '../models/UserSetting';
 import logger from '../logger/logger';
-import {
-  NotFoundError,
-  ValidationError,
-} from '../custom-errors/customErrors';
+import { NotFoundError, ValidationError } from '../custom-errors/customErrors';
+import { RequestWithJwt } from '../types/types';
 
 const getUserSettingByUserId = async (
   req: Request,
@@ -12,11 +10,11 @@ const getUserSettingByUserId = async (
   next: NextFunction,
 ) => {
   const { userId } = req.params;
-  if (!userId) {
-    logger.error('userId is required');
-    throw new ValidationError('userId is required');
-  }
   try {
+    if (!userId) {
+      logger.error('userId is required');
+      throw new ValidationError('userId is required');
+    }
     const [userSettingResult, __] = await UserSetting.findUserSetting({
       fk_userId: Number(userId),
     });
@@ -34,22 +32,32 @@ const getUserSettingByUserId = async (
 };
 
 const updateUserSettingbyUserId = async (
-  req: Request,
+  req: RequestWithJwt,
   res: Response,
   next: NextFunction,
 ) => {
   const { userId } = req.params;
+  const idFromJwt = req.jwt.id;
+  
   try {
-    const userSettingResult = await UserSetting.updateUserSettingByUserId({
+
+    if (!userId) {
+      logger.error('userId is required');
+      throw new ValidationError('userId is required');
+    }
+
+    if (Number(idFromJwt) !== Number(userId)) {
+      logger.error('userId is not matching with jwt id');
+      throw new ValidationError('userId is not matching with jwt id');
+    }
+
+    const result = await UserSetting.updateUserSettingByUserId({
       userSetting: req.body,
       fk_userId: Number(userId),
     });
 
     logger.info(`user Setting updated for userId ${userId}`);
-    return res
-      .status(200)
-      .send({ userSetting: userSettingResult, success: true });
-
+    return res.status(200).send(result);
   } catch (err) {
     logger.error(err);
     next(err);
