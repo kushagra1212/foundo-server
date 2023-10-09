@@ -46,8 +46,8 @@ class Message {
       FROM (
         SELECT *
         FROM message
-        WHERE ((fk_senderId = ${fk_senderId} AND fk_receiverId = ${fk_receiverId})
-               OR (fk_senderId = ${fk_receiverId} AND fk_receiverId = ${fk_senderId}))
+        WHERE ((fk_senderId=? AND fk_receiverId=?)
+               OR (fk_senderId=? AND fk_receiverId=?))
       ) as m
       LEFT JOIN (
         SELECT location.latitude, location.longitude, messageLocation.fk_messageId, location.id as locationId
@@ -63,7 +63,7 @@ class Message {
     LIMIT ${limit}
     OFFSET ${offset}
     `;
-    return promisePool.execute(sql) as Promise<RowDataPacket[]>;
+    return promisePool.execute(sql,[fk_senderId,fk_receiverId,fk_receiverId,fk_senderId]) as Promise<RowDataPacket[]>;
   }
 }
 
