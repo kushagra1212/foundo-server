@@ -33,7 +33,7 @@ const addItem = async (req: Request, res: Response, next: NextFunction) => {
     const result = await ItemManager.addItem(req.body);
     const { isFounded } = req.body;
     if (!isFounded && result?.itemId && req.body?.fk_userId) {
-      sendMatchedItemsPushNotificationForSingleItem(
+      await sendMatchedItemsPushNotificationForSingleItem(
         req.body.fk_userId,
         result.itemId,
       );
