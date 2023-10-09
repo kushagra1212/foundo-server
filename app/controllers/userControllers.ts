@@ -25,6 +25,7 @@ import {
   ValidationError,
 } from '../custom-errors/customErrors';
 import { sendFcmMessage } from '../firebase/firebase';
+import { sendPushNotification } from '../firebase/expo-push-notify';
 //create user | POST
 const signupUser = async (req: Request, res: Response, next: NextFunction) => {
   const { firstName, lastName, email, password } = req.body;
@@ -97,20 +98,17 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
       maxAgeOfToken,
     });
     logger.info(`User ${user[0].id} logged in`);
-    logger.info('Sending FCM Notification'+ pushNotificationToken);
-    sendFcmMessage({
-      message: {
-        token:pushNotificationToken,
-        notification: {
-          title: 'Hii Kushagra From Foundo',
-          body: 'This is an FCM notification message!',
+    logger.info('Sending FCM Notification + Push Notification: pushNotificationToken: ', pushNotificationToken);
+    if (pushNotificationToken !== undefined) {
+      await User.updateUser({
+        user: {
+          ...user[0],
+          pushNotificationToken,
         },
-        data: {
-          title: 'Data of message in FCM Notification',
-          body: 'This is an FCM notification message!',
-        },
-      },
-    });
+        id: user[0].id,
+      });
+    }
+
     res.status(200).send({
       jwtToken: token,
       message: 'successfully loggedin',

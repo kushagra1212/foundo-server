@@ -36,7 +36,7 @@ class User {
   }
 
   static updateUser({ user, id }: { user: UserType; id: number }) {
-    let sql = `UPDATE user SET address=?,phoneNo=?,profilePhoto=?, countryCode=?, otp=?, isVerified=? WHERE id=?`;
+    let sql = `UPDATE user SET address=?,phoneNo=?,profilePhoto=?, countryCode=?, otp=?, isVerified=?, pushNotificationToken=? WHERE id=?`;
 
     return promisePool.execute(sql, [
       user.address,
@@ -45,6 +45,7 @@ class User {
       user.countryCode,
       user.otp,
       user.isVerified,
+      user.pushNotificationToken,
       id,
     ]) as Promise<OkPacket[]>;
   }
