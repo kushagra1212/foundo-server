@@ -98,7 +98,7 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
       maxAgeOfToken,
     });
     logger.info(`User ${user[0].id} logged in`);
-    logger.info('Sending FCM Notification + Push Notification: pushNotificationToken: ', pushNotificationToken);
+    console.log('Sending FCM Notification + Push Notification: pushNotificationToken: ', pushNotificationToken);
     if (pushNotificationToken !== undefined) {
       await User.updateUser({
         user: {
