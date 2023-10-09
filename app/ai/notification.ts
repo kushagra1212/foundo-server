@@ -34,7 +34,7 @@ export const sendMatchedItemsPushNotification = async () => {
       };
       try {
         const data = await sendFcmMessageLegacy(fcmMessage);
-        logger.info(data);
+        console.log(data);
       } catch (err) {
         logger.info(err);
       }
@@ -61,7 +61,7 @@ export const sendMatchedItemsPushNotificationForSingleItem = async (
     };
     try {
       const data = await sendFcmMessageLegacy(fcmMessage);
-      logger.info(data);
+      console.log(data);
     } catch (err) {
       logger.info(err);
     }
