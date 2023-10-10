@@ -205,6 +205,7 @@ const updateUserById = async (
   const newAddress = req.body.address;
   const newPhoneNo = req.body.phoneNo;
   const newCountryCode = req.body.countryCode;
+  const newIsVerified = req.body.isVerified;
 
   try {
     if (!userId) {
@@ -278,6 +279,13 @@ const updateUserById = async (
       }
     }
 
+
+    /* Is Verified Update */
+
+    if(newIsVerified !== undefined) {
+      user.isVerified = newIsVerified;
+    }
+
     /* Address Update */
 
     const isAddressExistAndIsValid = newAddress && newAddress.length > 0;
@@ -293,6 +301,7 @@ const updateUserById = async (
         countryCode: user.countryCode,
         profilePhoto: user.profilePhoto,
         address: user.address,
+        isVerified: user.isVerified,
       };
       await User.updateUser({
         user,
@@ -368,6 +377,7 @@ const sendOtp = async (req: Request, res: Response, next: NextFunction) => {
           email: userResult[0].email,
         },
       ];
+      
       await sendTransactionalEmail({
         sender,
         to: receivers,

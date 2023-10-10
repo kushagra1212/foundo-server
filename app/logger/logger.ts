@@ -16,6 +16,7 @@ const customFormat = combine(
 const logger = createLogger({
   level: 'info', // Set the default log level (e.g., 'info', 'error', 'warn', 'debug')
   format: customFormat, // Use the custom format
+
   transports: [
     // Log to the console with colorization
     new transports.Console(),
@@ -44,5 +45,6 @@ const logger = createLogger({
     }),
   ],
 });
+
 
 export default logger;

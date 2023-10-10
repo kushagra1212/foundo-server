@@ -95,7 +95,7 @@ export async function sendTransactionalEmail(requestData) {
         'content-type': 'application/json',
       },
     });
-
+    console.log(process.env.SENDINBLUE_API_KEY)
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);
     }
