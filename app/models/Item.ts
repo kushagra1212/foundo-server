@@ -25,7 +25,7 @@ class Item {
   }
   
   static findItem({ itemId }) {
-    let sql = `SELECT * FROM item WHERE id=?`;
+    let sql = `SELECT * FROM ((SELECT * FROM item WHERE id=?) as i INNER JOIN (SELECT firstName as userFirstName,lastName as userLastName,profilePhoto as userProfilePhoto,id as userId from user) as u ON i.fk_userId=u.userId);`;
     return promisePool.execute(sql, [itemId]) as Promise<RowDataPacket[]>;
   }
 

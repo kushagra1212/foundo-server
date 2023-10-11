@@ -161,7 +161,7 @@ const getUserById = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
   const reqJwt = req as RequestWithJwt;
 
-  const userIdWhoMadeReq = reqJwt.jwt.id;
+  const userIdWhoMadeReq = reqJwt?.jwt?.id;
 
   try {
     if (!id) {
