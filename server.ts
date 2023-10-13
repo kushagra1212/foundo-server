@@ -86,10 +86,10 @@ app.use('/v1/pictures', limiter, pictureRoutes);
 // Messages Routes
 app.use('/v1/messages', limiter, messageRoutes);
 
-// Schedule push notifications to be sent every 24 hours (at midnight)
-const job = schedule.scheduleJob('0 0 * * *', () => {
-  sendMatchedItemsPushNotification();
-});
+// Schedule push notifications to be sent every 24 hours (at midnight) | Currently disabled
+// const job = schedule.scheduleJob('0 0 * * *', () => {
+//   sendMatchedItemsPushNotification();
+// });
 // Error Handling
 
 // middleware for handling mysql errors
