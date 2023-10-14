@@ -32,10 +32,9 @@ export const sendMatchedItemsPushNotification = async () => {
         title,
         message,
       };
-      console.log(fcmMessage);
       try {
         const data = await sendFcmMessageLegacy(fcmMessage);
-        console.log(data);
+        
       } catch (err) {
         logger.info(err);
       }
@@ -60,10 +59,9 @@ export const sendMatchedItemsPushNotificationForSingleItem = async (
       title,
       message,
     };
-    console.log(fcmMessage);
     try {
       const data = await sendFcmMessageLegacy(fcmMessage);
-      console.log(data);
+      
     } catch (err) {
       logger.info(err);
     }

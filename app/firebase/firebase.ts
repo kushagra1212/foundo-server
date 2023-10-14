@@ -44,7 +44,6 @@ export function sendFcmMessage(fcmMessage) {
         resp.setEncoding('utf8');
         resp.on('data', function (data) {
           console.log(`Message sent to Firebase for delivery, response:`);
-          console.log(data, 'data');
         });
       });
       request.on('error', function (err) {
@@ -81,7 +80,6 @@ export const sendFcmMessageLegacy = async fcmMessage => {
           },
         }),
       });
-      console.log(fcmMessage.token, 'fcmMessage.token')
       const data = await res.json();
 
       resolve(data);
@@ -92,11 +90,3 @@ export const sendFcmMessageLegacy = async fcmMessage => {
 };
 
 
-export const sendSMS = async fcmMessage => {
-  return new Promise(async (resolve, reject) => {
-    try {
-    } catch (err) {
-      reject(err);
-    }
-  });
-};

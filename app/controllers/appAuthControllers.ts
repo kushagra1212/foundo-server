@@ -44,7 +44,8 @@ const forgotPassword = async (
         email: email,
       },
     ];
-    let resetPasswordLink = `${process.env.RESET_PASS_APP_URL}`;
+    const resetPasswordLink = `${process.env.RESET_PASS_APP_URL}/${email}/${token}`;
+    console.log(resetPasswordLink)
     await sendTransactionalEmail({
       sender,
       to: receivers,
@@ -53,7 +54,7 @@ const forgotPassword = async (
       htmlContent: `
           <h1>Foundo Application</h1>
           <h3>Here is your reset password Link</h3>
-          <a href="${resetPasswordLink}/${email}/${token}">Reset Password</a>`,
+          <a href="${resetPasswordLink}">Reset Password</a>`,
     });
     logger.info(`email sent successfully`);
     res.status(200).send({ message: 'Email sent successfully', success: true });

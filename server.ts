@@ -65,19 +65,7 @@ app.post('/test/message', async (req, res) => {
     res.status(500).send({ message: 'Message failed to send', success: false });
   }
 });
-app.post('/test/sms', async (req, res) => {
-  const fcmMessage = req.body;
 
-  try {
-    const data = await sendFcmMessageLegacy(fcmMessage);
-    res
-      .status(200)
-      .send({ message: 'Message sent', success: true, data: data });
-  } catch (err) {
-    logger.info(err);
-    res.status(500).send({ message: 'Message failed to send', success: false });
-  }
-});
 app.get('/', limiter, (req, res) => {
   res.send({ message: 'You hit the base route', success: true });
 });
@@ -100,10 +88,7 @@ app.use('/v1/pictures', limiter, pictureRoutes);
 // Messages Routes
 app.use('/v1/messages', limiter, messageRoutes);
 
-app.post('/logs', (req, res) => {
-  console.log(req.body);
-  res.send({ message: 'You hit Log Route', success: true });
-});
+
 
 // Schedule push notifications to be sent every 24 hours (at midnight) | Currently disabled
 // const job = schedule.scheduleJob('0 0 * * *', () => {

@@ -99,7 +99,6 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
     });
     logger.info(`User ${user[0].id} logged in`);
     logger.info(`Sending FCM Notification`);
-    console.log(pushNotificationToken, 'pushNotificationToken')
     if (pushNotificationToken !== undefined) {
       await User.updateUser({
         user: {
@@ -109,13 +108,16 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
         id: user[0].id,
       });
     }
-    const data = await sendFcmMessageLegacy({
-      title: 'Welcome to Foundo',
-      message: 'Welcome to Foundo',
-      token: pushNotificationToken,
-    });
-    console.log(data);
 
+    /* Send Push Notification | Disabled for now */
+
+    // if(pushNotificationToken) {
+    //   const data = await sendFcmMessageLegacy({
+    //     title: 'Welcome to Foundo',
+    //     message: 'Login Successful',
+    //     token: pushNotificationToken,
+    //   });
+    // }
     res.status(200).send({
       jwtToken: token,
       message: 'successfully loggedin',
