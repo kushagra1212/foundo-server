@@ -242,7 +242,8 @@ const updateUserById = async (
       throw new ValidationError('phone number already exists');
     }
 
-    if (isPhoneNoExistAndIsValid && user.phoneNo !== newPhoneNo) {
+
+    if (isPhoneNoExistAndIsValid) {
       user.phoneNo = newPhoneNo;
     }
 

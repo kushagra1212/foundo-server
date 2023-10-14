@@ -53,7 +53,7 @@ Click the Youtube Icon to watch the demo video on YouTube:
 ### Prerequisites
 - [Git](https://git-scm.com/downloads)
 - [npm](https://www.npmjs.com/get-npm)
-- [MySQL](https://dev.mysql.com/downloads/installer/)
+- [MySQL](https://dev.mysql.com/downloads/installer/) (This is optional, you can use the dockerized version)
 - [Node.js](https://nodejs.org/en/download/)
 - [Docker](https://docs.docker.com/get-docker/)
 - [Docker Compose](https://docs.docker.com/compose/install/)
@@ -71,7 +71,7 @@ Click the Youtube Icon to watch the demo video on YouTube:
     ```
 3. Create the .env file:
     ```shell
-    cp .env.example .env
+    cp example-env.txt .env
     ```
 4. Update the .env file with your credentials:
     ```shell

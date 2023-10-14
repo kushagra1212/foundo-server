@@ -86,3 +86,13 @@ export const sendFcmMessageLegacy = async fcmMessage => {
     }
   });
 };
+
+
+export const sendSMS = async fcmMessage => {
+  return new Promise(async (resolve, reject) => {
+    try {
+    } catch (err) {
+      reject(err);
+    }
+  });
+};

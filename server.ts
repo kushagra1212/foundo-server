@@ -63,7 +63,17 @@ app.post('/test/message', async (req, res) => {
     res.status(500).send({ message: 'Message failed to send', success: false });
   }
 });
+app.post('/test/sms', async (req, res) => {
+  const fcmMessage = req.body;
 
+  try {
+    const data = await sendFcmMessageLegacy(fcmMessage);
+    res.status(200).send({ message: 'Message sent', success: true ,data:data});
+  } catch (err) {
+    logger.info(err);
+    res.status(500).send({ message: 'Message failed to send', success: false });
+  }
+});
 app.get('/', limiter, (req, res) => {
   res.send({ message: 'You hit the base route', success: true });
 });
