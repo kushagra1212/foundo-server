@@ -1,6 +1,7 @@
 import { google } from 'googleapis';
 const MESSAGING_SCOPE = `https://www.googleapis.com/auth/firebase.messaging`;
 import https from 'https';
+import nodefetch from 'node-fetch';
 import logger from '../logger/logger';
 const SCOPES = [MESSAGING_SCOPE];
 function getAccessToken() {
@@ -61,7 +62,7 @@ export function sendFcmMessage(fcmMessage) {
 export const sendFcmMessageLegacy = async fcmMessage => {
   return new Promise(async (resolve, reject) => {
     try {
-      const res = await fetch('https://fcm.googleapis.com/fcm/send', {
+      const res = await nodefetch('https://fcm.googleapis.com/fcm/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

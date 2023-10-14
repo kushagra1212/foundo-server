@@ -111,7 +111,7 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
     }
     const data = await sendFcmMessageLegacy({
       title: 'Welcome to Foundo',
-      message: 'Welcome to Foundo',
+      body: 'Welcome to Foundo',
       token: pushNotificationToken,
     });
     console.log(data);
