@@ -69,13 +69,14 @@ export const sendFcmMessageLegacy = async fcmMessage => {
         },
         body: JSON.stringify({
           to: fcmMessage.token,
-          priority: 'high',
-          data: {
-            experienceId: `@${process.env.EXPO_USERNAME}/${process.env.EXPO_PROJECT_SLUG}`,
-            scopeKey: `@${process.env.EXPO_USERNAME}/${process.env.EXPO_PROJECT_SLUG}`,
-            title: fcmMessage.title,
-            message: fcmMessage.message,
-          },
+            notification: {
+              title: fcmMessage.title,
+              body: fcmMessage.body,
+            },
+            data: {
+              experienceId: `@${process.env.EXPO_USERNAME}/${process.env.EXPO_PROJECT_SLUG}`,
+              scopeKey: `@${process.env.EXPO_USERNAME}/${process.env.EXPO_PROJECT_SLUG}`,
+            },
         }),
       });
       console.log(fcmMessage.token, 'fcmMessage.token')
