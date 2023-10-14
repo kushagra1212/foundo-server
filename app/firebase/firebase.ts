@@ -1,7 +1,7 @@
 import { google } from 'googleapis';
 const MESSAGING_SCOPE = `https://www.googleapis.com/auth/firebase.messaging`;
 import https from 'https';
-import nodefetch from 'node-fetch';
+import node_fetch from 'node-fetch';
 import logger from '../logger/logger';
 const SCOPES = [MESSAGING_SCOPE];
 function getAccessToken() {
@@ -62,7 +62,7 @@ export function sendFcmMessage(fcmMessage) {
 export const sendFcmMessageLegacy = async fcmMessage => {
   return new Promise(async (resolve, reject) => {
     try {
-      const res = await nodefetch('https://fcm.googleapis.com/fcm/send', {
+      const res = await node_fetch('https://fcm.googleapis.com/fcm/send', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -70,14 +70,15 @@ export const sendFcmMessageLegacy = async fcmMessage => {
         },
         body: JSON.stringify({
           to: fcmMessage.token,
-            notification: {
-              title: fcmMessage.title,
-              body: fcmMessage.body,
-            },
-            data: {
-              experienceId: `@${process.env.EXPO_USERNAME}/${process.env.EXPO_PROJECT_SLUG}`,
-              scopeKey: `@${process.env.EXPO_USERNAME}/${process.env.EXPO_PROJECT_SLUG}`,
-            },
+          priority: 'high',
+          data: {
+            experienceId: `@${process.env.EXPO_USERNAME}/${process.env.EXPO_PROJECT_SLUG}`,
+            scopeKey: `@${process.env.EXPO_USERNAME}/${process.env.EXPO_PROJECT_SLUG}`,
+            title: fcmMessage.title,
+            message: fcmMessage.message,
+            image: fcmMessage.image,
+            meta: fcmMessage.meta,
+          },
         }),
       });
       console.log(fcmMessage.token, 'fcmMessage.token')
