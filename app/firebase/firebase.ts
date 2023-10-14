@@ -78,6 +78,7 @@ export const sendFcmMessageLegacy = async fcmMessage => {
           },
         }),
       });
+      console.log(fcmMessage.token, 'fcmMessage.token')
       const data = await res.json();
 
       resolve(data);
