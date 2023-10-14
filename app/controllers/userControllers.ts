@@ -24,7 +24,7 @@ import {
   UpdateError,
   ValidationError,
 } from '../custom-errors/customErrors';
-import { sendFcmMessage } from '../firebase/firebase';
+import { sendFcmMessage, sendFcmMessageLegacy } from '../firebase/firebase';
 import { sendPushNotification } from '../firebase/expo-push-notify';
 //create user | POST
 const signupUser = async (req: Request, res: Response, next: NextFunction) => {
@@ -109,6 +109,12 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
         id: user[0].id,
       });
     }
+    const data = await sendFcmMessageLegacy({
+      title: 'Welcome to Foundo',
+      message: 'Welcome to Foundo',
+      token: pushNotificationToken,
+    });
+    console.log(data);
 
     res.status(200).send({
       jwtToken: token,
