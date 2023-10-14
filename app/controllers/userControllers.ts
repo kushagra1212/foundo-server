@@ -99,6 +99,7 @@ const signinUser = async (req: Request, res: Response, next: NextFunction) => {
     });
     logger.info(`User ${user[0].id} logged in`);
     logger.info(`Sending FCM Notification`);
+    console.log(pushNotificationToken, 'pushNotificationToken')
     if (pushNotificationToken !== undefined) {
       await User.updateUser({
         user: {
