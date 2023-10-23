@@ -19,7 +19,7 @@
 ## Demo Video  
 Click the Youtube Icon to watch the demo video on YouTube:
 
-[<img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" width="50">](https://www.youtube.com/watch?v=FFfxGZapPZE)
+[<img src="https://www.iconpacks.net/icons/2/free-youtube-logo-icon-2431-thumb.png" width="50">](https://youtu.be/lAMOcoMJo1M?feature=shared)
 
 
 
@@ -49,8 +49,7 @@ Click the Youtube Icon to watch the demo video on YouTube:
     RTK Query 
     JavaScript
     TypeScript
-    JSON
-  
+    & more ...
 # INSTALLATION
 
 ### Prerequisites
